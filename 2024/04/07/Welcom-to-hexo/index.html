@@ -1,144 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
 
-    
-
-    <!-- 渲染优化 -->
-    <meta name="renderer" content="webkit">
-    <meta name="force-rendering" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="HandheldFriendly" content="True" >
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!--icon-->
-
-    
-    
-    
-    
-    
-
-
-    <!-- meta -->
-
-
-<title>Welcom to hexo | MCXEN 博客</title>
-
-
-
-
-
-    <!-- OpenGraph -->
- 
-    <meta name="description" content="HEXO部署前言参考：https:&#x2F;&#x2F;zz2summer.github.io&#x2F;github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2&#x2F; 正文环境准备 node.js git  这两个应用windows用户直接搜索下载安装就可以。如果习惯了使用linux命令的朋友，推荐windows神器cmder。可以直接在windows">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Welcom to hexo">
-<meta property="og:url" content="https://mcxen.github.io/2024/04/07/Welcom-to-hexo/index.html">
-<meta property="og:site_name" content="MCXEN 博客">
-<meta property="og:description" content="HEXO部署前言参考：https:&#x2F;&#x2F;zz2summer.github.io&#x2F;github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2&#x2F; 正文环境准备 node.js git  这两个应用windows用户直接搜索下载安装就可以。如果习惯了使用linux命令的朋友，推荐windows神器cmder。可以直接在windows">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-07T14:45:29.000Z">
-<meta property="article:modified_time" content="2024-04-07T15:32:40.545Z">
-<meta property="article:author" content="MCXEN">
-<meta name="twitter:card" content="summary_large_image">
-
-
-    
-<link rel="stylesheet" href="/css/style/main.css">
- 
-
-    
-    
     
 
     
 
-     
+    <title>hexo 搭建指南 | MCXEN 博客</title>
+    <meta name="author" content="MCXEN" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="HEXO部署前言参考：https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/正文环境准备node.jsgit这两个应用windows用户直接搜索下载安装就可以。如果习惯了使用linux命令的朋友，推荐windows神器cmder。可以直接在windows环境下使用linux命令，样式可调，再也不要用黑乎乎的cmd了，而且自带git，完全可以不用下载windows" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
-    <!-- custom head -->
+    
+    <link rel="alternate" href="/atom.xml" title="MCXEN 博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/images/favicon.ico">
+    
 
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]><style type="text/css">.nav-inner {top:0;}.author-meta {position:static;top:0;}.search-form {height:36px;}</style><script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
 <meta name="generator" content="Hexo 7.1.1"></head>
+<body>
 
-    <body>
-        <div id="app" tabindex="-1">
-            <header class="header">
-    <div class="header__left">
-        <a href="/" class="button">
-            <span class="logo__text">Demo</span>
-        </a>
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">MCXEN 博客</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
     </div>
-    <div class="header__right">
-        
-            <div class="navbar__menus">
-                
-                    <a href="/" class="navbar-menu button">首页</a>
-                
-                    <a href="/tags/" class="navbar-menu button">标签</a>
-                
-                    <a href="/archives/" class="navbar-menu button">归档</a>
-                
-                    <a href="/friends/" class="navbar-menu button">友链</a>
-                
-                    <a href="/page/" class="navbar-menu button">Page</a>
-                
-            </div>
-        
-        
-        
 
+    <nav id="nav-inner" class="nav-inner">
         
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
         
-
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
         
-            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
-            <div class="dropdown-menus" id="dropdown-menus">
-                
-                    <a href="/" class="dropdown-menu button">首页</a>
-                
-                    <a href="/tags/" class="dropdown-menu button">标签</a>
-                
-                    <a href="/archives/" class="dropdown-menu button">归档</a>
-                
-                    <a href="/friends/" class="dropdown-menu button">友链</a>
-                
-                    <a href="/page/" class="dropdown-menu button">Page</a>
-                
-            </div>
+            <a class="nav-item" href="/categories/life">
+                <span class="nav-text">生活</span>
+            </a>
         
-    </div>
-</header>
-
-
-            <main class="main">
-    
-
-<div class="post-title">
-    <h1 class="post-title__text">
-        Welcom to hexo
-    </h1>
-    <div class="post-title__meta">
-        <a href="/archives/2024/04/" class="post-meta__date button">2024-04-07</a>
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
         
- 
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
         
-    
-    
-
-
- 
-
- 
-    </div>
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
 </div>
 
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="https://mcxen.github.io"></form>
 
+        
+        
+        
+        
 
-<article class="post content-card">
-    <div class="post__header"></div>
-    <div class="post__content">
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HEXO%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">HEXO部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.2.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E5%AE%89%E8%A3%85hexo"><span class="toc-number">1.2.2.</span> <span class="toc-text">正式安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgithub"><span class="toc-number">1.2.3.</span> <span class="toc-text">配置github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">hexo配置以及使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E6%96%87%E7%AB%A0"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">Hexo快速启动文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">hexo常用命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">问题描述：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%9A"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">解决办法：</span></a></li></ol></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            hexo 搭建指南
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="https://mcxen.github.io/2024/04/07/Welcom-to-hexo/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2024-04-07T14:45:29.000Z" itemprop="datePublished">2024-04-07</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
         <h1 id="HEXO部署"><a href="#HEXO部署" class="headerlink" title="HEXO部署"></a>HEXO部署</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>参考：<a target="_blank" rel="noopener" href="https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a></p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ol>
 <li><strong>node.js</strong></li>
@@ -207,97 +194,142 @@
 <li>然后，依次执行：<br><code>hexo clean</code><br><code>hexo g</code><br><code>hexo d</code></li>
 </ol>
 
-    </div>
-     
-    <div class="post-footer__meta"><p>updated at 2024-04-07</p></div> 
-    <div class="post-entry__tags"></div> 
+        
+    </section>
 </article>
 
 
-    <div class="nav">
-        <div class="nav__prev">
-            
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "sanonz.github.io",
+        owner: "sanonz",
+        admin: ["sanonz"],
+        id: "6b1b0e3f854089944a574076d9b95bad",
+        distractionFreeMode: true,
+        title: "hexo 搭建指南",
+        body: "https://mcxen.github.io/2024/04/07/Welcom-to-hexo/",
+        labels: []
+    }).render('comments');
+    </script>
+</div>
+
+
+
+            </div>
         </div>
-        <div class="nav__next">
-            
-                <a href="/2024/04/07/hello-world/" class="nav__link">
-                    <div>
-                        <div class="nav__label">
-                            Next Post
-                        </div>
-                        <div class="nav__title">
-                            Hello World
-                        </div>
-                    </div>
-                    <div>
-                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
-                    </div>
-                </a>
-            
-        </div>
-    </div>
 
-
-
-
-
-</main>
-
-            <footer class="footer">
-    
-    
-
-
-    
-     
- 
-
- 
-    
         
-        <p class="footer-copyright">
-            Copyright © 2024 <a href="/">MCXEN 博客</a>
-        </p>
+            
+            <a id="pagenext" href="/2024/04/07/hello-world/" class="article-next" title="Hello World"><i class="icon-arrow-right"></i></a>
+            
+            
+        
+
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
     
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     
-    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
 </footer>
 
-        </div>
-         
+    </main>
 
- 
+    <script type="text/javascript" src="https://unpkg.com/jquery@1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
 
- 
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
 
- 
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle('normal', slideDone);
+        });
 
- 
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp('normal', slideDone);
+            }, 3000);
+        }
 
+        function slideDone() {
+            if (nodes.navInner.css('display') !== 'none') {
+                nodes.navInner.css('display', '');
+            }
+        }
 
-
- 
-
-
-
- 
-
-
+        $(window).on('resize', function() {
+            if ($(this).width() > 960) {
+                nodes.navInner.css('display', '');
+            }
+        });
+    });
+    </script>
     
- 
+        
+<script src="/js/scrollspy.min.js"></script>
 
- 
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
 
- 
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
 
- 
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
 
- 
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
 
- 
-
-
-
-
-    </body>
+</body>
 </html>
