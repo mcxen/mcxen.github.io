@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN 博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        linux下的java部署｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://mcxen.github.io/2024/06/10/Linux-Java/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN 博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>linux下的java部署</h1>
+                    
+                    <span class="meta">
+                         作者 MCXEN
+                        <span>
+                          日期 2024-06-10
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            linux下的java部署
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="linux下的java部署"><a class="markdownIt-Anchor" href="#linux下的java部署">#</a> linux 下的 java 部署</h1>
+<h2 id="jar命令简介"><a class="markdownIt-Anchor" href="#jar命令简介">#</a> jar 命令简介</h2>
+<p>java 部署 jar 包可以使用 java -jar 命令，比如：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar demo.jar</span><br></pre></td></tr></table></figure>
+<p>执行上述命令后，JAR 包中的程序将在 Linux 系统中运行。</p>
+<p>注：在运行 JAR 包之前，确保你的 JAR 文件是可执行的，并且包含了正确的类和依赖项。如果 JAR 包依赖于其他库或配置文件，确保它们也在正确的位置可用。</p>
+<p>java -jar 是 Java 命令的一种形式，用于运行 JAR（Java Archive）文件。-jar 参数告诉 Java 虚拟机直接从 JAR 文件中执行主类。</p>
+<p>除了 - jar 参数外，java 命令还有许多其他常用的参数，以下是一些常见的参数：</p>
+<ul>
+<li>-cp 或 - classpath：指定类路径，用于指定要搜索类的目录或 JAR 文件。</li>
+<li>-server：启用服务器模式的 JVM，适用于长时间运行的服务器应用程序。</li>
+<li>-XX:+HeapDumpOnOutOfMemoryError：在发生内存溢出时生成堆转储文件。</li>
+<li>-XX:+PrintGCDetails：打印详细的垃圾回收信息。</li>
+<li>-Xmx：指定 Java 堆的最大内存大小。例如，-Xmx512m 表示将最大堆内存设置为 512MB。通过调整堆内存大小，可以优化应用程序的性能和内存使用情况。</li>
+<li>-Xms：指定 Java 堆的初始内存大小。例如，-Xms256m 表示将初始堆内存设置为 256MB。这个参数可以帮助您在启动应用程序时控制初始内存分配的大小。</li>
+<li>-Xss：指定线程栈的大小。例如，-Xss1m 表示将线程栈大小设置为 1MB。线程栈用于存储线程的局部变量和方法调用信息。通过调整线程栈的大小，可以控制应用程序的并发性能和内存使用情况。</li>
+<li>-XX:MetaspaceSize=256m 参数，您可以指定元空间的初始大小为 256MB。这意味着在应用程序启动时，虚拟机会预分配 256MB 的内存用于存储类的元数据。</li>
+<li>-XX:MaxMetaspaceSize=：指定元空间的最大大小。元空间用于存储类的元数据信息。例如，-XX:MaxMetaspaceSize=256m 表示将元空间的最大大小设置为 256MB。适当设置元空间的大小可以避免类加载和元数据溢出的问题。</li>
+<li>-D=：设置系统属性。例如，-Djava.library.path=/path/to/libs 设置 java.library.path 系统属性为 /path/to/libs。您可以使用这个参数来配置应用程序的一些属性，例如文件路径、日志级别等。</li>
+<li>-verbose:class：打印类加载信息。使用这个参数可以了解应用程序在运行过程中加载的类的详细信息，包括类的名称、来源等。</li>
+<li>-verbose:gc：打印垃圾回收信息。通过使用这个参数，您可以了解应用程序的垃圾回收情况，包括垃圾回收器的使用情况、回收的对象数量等。</li>
+<li>-Dfile.encoding=：设置默认的文件编码。例如，-Dfile.encoding=UTF-8 表示使用 UTF-8 编码来读取和写入文件。正确设置文件编码可以确保应用程序能够正确处理不同字符集的文本数据。</li>
+<li>&amp;：符号 &amp; 用于将命令放在后台运行。这意味着命令会在后台执行，不会阻塞终端，你可以继续在终端中执行其他操作。</li>
+</ul>
+<p>示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar -Xms4096m -Xmx4096m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m /opt/myapp/myapp.jar</span><br></pre></td></tr></table></figure>
+<p>命令如上，我们同时使用了多个参数。-Xms4096m 设置最大堆内存为 4096MB，-Xmx4096m 设置初始堆内存为 4096MB，-XX:MetaspaceSize=256m 将元空间的初始大小设置为 256MB，-XX:MaxMetaspaceSize=256m 将元空间的最大大小设置为 256MB, 最后，通过 - jar 选项指定要运行的 JAR 文件为 myapp.jar。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path/to/dump/file.hprof -jar MyProgram.jar</span><br></pre></td></tr></table></figure>
+<p>命令如上，堆转储文件将会被生成在指定的路径 /path/to/dump/ 下。</p>
+<p>启用堆转储可以帮助你在遇到内存问题时进行故障排查和分析，确定可能的内存泄漏或其他与内存使用相关的问题。但在实际使用中，还需要结合其他的监控和分析工具来全面了解程序的内存使用情况。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar demo.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>命令如上，通过使用 &amp;，可以在不中断其他工作的情况下运行 JAR 文件。这种方式可以避免打断后程序停止运行的问题，但是如果关闭当前窗口后程序会停止运行。</p>
+<h2 id="nohup-命令"><a class="markdownIt-Anchor" href="#nohup-命令">#</a> nohup 命令</h2>
+<p>nohup 是一个在 Linux 和 Unix 系统中常用的命令，它的主要作用是让命令在后台运行，并且阻止该命令被终端的挂断信号（HUP）打断。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> java -jar demo.jar &amp;</span><br></pre></td></tr></table></figure>
+<p>命令如上，即使关掉命令窗口，后台程序 demo.jar 也会一直执行。</p>
+<p>注：nohup 并不能保证命令在系统重启或其他情况下仍然继续运行。如果你需要确保命令在系统重启后仍然运行，可能需要使用其他的方法，如守护进程或系统服务。</p>
+<blockquote>
+<p>如：使用一个 Systemd 常见守护进程</p>
+<p>要将 Java 应用程序（如 <code>demo.jar</code> ）设置为守护进程，可以使用以下几种方法之一。守护进程是一种在后台运行的进程，通常在系统启动时启动，并在系统关闭时停止。</p>
+<h3 id="使用-systemd-创建守护进程"><a class="markdownIt-Anchor" href="#使用-systemd-创建守护进程">#</a> 使用 Systemd 创建守护进程</h3>
+<p><code>systemd</code>  是现代 Linux 系统上的系统和服务管理器。你可以通过创建一个  <code>systemd</code>  服务来将你的 Java 应用程序设置为守护进程。</p>
+<h4 id="步骤如下"><a class="markdownIt-Anchor" href="#步骤如下">#</a> 步骤如下：</h4>
+<ol>
+<li>
+<p>创建一个服务文件，比如  <code>demo.service</code> ：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/systemd/system/demo.service</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在文件中添加以下内容：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Demo Java Application</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/bin/java -jar /path/to/demo.jar</span><br><span class="line"><span class="attr">User</span>=your-username</span><br><span class="line"><span class="attr">WorkingDirectory</span>=/path/to</span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">StandardOutput</span>=syslog</span><br><span class="line"><span class="attr">StandardError</span>=syslog</span><br><span class="line"><span class="attr">SyslogIdentifier</span>=demo</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>请确保将  <code>/path/to/demo.jar</code> 、 <code>/path/to</code>  和  <code>your-username</code>  替换为你的  <code>demo.jar</code>  文件的实际路径、工作目录和运行该服务的用户名。</p>
+</li>
+<li>
+<p>保存并退出编辑器。</p>
+</li>
+<li>
+<p>重新加载  <code>systemd</code>  以使服务文件生效：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>启动服务并使其在启动时自动启动：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start demo.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> demo.service</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>检查服务状态以确保它正确启动：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status demo.service</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="使用-nohup-和-结合-crontab-的-reboot"><a class="markdownIt-Anchor" href="#使用-nohup-和-结合-crontab-的-reboot">#</a> 使用  <code>nohup</code>  和  <code>&amp;</code>  结合  <code>crontab</code>  的  <code>@reboot</code></h3>
+<p>虽然  <code>systemd</code>  是现代 Linux 系统上推荐的方法，但如果你无法使用  <code>systemd</code> ，可以使用  <code>nohup</code>  和  <code>crontab</code>  的  <code>@reboot</code>  选项。</p>
+<h4 id="步骤如下-2"><a class="markdownIt-Anchor" href="#步骤如下-2">#</a> 步骤如下：</h4>
+<ol>
+<li>
+<p>打开  <code>crontab</code>  编辑器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>添加以下行来在系统重启时运行你的 Java 程序：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@reboot <span class="built_in">nohup</span> java -jar /path/to/demo.jar &gt; /path/to/demo.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>请确保将  <code>/path/to/demo.jar</code>  和  <code>/path/to/demo.log</code>  替换为你的  <code>demo.jar</code>  文件的实际路径和日志文件路径。</p>
+</li>
+<li>
+<p>保存并退出编辑器。</p>
+</li>
+</ol>
+<h3 id="使用-initd-脚本创建守护进程较旧的方法"><a class="markdownIt-Anchor" href="#使用-initd-脚本创建守护进程较旧的方法">#</a> 使用 Init.d 脚本创建守护进程（较旧的方法）</h3>
+<p>如果你的系统仍然使用  <code>init.d</code>  脚本，你可以编写一个启动脚本并将其添加到系统的启动项中。</p>
+<h4 id="步骤如下-3"><a class="markdownIt-Anchor" href="#步骤如下-3">#</a> 步骤如下：</h4>
+<ol>
+<li>
+<p>创建一个启动脚本，比如  <code>demo</code> ：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/init.d/demo</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在文件中添加以下内容：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:          demo</span></span><br><span class="line"><span class="comment"># Required-Start:    $remote_fs $syslog</span></span><br><span class="line"><span class="comment"># Required-Stop:     $remote_fs $syslog</span></span><br><span class="line"><span class="comment"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: Start demo at boot time</span></span><br><span class="line"><span class="comment"># Description:       Enable service provided by demo.</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">  start)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Starting demo&quot;</span></span><br><span class="line">    <span class="built_in">nohup</span> java -jar /path/to/demo.jar &gt; /path/to/demo.log 2&gt;&amp;1 &amp;</span><br><span class="line">    ;;</span><br><span class="line">  stop)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Stopping demo&quot;</span></span><br><span class="line">    pkill -f <span class="string">&#x27;java -jar /path/to/demo.jar&#x27;</span></span><br><span class="line">    ;;</span><br><span class="line">  *)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Usage: /etc/init.d/demo &#123;start|stop&#125;&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+<p>请确保将  <code>/path/to/demo.jar</code>  和  <code>/path/to/demo.log</code>  替换为你的  <code>demo.jar</code>  文件的实际路径和日志文件路径。</p>
+</li>
+<li>
+<p>保存并退出编辑器。</p>
+</li>
+<li>
+<p>使脚本可执行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> +x /etc/init.d/demo</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>更新启动项：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-rc.d demo defaults</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过以上任一种方法，你可以将  <code>demo.jar</code>  设置为守护进程。 <code>systemd</code>  是现代 Linux 系统中推荐的方法，因为它更强大且</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar demo.jar &gt;1.txt &amp;</span><br></pre></td></tr></table></figure>
+<p>命令如上，这个命令的作用是将 Java JAR 文件 demo.jar 的输出重定向到文件 1.txt 中，即输出内容不打印到当前窗口上，而是输出到 1.txt 文件中，并将其放在后台运行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar demo.jar &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>命令如上，具体内容解释如下：</p>
+<ul>
+<li>【&gt;/dev/null】：将命令的标准输出重定向到 /dev/null。/dev/null 是一个特殊的文件，它会 “吸收” 所有写入的内容，相当于将输出丢弃。</li>
+<li>【&gt;】代表重定向到哪里，例如：echo “123” &gt; /home/123.txt</li>
+<li>/dev/null 代表空设备文件</li>
+<li>2&gt; 表示 stderr 标准错误</li>
+<li>&amp; 表示【等同于】的意思，2&gt;&amp;1，表示 2 的输出重定向【等同于】1</li>
+<li>1 表示 stdout 标准输出，系统默认值是 1，所以 &quot;&gt;/dev/null&quot; 等同于 “1&gt;/dev/null”</li>
+<li>0 标准输入（一般是键盘）</li>
+<li>1 标准输出（一般是显示屏，是用户终端控制台）</li>
+<li>2 标准错误（错误信息输出）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -Xms515m -Xmx1024m -jar -Dfile.encoding=UTF-8 demo.jar --spring.profiles.active=prod &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>命令如上，在上一个命令的基础上，增加了 spring.profiles.active 的指定，encoding 的指定和 java 内存最大堆和初始堆的指定。</p>
+<h2 id="编写sh文件"><a class="markdownIt-Anchor" href="#编写sh文件">#</a> 编写 sh 文件</h2>
+<p>为了不用每次部署都打命令，我们可以把编辑好的命令写在一个.sh 的文件里。<br>
+比如，我们把下面命令写到.sh 的文件里。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -Xms515m -Xmx1024m -jar -Dfile.encoding=UTF-8 app-kiba-spring-kafka-1.0.0.jar &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>如下图：<br>
+<img src="./assets/Linux-Java/243596-20240305135633832-1254684812.png" alt="image"><br>
+ 然后我们连接到 linux，然后 CD 到文件夹，命令如下：</p>
+<p><code>cd /soft/app-kiba-spring-kafka</code> <br>
+ 然后执行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./startup.sh`</span><br><span class="line">如果被系统提示：</span><br><span class="line">`-bash: ./startup.sh: Permission denied</span><br></pre></td></tr></table></figure>
+<p>这是因为没有执行.sh 的权限。<br>
+执行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x *.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>chmod：是改变文件权限的命令。</li>
+<li>u+x：这部分是权限设置。u 表示用户（user），x 表示执行（execute）权限。所以，u+x 表示为用户添加执行权限。</li>
+<li>*.sh：这是一个通配符表达式，表示所有以.sh 结尾的文件。</li>
+</ul>
+<p>所以，chmod u+x *.sh 命令的作用是为当前目录下所有以.sh 结尾的文件添加用户执行权限。<br>
+然后再重新运行 ./start.sh<br>
+ 运行成功后，界面应该没有任何提示，我们可以直接请求我们的网站地址，测试即可，比如我的地址如下：<br>
+<a target="_blank" rel="noopener" href="http://10.1.0.145:8520/code/doc.html#/home">http://10.1.0.145:8520/code/doc.html#/home</a><br>
+ 请求结果如下：<br>
+<img src="./assets/Linux-Java/243596-20240305142133829-1738041424.png" alt="image"></p>
+<h2 id="发布jar注意事项"><a class="markdownIt-Anchor" href="#发布jar注意事项">#</a> 发布 jar 注意事项</h2>
+<p><strong>includeSystemScope</strong></p>
+<p>发布 jar 时，记得增加 includeSystemScope，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;includeSystemScope&gt;true&lt;/includeSystemScope&gt;</span><br></pre></td></tr></table></figure>
+<p>includeSystemScope 是一个 Maven 项目中的配置项，includeSystemScope 为 true，则 Maven 会将系统范围的依赖项包含在构建过程中；如果设置为 false，则不会包含系统范围的依赖项。</p>
+<p><strong>skip</strong></p>
+<p>发布 jar 时，根据实际情况判断是否删除，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- &lt;skip&gt;true&lt;/skip&gt;--&gt;</span><br></pre></td></tr></table></figure>
+<p>true 用于指定是否跳过某个测试用例，true 表示跳过，false 表示不跳过。</p>
+<p>如下图：<br>
+<img src="./assets/Linux-Java/243596-20240305143551360-1666182054.png" alt="image"></p>
+<h2 id="停止jar包"><a class="markdownIt-Anchor" href="#停止jar包">#</a> 停止 jar 包</h2>
+<p>如果需要停止正在运行的 jar 包，我们可以先执行 jps 查看正在运行的进程：</p>
+<p><code>jps</code> <br>
+ 然后找到运行的 jar 包，然后执行 kill</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> 3335206 //关闭</span><br><span class="line"><span class="built_in">kill</span> -9 3335206 //强制关闭</span><br></pre></td></tr></table></figure>
+<p><img src="./assets/Linux-Java/243596-20240305143928142-25657668.png" alt="image"></p>
+<p>也可以使用 ps -ef | grep，代码如下：<br>
+ <code>ps -ef | grep app-kiba-spring-kafka-1.0.0.jar</code> <br>
+ 一样可以捕获进程的 id。然后同样执行 kill 命令。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2024/06/10/post/" data-toggle="tooltip" data-placement="top"
+                           title="post">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E4%B8%8B%E7%9A%84java%E9%83%A8%E7%BD%B2"><span class="toc-text"> linux 下的 java 部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jar%E5%91%BD%E4%BB%A4%E7%AE%80%E4%BB%8B"><span class="toc-text"> jar 命令简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nohup-%E5%91%BD%E4%BB%A4"><span class="toc-text"> nohup 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-systemd-%E5%88%9B%E5%BB%BA%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B"><span class="toc-text"> 使用 Systemd 创建守护进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B"><span class="toc-text"> 步骤如下：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-nohup-%E5%92%8C-%E7%BB%93%E5%90%88-crontab-%E7%9A%84-reboot"><span class="toc-text"> 使用  nohup  和  &amp;  结合  crontab  的  @reboot</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B-2"><span class="toc-text"> 步骤如下：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-initd-%E8%84%9A%E6%9C%AC%E5%88%9B%E5%BB%BA%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E8%BE%83%E6%97%A7%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text"> 使用 Init.d 脚本创建守护进程（较旧的方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B-3"><span class="toc-text"> 步骤如下：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99sh%E6%96%87%E4%BB%B6"><span class="toc-text"> 编写 sh 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83jar%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text"> 发布 jar 注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2jar%E5%8C%85"><span class="toc-text"> 停止 jar 包</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 博客 2024
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://mcxen.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
