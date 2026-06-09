@@ -1,350 +1,349 @@
-1|1|<!DOCTYPE html>
-2|2|<html lang="en">
-3|3|
-4|4|<!-- Head tag -->
-5|5|<head>
-6|6|    <meta charset="utf-8">
-7|7|    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-8|8|    <meta name="viewport" content="width=device-width, initial-scale=1">
-9|9|    <meta name="description" content="">
-10|10|    <meta name="keyword" content="">
-11|11|    <meta name="theme-color" content="#600090">
-12|12|    <meta name="msapplication-navbutton-color" content="#600090">
-13|13|    <meta name="apple-mobile-web-app-capable" content="yes">
-14|14|    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-15|15|    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-16|16|    <link rel="alternate" type="application/atom+xml" title="MCXEN 博客" href="/atom.xml">
-17|17|    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-18|18|    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-19|19|    <title>
-20|20|        
-21|21|        tags｜undefined
-22|22|        
-23|23|    </title>
-24|24|
-25|25|    <link rel="canonical" href="https://mcxen.github.io/tags/">
-26|26|
-27|27|    <!-- Bootstrap Core CSS -->
-28|28|    
-29|29|<link rel="stylesheet" href="/css/bootstrap.min.css">
-30|30|
-31|31|
-32|32|    <!-- Custom CSS -->
-33|33|    
-34|34|<link rel="stylesheet" href="/css/blog-style.css">
-35|35|
-36|36|
-37|37|    <!-- Pygments Github CSS -->
-38|38|    
-39|39|<link rel="stylesheet" href="/css/syntax.css">
-40|40|
-41|41|<meta name="generator" content="Hexo 7.0.0"></head>
-42|42|
-43|43|<style>
-44|44|
-45|header.intro-header {
-46|    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1600/600?random=2');
-47|    background-size: cover;
-48|    background-position: center;
-49|}
-50|</style>
-51|49|<!-- hack iOS CSS :active style -->
-52|50|<body ontouchstart="" class="animated fadeIn">
-53|51|<!-- Navigation -->
-54|52|<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
-55|53|" data-ishome = "false" >
-56|54|    <div class="container-fluid">
-57|55|        <!-- Brand and toggle get grouped for better mobile display -->
-58|56|        <div class="navbar-header page-scroll">
-59|57|            <button type="button" class="navbar-toggle">
-60|58|                <span class="sr-only">Toggle navigation</span>
-61|59|                <span class="icon-bar"></span>
-62|60|                <span class="icon-bar"></span>
-63|61|                <span class="icon-bar"></span>
-64|62|            </button>
-65|63|            <a class="navbar-brand animated pulse" href="/">
-66|64|                <span class="brand-logo">
-67|65|                    MCXEN 博客
-68|66|                </span>
-69|67|                's Blog
-70|68|            </a>
-71|69|        </div>
-72|70|
-73|71|        <!-- Collect the nav links, forms, and other content for toggling -->
-74|72|        <!-- Known Issue, found by Hux:
-75|73|            <nav>'s height woule be hold on by its content.
-76|74|            so, when navbar scale out, the <nav> will cover tags.
-77|75|            also mask any touch event of tags, unfortunately.
-78|76|        -->
-79|77|        <!-- /.navbar-collapse -->
-80|78|        <div id="huxblog_navbar">
-81|79|            <div class="navbar-collapse">
-82|80|                <ul class="nav navbar-nav navbar-right">
-83|81|                    <li>
-84|82|                        <a href="/">Home</a>
-85|83|                    </li>
-86|84|					
-87|85|                    
-88|86|                        
-89|87|							
-90|88|								
-91|89|							
-92|90|						
-93|91|                    
-94|92|                        
-95|93|							
-96|94|                        <li>
-97|95|                            <a href="/tags/">tags</a>
-98|96|                        </li>
-99|97|							
-100|98|						
-101|99|                    
-102|100|					
-103|101|					
-104|102|						<li>
-105|103|							<a href="/about">About</a>
-106|104|						</li>
-107|105|					
-108|106|                </ul>
-109|107|            </div>
-110|108|        </div>
-111|109|    </div>
-112|110|    <!-- /.container -->
-113|111|</nav>
-114|112|<script>
-115|113|    // Drop Bootstarp low-performance Navbar
-116|114|    // Use customize navbar with high-quality material design animation
-117|115|    // in high-perf jank-free CSS3 implementation
-118|116|//    var $body   = document.body;
-119|117|    var $toggle = document.querySelector('.navbar-toggle');
-120|118|    var $navbar = document.querySelector('#huxblog_navbar');
-121|119|    var $collapse = document.querySelector('.navbar-collapse');
-122|120|
-123|121|    $toggle.addEventListener('click', handleMagic)
-124|122|    function handleMagic(e){
-125|123|        if ($navbar.className.indexOf('in') > 0) {
-126|124|        // CLOSE
-127|125|            $navbar.className = " ";
-128|126|            // wait until animation end.
-129|127|            setTimeout(function(){
-130|128|                // prevent frequently toggle
-131|129|                if($navbar.className.indexOf('in') < 0) {
-132|130|                    $collapse.style.height = "0px"
-133|131|                }
-134|132|            },400)
-135|133|        }else{
-136|134|        // OPEN
-137|135|            $collapse.style.height = "auto"
-138|136|            $navbar.className += " in";
-139|137|        }
-140|138|    }
-141|139|</script>
-142|140|
-143|141|<!-- Main Content -->
-144|142|<style>
-145|143|    .intro-header .site-heading {
-146|144|        margin: 50px;
-147|145|    }
-148|146|    
-149|147|    header.intro-header {
-150|148|        background-image: url('https://picsum.photos/1600/600?random=2')
-151|149|    }
-152|150|    
-153|151|</style>
-154|152|
-155|153|<!-- Page Header -->
-156|154|<header class="intro-header">
-157|155|    <div class="container">
-158|156|        <div class="row">
-159|157|            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-160|158|                <div class="site-heading text-center">
-161|159|                    <h1>tags</h1>
-162|160|                    <span class="subheading"></span>
-163|161|                </div>
-164|162|            </div>
-165|163|        </div>
-166|164|    </div>
-167|165|</header>
-168|166|
-169|167|<!-- Main Content -->
-170|168|<div class="container">
-171|169|    <div class="row">
-172|170|        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-173|171|            <!-- 标签云 -->
-174|172|            <div id='tag_cloud' class="tags">
-175|173|                
-176|174|                <a href="#back-end,algo" title="back-end,algo" rel="0">back-end,algo</a>
-177|175|                
-178|176|                <a href="#algo" title="algo" rel="1">algo</a>
-179|177|                
-180|178|                <a href="#life" title="life" rel="0">life</a>
-181|179|                
-182|180|                <a href="#skills" title="skills" rel="1">skills</a>
-183|181|                
-184|182|            </div>
-185|183|
-186|184|            <!-- 标签列表 -->
-187|185|            
-188|186|            <div class="one-tag-list">
-189|187|                <span class="fa fa-tag listing-seperator" id="back-end,algo">
-190|188|                    <span class="tag-text">back-end,algo</span>
-191|189|                </span>
-192|190|                
-193|191|            </div>
-194|192|            
-195|193|            <div class="one-tag-list">
-196|194|                <span class="fa fa-tag listing-seperator" id="algo">
-197|195|                    <span class="tag-text">algo</span>
-198|196|                </span>
-199|197|                
-200|198|                <div class="post-preview">
-201|199|                    <a href="/2024/04/08/algo-note/">
-202|200|                        <h2 class="post-title">
-203|201|                            algo-note
-204|202|                        </h2>
-205|203|                        
-206|204|                    </a>
-207|205|                </div>
-208|206|                <hr>
-209|207|                
-210|208|            </div>
-211|209|            
-212|210|            <div class="one-tag-list">
-213|211|                <span class="fa fa-tag listing-seperator" id="life">
-214|212|                    <span class="tag-text">life</span>
-215|213|                </span>
-216|214|                
-217|215|            </div>
-218|216|            
-219|217|            <div class="one-tag-list">
-220|218|                <span class="fa fa-tag listing-seperator" id="skills">
-221|219|                    <span class="tag-text">skills</span>
-222|220|                </span>
-223|221|                
-224|222|                <div class="post-preview">
-225|223|                    <a href="/2024/04/07/Welcom-to-hexo/">
-226|224|                        <h2 class="post-title">
-227|225|                            hexo 搭建指南
-228|226|                        </h2>
-229|227|                        
-230|228|                    </a>
-231|229|                </div>
-232|230|                <hr>
-233|231|                
-234|232|            </div>
-235|233|            
-236|234|
-237|235|        </div>
-238|236|    </div>
-239|237|</div>
-240|238|
-241|239|<!-- Footer -->
-242|240|<!-- Footer -->
-243|241|<footer>
-244|242|    <div class="container">
-245|243|        <div class="row">
-246|244|            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-247|245|                <br>
-248|246|                <ul class="list-inline text-center">
-249|247|                
-250|248|                
-251|249|                
-252|250|
-253|251|                
-254|252|
-255|253|                
-256|254|
-257|255|                
-258|256|
-259|257|                
-260|258|
-261|259|                </ul>
-262|260|                <p class="copyright text-muted">
-263|261|                    Copyright &copy; MCXEN 博客 2024
-264|262|                    <br>
-265|263|                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-266|264|                    <br>
-267|265|                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
-268|266|                </p>
-269|267|
-270|268|            </div>
-271|269|        </div>
-272|270|    </div>
-273|271|</footer>
-274|272|
-275|273|<!-- jQuery -->
-276|274|
-277|275|<script src="/js/jquery.min.js"></script>
-278|276|
-279|277|
-280|278|<!-- Bootstrap Core JavaScript -->
-281|279|
-282|280|<script src="/js/bootstrap.min.js"></script>
-283|281|
-284|282|
-285|283|<!-- Custom Theme JavaScript -->
-286|284|
-287|285|<script src="/js/blog.js"></script>
-288|286|
-289|287|
-290|288|<!-- async load function -->
-291|289|<script>
-292|290|    function async(u, c) {
-293|291|      var d = document, t = 'script',
-294|292|          o = d.createElement(t),
-295|293|          s = d.getElementsByTagName(t)[0];
-296|294|      o.src = u;
-297|295|      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-298|296|      s.parentNode.insertBefore(o, s);
-299|297|    }
-300|298|</script>
-301|299|
-302|300|<!-- jquery.tagcloud.js -->
-303|301|<script>
-304|302|    // only load tagcloud.js in tag.html
-305|303|    if($('#tag_cloud').length !== 0){
-306|304|        async("https://mcxen.github.io/js/jquery.tagcloud.js",function(){
-307|305|            $.fn.tagcloud.defaults = {
-308|306|                //size: {start: 1, end: 1, unit: 'em'},
-309|307|                color: {start: '#bbbbee', end: '#0085a1'},
-310|308|            };
-311|309|            $('#tag_cloud a').tagcloud();
-312|310|        })
-313|311|    }
-314|312|</script>
-315|313|
-316|314|<!--fastClick.js -->
-317|315|<script>
-318|316|    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-319|317|        var $nav = document.querySelector("nav");
-320|318|        if($nav) FastClick.attach($nav);
-321|319|    })
-322|320|</script>
-323|321|
-324|322|
-325|323|
-326|324|<!-- Google Analytics -->
-327|325|
-328|326|
-329|327|
-330|328|<!-- Baidu Tongji -->
-331|329|
-332|330|
-333|331|<!-- swiftype -->
-334|332|<script type="text/javascript">
-335|333|  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-336|334|  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-337|335|  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-338|336|  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-339|337|
-340|338|  _st('install','','2.0.0');
-341|339|</script>
-342|340|
-343|341|<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-344|342|
-345|343|<!--wechat title img-->
-346|344|<img class="wechat-title-img" src="">
-347|345|</body>
-348|346|
-349|347|</html>
-350|348|
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN 博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        tags｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://mcxen.github.io/tags/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<style>
+
+header.intro-header {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1600/600?random=2');
+    background-size: cover;
+    background-position: center;
+}
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN 博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+<style>
+    .intro-header .site-heading {
+        margin: 50px;
+    }
+    
+    header.intro-header {
+        background-image: url('https://picsum.photos/1600/600?random=2')
+    }
+    
+</style>
+
+<!-- Page Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading text-center">
+                    <h1>tags</h1>
+                    <span class="subheading"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- 标签云 -->
+            <div id='tag_cloud' class="tags">
+                
+                <a href="#back-end,algo" title="back-end,algo" rel="0">back-end,algo</a>
+                
+                <a href="#algo" title="algo" rel="1">algo</a>
+                
+                <a href="#life" title="life" rel="0">life</a>
+                
+                <a href="#skills" title="skills" rel="1">skills</a>
+                
+            </div>
+
+            <!-- 标签列表 -->
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="back-end,algo">
+                    <span class="tag-text">back-end,algo</span>
+                </span>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="algo">
+                    <span class="tag-text">algo</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2024/04/08/algo-note/">
+                        <h2 class="post-title">
+                            algo-note
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="life">
+                    <span class="tag-text">life</span>
+                </span>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="skills">
+                    <span class="tag-text">skills</span>
+                </span>
+                
+                <div class="post-preview">
+                    <a href="/2024/04/07/Welcom-to-hexo/">
+                        <h2 class="post-title">
+                            hexo 搭建指南
+                        </h2>
+                        
+                    </a>
+                </div>
+                <hr>
+                
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 博客 2024
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://mcxen.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
