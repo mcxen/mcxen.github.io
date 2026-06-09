@@ -167,26 +167,26 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>手里有一台阿里云 ECS（Ubuntu 22.04），IP <code>xxx.xxx.xxx.xxx</code>，上面跑着一个服务监听 <code>12201</code> 端口。</p>
-<p>想通过域名 <code>f.xpai.uk</code> 用 HTTPS 访问这个服务，于是开始了折腾之旅。</p>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>手里有一台阿里云 ECS（Ubuntu 22.04），IP <code>SERVER_IP</code>，上面跑着一个服务监听 <code>12201</code> 端口。</p>
+<p>想通过域名 <code>f.example.com</code> 用 HTTPS 访问这个服务，于是开始了折腾之旅。</p>
 
 <h2 id="第一步：安装-Caddy"><a href="#第一步：安装-Caddy" class="headerlink" title="第一步：安装 Caddy"></a>第一步：安装 Caddy</h2><p>Caddy 是现代 Web 服务器，自动 HTTPS 是卖点。SSH 到服务器后：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install -y debian-keyring debian-archive-keyring apt-transport-https curl</span><br><span class="line">curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg</span><br><span class="line">curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list</span><br><span class="line">apt update && apt install caddy -y</span><br></pre></td></tr></table></figure>
 
 <p>配置 <code>/etc/caddy/Caddyfile</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f.xpai.uk {</span><br><span class="line">    reverse_proxy localhost:12201</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f.example.com {</span><br><span class="line">    reverse_proxy localhost:12201</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
 <p>重启 Caddy：<code>systemctl restart caddy</code></p>
 
-<h2 id="第二步：DNS-配置"><a href="#第二步：DNS-配置" class="headerlink" title="第二步：DNS 配置"></a>第二步：DNS 配置</h2><p>域名 <code>xpai.uk</code> 托管在 Cloudflare，添加 A 记录：</p>
+<h2 id="第二步：DNS-配置"><a href="#第二步：DNS-配置" class="headerlink" title="第二步：DNS 配置"></a>第二步：DNS 配置</h2><p>域名 <code>example.com</code> 托管在 Cloudflare，添加 A 记录：</p>
 <ul>
 <li>类型: A</li>
 <li>名称: f</li>
-<li>内容: <code>xxx.xxx.xxx.xxx</code></li>
+<li>内容: <code>SERVER_IP</code></li>
 <li>代理: 橙色云朵（开启 Cloudflare 代理）</li>
 </ul>
 
-<h2 id="第三步：SSL-525-错误"><a href="#第三步：SSL-525-错误" class="headerlink" title="第三步：SSL 525 错误"></a>第三步：SSL 525 错误</h2><p>访问 <code>https://f.xpai.uk</code>，返回 <strong>Cloudflare 525 SSL Handshake Failed</strong>。</p>
+<h2 id="第三步：SSL-525-错误"><a href="#第三步：SSL-525-错误" class="headerlink" title="第三步：SSL 525 错误"></a>第三步：SSL 525 错误</h2><p>访问 <code>https://f.example.com</code>，返回 <strong>Cloudflare 525 SSL Handshake Failed</strong>。</p>
 <p>原因分析：</p>
 <ul>
 <li>Caddy 尝试用 Let's Encrypt 申请证书</li>
@@ -200,7 +200,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/caddy/certs</span><br><span class="line"># 上传 cert.pem 和 key.pem 到 /etc/caddy/certs/</span><br><span class="line">chown -R caddy:caddy /etc/caddy/certs</span><br></pre></td></tr></table></figure>
 
 <p>修改 Caddyfile：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f.xpai.uk {</span><br><span class="line">    tls /etc/caddy/certs/cert.pem /etc/caddy/certs/key.pem</span><br><span class="line">    reverse_proxy localhost:12201</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f.example.com {</span><br><span class="line">    tls /etc/caddy/certs/cert.pem /etc/caddy/certs/key.pem</span><br><span class="line">    reverse_proxy localhost:12201</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
 <p>重启后 SSL 525 错误解决。</p>
 
@@ -216,7 +216,7 @@
 <h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><p>使用非标端口（如 8443）绕过 ICP 检查：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">:8443 {</span><br><span class="line">    tls /etc/caddy/certs/cert.pem /etc/caddy/certs/key.pem</span><br><span class="line">    reverse_proxy localhost:12201</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
-<p>访问地址变为 <code>https://f.xpai.uk:8443</code>。</p>
+<p>访问地址变为 <code>https://f.example.com:8443</code>。</p>
 <p>注意：阿里云安全组需要放行 8443 端口（TCP 入方向）。</p>
 
 <h2 id="踩坑总结"><a href="#踩坑总结" class="headerlink" title="踩坑总结"></a>踩坑总结</h2><ol>
