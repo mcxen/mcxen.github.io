@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN 博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        algo-note｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2024/04/08/algo-note/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN 博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>algo-note</h1>
+                    
+                    <span class="meta">
+                         作者 MCXEN
+                        <span>
+                          日期 2024-04-08
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
+                        <a class="tag" href="/tags/#数据结构"
+                           title="数据结构">数据结构</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            algo-note
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>一、数据结构模板数组问题41. 缺失的第一个正整数给你一个未排序的整数数组 <code>nums</code> ，请你找出其中没有出现的最小的正整数。</p>
+<p>请你实现时间复杂度为 <code>O(n)</code> 并且只使用常数级别额外空间的解决方案。</p>
+<p>示例 1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,0]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p>示例 2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,4,-1,1]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p>示例 3：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [7,8,9,11,12]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &amp;#123;</span><br><span class="line">    public int firstMissingPositive(int[] nums) &amp;#123;</span><br><span class="line">        //最小的正整数，遍历</span><br><span class="line">        int len = nums.length;</span><br><span class="line">        for (int i = 0; i &lt; len; i++) &amp;#123;</span><br><span class="line">            while (nums[i]&gt;0 &amp;&amp; nums[i]&lt;=len &amp;&amp; nums[i]!=nums[nums[i]-1])&amp;#123;</span><br><span class="line">                //  1 2 3 0 4</span><br><span class="line">                //  - - - ! -</span><br><span class="line">                // 4应该在下标3的位置</span><br><span class="line">                int j = nums[i] - 1;</span><br><span class="line">                int temp = nums[i];</span><br><span class="line">                nums[i] = nums[j];</span><br><span class="line">                nums[j] = temp;</span><br><span class="line">            &amp;#125;</span><br><span class="line">        &amp;#125;</span><br><span class="line">        for (int i = 0; i &lt; len; i++) &amp;#123;</span><br><span class="line">            if (nums[i]!=i+1)&amp;#123;</span><br><span class="line">                return i+1;//如果当前位置不存在对应的合理的值，就返回</span><br><span class="line">            &amp;#125;</span><br><span class="line">        &amp;#125;</span><br><span class="line">        return len+1;</span><br><span class="line">    &amp;#125;</span><br><span class="line">&amp;#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>链表问题146. LRU 缓存请你设计并实现一个满足 LRU (最近最少使用) 缓存 约束的数据结构。</p>
+<p>实现 <code>LRUCache</code> 类：</p>
+<ul>
+<li><code>LRUCache(int capacity)</code> 以 正整数 作为容量 <code>capacity</code> 初始化 LRU 缓存</li>
+<li><code>int get(int key)</code> 如果关键字 <code>key</code> 存在于缓存中，则返回关键字的值，否则返回 <code>-1</code> 。</li>
+<li><code>void put(int key, int value)</code> 如果关键字 <code>key</code> 已经存在，则变更其数据值 <code>value</code> ；如果不存在，则向缓存中插入该组 <code>key-value</code> 。如果插入操作导致关键字数量超过 <code>capacity</code> ，则应该 逐出 最久未使用的关键字。</li>
+</ul>
+<p>函数 <code>get</code> 和 <code>put</code> 必须以 <code>O(1)</code> 的平均时间复杂度运行。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]</span><br><span class="line">[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, 1, null, -1, null, -1, 3, 4]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">LRUCache lRUCache = new LRUCache(2);</span><br><span class="line">lRUCache.put(1, 1); // 缓存是 &amp;#123;1=1&amp;#125;</span><br><span class="line">lRUCache.put(2, 2); // 缓存是 &amp;#123;1=1, 2=2&amp;#125;</span><br><span class="line">lRUCache.get(1);    // 返回 1</span><br><span class="line">lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 &amp;#123;1=1, 3=3&amp;#125;</span><br><span class="line">lRUCache.get(2);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 &amp;#123;4=4, 3=3&amp;#125;</span><br><span class="line">lRUCache.get(1);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.get(3);    // 返回 3</span><br><span class="line">lRUCache.get(4);    // 返回 4</span><br></pre></td></tr></table></figure>
+
+<p>要让 put 和 get 方法的时间复杂度为 O(1)，我们可以总结出 cache 这个数据结构必要的条件：</p>
+<p>1、显然 cache 中的元素必须有时序，以区分最近使用的和久未使用的数据，当容量满了之后要删除最久未使用的那个元素腾位置。</p>
+<p>2、我们要在 cache 中快速找某个 key 是否已存在并得到对应的 val；</p>
+<p>3、每次访问 cache 中的某个 key，需要将这个元素变为最近使用的，也就是说 cache 要支持在任意位置快速插入和删除元素。</p>
+<p>那么，什么数据结构同时符合上述条件呢？哈希表查找快，但是数据无固定顺序；链表有顺序之分，插入删除快，但是查找慢。所以结合一下，形成一种新的数据结构：<code>哈希链表 LinkedHashMap</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class LRUCache &amp;#123;</span><br><span class="line">    int cap;</span><br><span class="line">    LinkedHashMap&lt;Integer,Integer&gt; cache = new LinkedHashMap&lt;&gt;();</span><br><span class="line">    public LRUCache(int capacity) &amp;#123;</span><br><span class="line">        this.cap = capacity;</span><br><span class="line">    &amp;#125;</span><br><span class="line">    </span><br><span class="line">    public int get(int key) &amp;#123;</span><br><span class="line">        if(!cache.containsKey(key))&amp;#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &amp;#125;</span><br><span class="line">        int val = cache.get(key);</span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key,val);//再次插入就实现了最新的使用的标记</span><br><span class="line">        return cache.get(key);</span><br><span class="line">    &amp;#125;</span><br><span class="line">    </span><br><span class="line">    public void put(int key, int value) &amp;#123;</span><br><span class="line">        if(cache.containsKey(key))&amp;#123;</span><br><span class="line">            cache.put(key,value);</span><br><span class="line">            int val = cache.get(key);</span><br><span class="line">            cache.remove(key);</span><br><span class="line">            cache.put(key,val);//再次插入</span><br><span class="line">            return;</span><br><span class="line">        &amp;#125;</span><br><span class="line">        if(cache.size()&gt;=cap)&amp;#123;</span><br><span class="line">            //使用iterator()方法获取迭代器，可以遍历集合中的元素。next()方法用于返回下一个元素，即获取最早的键。</span><br><span class="line">            int oldestKey = cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &amp;#125;</span><br><span class="line">        cache.put(key,value);</span><br><span class="line">        return;</span><br><span class="line">    &amp;#125;</span><br><span class="line">&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>用 LinkedHashMap 可以很容易实现 LRU 缓存，不过面试的时候估计这样不好，还是尽量自己实现数据结构吧🤣</p>
+<p>主要想法是使用 JDK 提供的 HashMap，然后自己写一个 Node 节点类，用来保存 value ，并且通过这个 Node 里面的 prev、next 指针将各个值串联起来，这样就维护了顺序。</p>
+<p>很重要的一个细节是，Node 里面还要加上 key （尽管 HashMap 本来就存了一份）。</p>
+<p>原因是当缓存达到容量上限时，就要先移除尾部的节点，这个时候如果只移除链表的 tail 节点，忽略了 HasmMap 也要 remove ，后面再访问这个被移除的 key 就会造成空指针异常！！！</p>
+<p>所以我们在 Node 节点里面加上 key ，删掉 tail 之前先 remove 掉 HasmMap 的这个 key，就很方便了。</p>
+<p>不适用LinkedList:</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40</p>
+<p>… [OUTPUT TRUNCATED - 801698 chars omitted out of 851698 total] …</p>
+<p>span&gt;32. 最长有效括号-栈存储哈希算法290. 单词规律36. 有效的数独1. 两数之和四数之和II哈希法求解不含重复字串249. 移位字符串分组单调栈天气：滑动窗口局部最大值剑指 Offer II 039. 直方图最大矩形面积剑指 Offer II 040. 矩阵中最大的矩形优先级队列PriorityQueue的作用剑指 Offer II 059. 数据流的第 K 大数值剑指 Offer II 060. 出现频率最高的 k 个数字373. 查找和最小的 K 对数字TreeSetTreeSet Vs. HashSet使用剑指 Offer II 057. 值和下标之差都在给定的范围内Methodfirst()和last()方法ceiling()，floor()，higher()和lower()方法图论399. 除法求值207. 课程表210. 课程表 IIPRIM算法-最小生成树多叉树208. 实现 Trie (前缀树)211. 添加与搜索单词 - 数据结构设计212. 单词搜索 II堆&#x2F;优先队列方法摘要215. 数组中的第K个最大元素二、算法模板排序算法排序算法的稳定性选择排序快速排序插入排序堆排序归并排序链表排序LCR 170. 交易逆序对的总数280. 摆动排序二分查找法162. 寻找峰值33. 搜索旋转排序数组二分查找KMP二叉树基础知识129. 求根节点到叶节点数字之和226. 翻转二叉树序列化与反序列化二叉树：非递归的方式 前序中序后序遍历前序遍历中序遍历后序遍历：236. 二叉树的最近公共祖先114. 二叉树展开为链表纠正二叉搜索树深度优先遍历（递归）剑指 Offer II 049. 从根节点到叶节点的路径数字之和广度优先遍历（队列）剑指 Offer II 044. 二叉树每层的最大值-层序遍历剑指 Offer II 045. 二叉树最底层最左边的值-层序遍历剑指 Offer II 046. 二叉树的右侧视图117. 填充每个节点的下一个右侧节点指针 II二叉树深度二叉树节点数量919. 完全二叉树插入器98. 验证二叉搜索树回溯算法40. 组合总和 II90. 子集 II47.全排列 II77. 组合17. 电话号码的字母组合剑指 Offer II 084. 含有重复元素集合的全排列 93. 复原 IP 地址437. 路径总和 III:star2: 112. 路径总和113. 路径总和 II剑指 Offer II 086. 分割回文子字符串79.单词搜索513. 找树左下角的值22. 括号生成79. 单词搜索动态规划64. 最小路径和97. 交错字符串II 019回文字符647. 回文子串5. 最长回文子串剑指 Offer II 093. 最长斐波那契数列剑指 Offer II 092. 翻转字符44. 通配符匹配72. 编辑距离718. 最长重复子数组198.打家劫舍139. 单词拆分300. 最长递增子序列120. 三角形最小路径和221. 最大正方形123. 买卖股票的最佳时机 III188. 买卖股票的最佳时机 IV背包算法:baggage_claim:背包递推公式遍历顺序01背包416. 分割等和子集1049. 最后一块石头的重量 II494. 目标和完全背包剑指 Offer II 104. 排列的数目剑指 Offer II 103. 最少的硬币数目Kadane’s Algorithm &#x2F; Kadene算法并查集滑动窗口双指针680. 验证回文串 II26. 删除有序数组中的重复项统计连续子数组个数offer || 014 是否包含 s1 的某个变位词。滑动窗口统计变位词前缀和算法和大于等于target的连续子数组 和下面一样的题offer010 和为k的子数组个数剑指 Offer II 011. 0 和 1 个数相同的子数组304. 二维区域和检索 - 矩阵不可变-二维前缀和算法算数运算进位与非进位不用除法的除法：倍增求解剑指 Offer II 003. 前 n 个数字二进制中 1 的个数剑指 Offer II 004. 只出现一次的数字 剑指 Offer II 005. 单词长度的最大乘积-位运算剑指 Offer II 070. 排序数组中只出现一次的数字43. 字符串相乘实现两个字符串相加50. Pow(x, n)66.加一求解最大公约数GCD</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2024/06/10/linux-java/" data-toggle="tooltip" data-placement="top"
+                           title="linux下的java部署">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2024/04/07/hexo-guide/" data-toggle="tooltip" data-placement="top"
+                           title="hexo 搭建指南">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 博客 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
