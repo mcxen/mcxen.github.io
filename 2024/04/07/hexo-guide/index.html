@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="MCXEN 博客" href="/atom.xml">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
@@ -38,7 +38,7 @@
     
 <link rel="stylesheet" href="/css/syntax.css">
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
 <style>
 
@@ -62,7 +62,7 @@
             </button>
             <a class="navbar-brand animated pulse" href="/">
                 <span class="brand-logo">
-                    MCXEN 博客
+                    MCXEN
                 </span>
                 's Blog
             </a>
@@ -154,7 +154,7 @@
                     <h1>hexo 搭建指南</h1>
                     
                     <span class="meta">
-                         作者 MCXEN
+                         作者 mcx
                         <span>
                           日期 2024-04-07
                          </span>
@@ -185,7 +185,7 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>HEXO部署参考：<a href="https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a></p>
+                <p>HEXO部署参考：<a target="_blank" rel="noopener" href="https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a></p>
 <p>环境准备</p>
 <ul>
 <li>node.js</li>
@@ -201,7 +201,7 @@
 
 <p>npm安装卡住</p>
 <p>执行</p>
-<p>npm config set registry <a href="https://registry.npmmirror.com/" target="_blank" rel="noopener">https://registry.npmmirror.com/</a></p>
+<p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a></p>
 <p>完成之后如果下载还是有问题，可以执行 npm set strict-ssl false， 然后就可以了npm i了</p>
 <p>自选合适的目录，新建文件夹<folder></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;folder&gt;</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
@@ -213,7 +213,7 @@
 </blockquote>
 <p>github-&gt;头像-&gt;Settings→SSH kyes→Add SSH key，粘贴复制的内容。</p>
 <p>配置本地账户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name “your_username” #设置用户名</span><br><span class="line">git config --global user.email “your_email” #设置邮箱地址,最好使用注册邮箱地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your_username&quot; #设置用户名</span><br><span class="line">git config --global user.email &quot;your_email&quot; #设置邮箱地址,最好使用注册邮箱地址</span><br></pre></td></tr></table></figure>
 
 <p>测试是否配置成功</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
@@ -226,35 +226,34 @@
 <p>站点配置如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">url: https://yourname.github.io/</span><br><span class="line">theme: landscape #选择你想用的主题，我用的是indigo</span><br><span class="line">deploy:</span><br><span class="line">    type: git # 不要使用github</span><br><span class="line">    repo: git@github.com:pengwenwu/pengwenwu.github.io.git # 使用ssh连接</span><br><span class="line">    branch: master # 默认master分支</span><br><span class="line">    message: add new blog # 自动部署commit备注，可不填</span><br></pre></td></tr></table></figure>
 
-<p>Hexo切换主题&#96;&#96;&#96;<br>npm install hexo-theme-icarus<br>hexo config theme icarus  #切换主题</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Hexo快速启动文章hexo s</span><br><span class="line"></span><br><span class="line">写文章、发布文章 首先在博客根目录下安装一个扩展npm i hexo-deployer-git。 </span><br><span class="line"></span><br><span class="line">然后输入hexo new post “article title”，新建一篇文章。</span><br><span class="line"></span><br><span class="line"> 然后打开H:\blog\source_posts的目录，可以发现下面多了一个article-title.md文件，就是文章文件。 </span><br><span class="line"></span><br><span class="line">编写完markdown文件后，根目录下输入hexo g生成静态网页，然后输入hexo s可以本地预览效果，</span><br><span class="line"></span><br><span class="line">最后输入hexo d上传到github上。这时打开你的github.io主页就能看到发布的文章啦。</span><br><span class="line"></span><br><span class="line">hexo常用命令hexo命令参考</span><br><span class="line"></span><br><span class="line">`hexo n &quot;我的博客&quot;` &amp;#x3D;&amp;#x3D; `hexo new &quot;我的博客&quot;` #新建文章</span><br><span class="line">`hexo p` &amp;#x3D;&amp;#x3D; `hexo publish`</span><br><span class="line">`hexo g` &amp;#x3D;&amp;#x3D; `hexo generate` #生成</span><br><span class="line">`hexo s` &amp;#x3D;&amp;#x3D; `hexo server` #启动服务本地预览</span><br><span class="line">`hexo d` &amp;#x3D;&amp;#x3D; `hexo deploy` #部署</span><br><span class="line">`hexo clean` #清除缓存 网页正常情况下可以忽略此条命令  </span><br><span class="line"></span><br><span class="line">`hexo server` #Hexo 会监视文件变动并自动更新，您无须重启服务器。</span><br><span class="line">`hexo server -s` #静态模式</span><br><span class="line">`hexo server -p 5000` #更改端口</span><br><span class="line">`hexo server -i 192.168.1.1` #自定义 IP</span><br><span class="line"></span><br><span class="line">在执行之前，记得安装自动部署 (–save 加不加的区别在于是否写入到依赖文件package.json中)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Hexo切换主题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-theme-icarus</span><br><span class="line">hexo config theme icarus  #切换主题</span><br></pre></td></tr></table></figure>
+
+<p>Hexo快速启动文章hexo s</p>
+<p>写文章、发布文章 首先在博客根目录下安装一个扩展npm i hexo-deployer-git。</p>
+<p>然后输入hexo new post “article title”，新建一篇文章。</p>
+<p>然后打开H:\blog\source_posts的目录，可以发现下面多了一个article-title.md文件，就是文章文件。</p>
+<p>编写完markdown文件后，根目录下输入hexo g生成静态网页，然后输入hexo s可以本地预览效果，</p>
+<p>最后输入hexo d上传到github上。这时打开你的github.io主页就能看到发布的文章啦。</p>
+<p>hexo常用命令hexo命令参考</p>
+<p><code>hexo n &quot;我的博客&quot;</code> &#x3D;&#x3D; <code>hexo new &quot;我的博客&quot;</code> #新建文章<br><code>hexo p</code> &#x3D;&#x3D; <code>hexo publish</code><br><code>hexo g</code> &#x3D;&#x3D; <code>hexo generate</code> #生成<br><code>hexo s</code> &#x3D;&#x3D; <code>hexo server</code> #启动服务本地预览<br><code>hexo d</code> &#x3D;&#x3D; <code>hexo deploy</code> #部署<br><code>hexo clean</code> #清除缓存 网页正常情况下可以忽略此条命令</p>
+<p><code>hexo server</code> #Hexo 会监视文件变动并自动更新，您无须重启服务器。<br><code>hexo server -s</code> #静态模式<br><code>hexo server -p 5000</code> #更改端口<br><code>hexo server -i 192.168.1.1</code> #自定义 IP</p>
+<p>在执行之前，记得安装自动部署</p>
 <p>npm install hexo-deployer-git –save</p>
-<pre><code>
-正常本地预览，直接执行`hexo s`,如果要发布话最好执行`clean`命令，会去删除生成的public文件，完整部署命令:`hexo clean &amp;&amp; hexo g &amp;&amp; hexo d`。或者直接`hexo d -g`
-
-问题描述：
-- 先是出现错误：
-`error：spawn failed...`
-- 然后经过一些博客的操作会出现以下问题：
-`fatal: cannot lock ref &amp;#39;HEAD&amp;#39;: unable to resolve reference HEAD: Invalid argument error: src refspec`
-- 或者：
-`error: src refspec HEAD does not match any.`等等
-
-总结一下：
-问题大多是因为`git `进行`push`或者`hexo d`的时候改变了一些`.deploy_git`文件下的内容。
-
-解决办法：
-- 删除`.deploy_git`文件夹;
-- 输入`git config --global core.autocrlf false`
-- 然后，依次执行：
-`hexo clean`
-`hexo g`
-`hexo d`
-
-                        &amp;larr; Previous Post
-
-                    HEXO部署环境准备正式安装hexo配置githubhexo配置以及使用Hexo切换主题Hexo快速启动文章hexo常用命令问题描述：解决办法：
-</code></pre>
+<p>正常本地预览，直接执行<code>hexo s</code>,如果要发布话最好执行<code>clean</code>命令，会去删除生成的public文件，完整部署命令:<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>。或者直接<code>hexo d -g</code></p>
+<p>问题描述：</p>
+<ul>
+<li>先是出现错误：<br><code>error：spawn failed...</code></li>
+<li>然后经过一些博客的操作会出现以下问题：<br><code>fatal: cannot lock ref &#39;HEAD&#39;: unable to resolve reference HEAD: Invalid argument error: src refspec</code></li>
+<li>或者：<br><code>error: src refspec HEAD does not match any.</code>等等</li>
+</ul>
+<p>总结一下：<br>问题大多是因为<code>git </code>进行<code>push</code>或者<code>hexo d</code>的时候改变了一些<code>.deploy_git</code>文件下的内容。</p>
+<p>解决办法：</p>
+<ul>
+<li>删除<code>.deploy_git</code>文件夹;</li>
+<li>输入<code>git config --global core.autocrlf false</code></li>
+<li>然后，依次执行：<br><code>hexo clean</code><br><code>hexo g</code><br><code>hexo d</code></li>
+</ul>
 
                 <hr>
                 
@@ -335,11 +334,11 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; MCXEN 博客 2026
+                    Copyright &copy; MCXEN 2026
                     <br>
                     <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
                     <br>
-                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
                 </p>
 
             </div>
