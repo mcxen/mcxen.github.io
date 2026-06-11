@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN 博客" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/06/11/115-skill-journey/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN 博客
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录</h1>
+                    
+                    <span class="meta">
+                         作者 MCXEN
+                        <span>
+                          日期 2026-06-11
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#API"
+                           title="API">API</a>
+                        
+                        <a class="tag" href="/tags/#115"
+                           title="115">115</a>
+                        
+                        <a class="tag" href="/tags/#MCP"
+                           title="MCP">MCP</a>
+                        
+                        <a class="tag" href="/tags/#Hermes"
+                           title="Hermes">Hermes</a>
+                        
+                        <a class="tag" href="/tags/#逆向"
+                           title="逆向">逆向</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="逆向-115-网盘-API、安装-MCP-服务器、修复-Skill-—-折腾记录"><a href="#逆向-115-网盘-API、安装-MCP-服务器、修复-Skill-—-折腾记录" class="headerlink" title="逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录"></a>逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>拿到一个 115-publish 的 Hermes skill 包，功能很全：扫码登录、文件浏览、搜索、转存、离线下载。但装上一跑，全部 404。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QR_FAIL:Request failed with status code 404</span><br></pre></td></tr></table></figure>
+
+<p>115 的 API 已经全面升级换代，旧的 skill 代码全废了。</p>
+<h2 id="第一阶段：逆向-QR-登录-API"><a href="#第一阶段：逆向-QR-登录-API" class="headerlink" title="第一阶段：逆向 QR 登录 API"></a>第一阶段：逆向 QR 登录 API</h2><p>旧代码用的端点：</p>
+<ul>
+<li><code>webapi.115.com/qrcode/login</code> → 404</li>
+<li><code>passport.115.com/qrcode/generate</code> → 404</li>
+<li><code>passportapi.115.com/qrcode/generate</code> → 404</li>
+</ul>
+<p>全死了。得自己找新的。</p>
+<h3 id="浏览器侦查"><a href="#浏览器侦查" class="headerlink" title="浏览器侦查"></a>浏览器侦查</h3><p>打开 115.com 的登录页面，找到”二维码登录”按钮。用 Chrome DevTools 摸到关键的 JavaScript 文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cdnassets.115.com&#x2F;login&#x2F;loginworker&#x2F;loginWkApi.js</span><br></pre></td></tr></table></figure>
+
+<p>反混淆后提取到关键信息——新的 QR 码域名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qrcodeapi.115.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="新-API-探针"><a href="#新-API-探针" class="headerlink" title="新 API 探针"></a>新 API 探针</h3><p>直接请求 token 端点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET https:&#x2F;&#x2F;qrcodeapi.115.com&#x2F;api&#x2F;1.0&#x2F;web&#x2F;1.0&#x2F;token</span><br><span class="line"></span><br><span class="line">→ &#123;</span><br><span class="line">  &quot;state&quot;:1,</span><br><span class="line">  &quot;data&quot;:&#123;</span><br><span class="line">    &quot;uid&quot;:&quot;5df54c49...&quot;,</span><br><span class="line">    &quot;time&quot;:1781179327,</span><br><span class="line">    &quot;sign&quot;:&quot;c4268934...&quot;,</span><br><span class="line">    &quot;qrcode&quot;:&quot;https:&#x2F;&#x2F;115.com&#x2F;scan&#x2F;dg-...&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>轮询状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET https:&#x2F;&#x2F;qrcodeapi.115.com&#x2F;get&#x2F;status&#x2F;?uid&#x3D;xxx&amp;time&#x3D;xxx&amp;sign&#x3D;xxx</span><br><span class="line"></span><br><span class="line">status:</span><br><span class="line">  0 &#x3D; 等待扫码</span><br><span class="line">  1 &#x3D; 已扫码待确认</span><br><span class="line">  2 &#x3D; 登录成功</span><br><span class="line"> -1 &#x3D; 过期</span><br><span class="line"> -2 &#x3D; 取消</span><br></pre></td></tr></table></figure>
+
+<p>登录确认（status&#x3D;2 后调用）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST https:&#x2F;&#x2F;passportapi.115.com&#x2F;app&#x2F;1.0&#x2F;web&#x2F;1.0&#x2F;login&#x2F;qrcode</span><br><span class="line">account&#x3D;xxx&amp;app&#x3D;web</span><br><span class="line"></span><br><span class="line">→ 返回 cookie: UID, CID, SEID, KID + Set-Cookie: USERSESSIONID</span><br></pre></td></tr></table></figure>
+
+<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><p>Cookie 字段名变了。旧格式用 <code>SE</code>，新格式用 <code>SEID</code>。而且多了一个 <code>USERSESSIONID</code>，缺了这个 sessionId 所有 API 都返回”登录超时”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 错误</span><br><span class="line">SE&#x3D;xxx  → API 返回 &quot;登录超时&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 正确</span><br><span class="line">SEID&#x3D;xxx; USERSESSIONID&#x3D;yyy → API 返回用户信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二阶段：离线下载遇阻"><a href="#第二阶段：离线下载遇阻" class="headerlink" title="第二阶段：离线下载遇阻"></a>第二阶段：离线下载遇阻</h2><p>登录搞定后，想试离线下载（lixian），结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST https:&#x2F;&#x2F;lixian.115.com&#x2F;lixian</span><br><span class="line">→ &#123;&quot;state&quot;:false,&quot;error_msg&quot;:&quot;请升级新版本的115客户端&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>115 已经把离线下载的 web API 关了，只能用他们的客户端。</p>
+<h2 id="第三阶段：GitHub-寻宝"><a href="#第三阶段：GitHub-寻宝" class="headerlink" title="第三阶段：GitHub 寻宝"></a>第三阶段：GitHub 寻宝</h2><p>搜了一堆 115 离线下载的开源项目：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>状态</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/coolzilj/lixian-115" target="_blank" rel="noopener">lixian-115</a></td>
+<td>❌ 2016 年停更</td>
+<td>旧 web API 抓取</td>
+</tr>
+<tr>
+<td><a href="https://github.com/coolzilj/lx115" target="_blank" rel="noopener">lx115</a></td>
+<td>❌ 2020 年停更</td>
+<td>elevengo 库</td>
+</tr>
+<tr>
+<td><a href="https://github.com/owtotwo/Offline-115" target="_blank" rel="noopener">Offline-115</a></td>
+<td>❌ 2021 年归档</td>
+<td>cookie 抓取</td>
+</tr>
+<tr>
+<td><a href="https://github.com/SeanClancy84/115-Download-request-forwarding" target="_blank" rel="noopener">115-Download-request-forwarding</a></td>
+<td>🟡 工具已过时</td>
+<td>cookie 代理</td>
+</tr>
+<tr>
+<td><a href="https://github.com/qiqiandfei/Telegram-115bot" target="_blank" rel="noopener">Telegram-115bot</a></td>
+<td>🟢 活跃维护 v3.4.2</td>
+<td>115 Open Platform API</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lingwunb666/115-MCP-Server" target="_blank" rel="noopener"><strong>115-MCP-Server</strong></a></td>
+<td>🏆 <strong>活跃维护</strong></td>
+<td><strong>115 Open API (官方)</strong></td>
+</tr>
+</tbody></table>
+<p>重点看 <strong>115-MCP-Server</strong>：</p>
+<ul>
+<li>✅ 底层 <code>p115client</code> 库（最后更新：2 天前）</li>
+<li>✅ 使用 115 <strong>官方 Open API</strong>（<code>proapi.115.com/open/offline/</code>），不是抓取</li>
+<li>✅ 支持 ed2k&#x2F;磁力&#x2F;HTTP&#x2F;FTP&#x2F;种子离线下载</li>
+<li>✅ 还是 MCP 服务器 → 可以直接挂到 Hermes 里</li>
+</ul>
+<h2 id="第四阶段：安装-115-MCP-Server"><a href="#第四阶段：安装-115-MCP-Server" class="headerlink" title="第四阶段：安装 115-MCP-Server"></a>第四阶段：安装 115-MCP-Server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/lingwunb666/115-MCP-Server.git</span><br><span class="line"><span class="built_in">cd</span> 115-MCP-Server</span><br><span class="line">uv venv --python 3.12 .venv</span><br><span class="line">uv pip install -e .</span><br></pre></td></tr></table></figure>
+
+<p>创建 Cookie 文件（从第一步登录拿到的数据）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UID&#x3D;xxx; CID&#x3D;xxx; SEID&#x3D;xxx; KID&#x3D;xxx; USERSESSIONID&#x3D;xxx</span><br></pre></td></tr></table></figure>
+
+<p>加到 Hermes 的 <code>config.yaml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mcp_servers:</span></span><br><span class="line">  <span class="attr">115:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">"/path/to/.venv/bin/115-MCP-Server"</span></span><br><span class="line">    <span class="attr">args:</span> <span class="string">["--transport",</span> <span class="string">"stdio"</span><span class="string">]</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">      <span class="attr">P115_COOKIES_PATH:</span> <span class="string">"/path/to/115-cookies.txt"</span></span><br></pre></td></tr></table></figure>
+
+<p>验证服务正常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mcp_115_server.service <span class="keyword">import</span> P115Service</span><br><span class="line">svc = P115Service()</span><br><span class="line">info = svc.get_account_info()</span><br><span class="line">print(info.keys())  <span class="comment"># → ['state', 'code', 'message', 'data']</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第五阶段：修复旧-Skill"><a href="#第五阶段：修复旧-Skill" class="headerlink" title="第五阶段：修复旧 Skill"></a>第五阶段：修复旧 Skill</h2><p>同时把旧的 <code>115-skills</code> 也修了。改动：</p>
+<ol>
+<li><strong>auth.js</strong> — QR 码 API 端点从 <code>webapi.115.com/qrcode/login</code> 换成 <code>qrcodeapi.115.com/api/1.0/web/1.0/token</code></li>
+<li><strong>auth.js</strong> — Cookie 字段 <code>SE</code> → <code>SEID</code>，新增 <code>USERSESSIONID</code>&#x2F;<code>KID</code></li>
+<li><strong>auth.js</strong> — 登录确认流程（status&#x3D;2 后调用 login&#x2F;qrcode 接口获取真实 cookie）</li>
+<li><strong>http-client.js</strong> — Cookie 头格式修正，包含 <code>KID</code> 和 <code>USERSESSIONID</code></li>
+<li><strong>cookie-store.js</strong> — 新增 <code>kid</code> 和 <code>sessionId</code> 字段存储</li>
+</ol>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>旧 skill</th>
+<th>修复后</th>
+<th>MCP Server</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>扫码登录</td>
+<td>❌ 404</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>文件浏览</td>
+<td>❌ 404</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>搜索文件</td>
+<td>❌ 404</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>离线下载</td>
+<td>❌ API 关闭</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>上传文件</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>分享转存</td>
+<td>❌ 404</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<p>旧 skill 适合轻量浏览，MCP Server 提供完整能力（特别是离线下载）。</p>
+<h2 id="链接汇总"><a href="#链接汇总" class="headerlink" title="链接汇总"></a>链接汇总</h2><ul>
+<li><a href="https://github.com/lingwunb666/115-MCP-Server" target="_blank" rel="noopener">115-MCP-Server</a> — 最终使用的 MCP 服务器</li>
+<li><a href="https://github.com/chenyanggao/p115client" target="_blank" rel="noopener">p115client</a> — 底层 115 Python 客户端库</li>
+<li><a href="https://p115client.readthedocs.io/en/latest/" target="_blank" rel="noopener">115 Open API 文档</a> — 官方 Open API 文档</li>
+<li><a href="https://github.com/qiqiandfei/Telegram-115bot" target="_blank" rel="noopener">Telegram-115bot</a> — 备选方案，Telegram 机器人</li>
+<li><a href="https://github.com/deadblue/elevengo" target="_blank" rel="noopener">elevengo</a> — Go 版 115 库</li>
+</ul>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/06/10/pdf-ink-annotation-implementation/" data-toggle="tooltip" data-placement="top"
+                           title="PDF 手绘批注技术实现">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#逆向-115-网盘-API、安装-MCP-服务器、修复-Skill-—-折腾记录"><span class="toc-text">逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#起因"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一阶段：逆向-QR-登录-API"><span class="toc-text">第一阶段：逆向 QR 登录 API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器侦查"><span class="toc-text">浏览器侦查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新-API-探针"><span class="toc-text">新 API 探针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#踩坑"><span class="toc-text">踩坑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二阶段：离线下载遇阻"><span class="toc-text">第二阶段：离线下载遇阻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三阶段：GitHub-寻宝"><span class="toc-text">第三阶段：GitHub 寻宝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四阶段：安装-115-MCP-Server"><span class="toc-text">第四阶段：安装 115-MCP-Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五阶段：修复旧-Skill"><span class="toc-text">第五阶段：修复旧 Skill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最终效果"><span class="toc-text">最终效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接汇总"><span class="toc-text">链接汇总</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 博客 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
