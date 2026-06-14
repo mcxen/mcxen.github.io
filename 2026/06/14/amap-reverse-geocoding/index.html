@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        给地图工具加上高德逆地理编码｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/06/14/amap-reverse-geocoding/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>给地图工具加上高德逆地理编码</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-06-14
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Amap"
+                           title="Amap">Amap</a>
+                        
+                        <a class="tag" href="/tags/#Geocoding"
+                           title="Geocoding">Geocoding</a>
+                        
+                        <a class="tag" href="/tags/#Maps"
+                           title="Maps">Maps</a>
+                        
+                        <a class="tag" href="/tags/#Tooling"
+                           title="Tooling">Tooling</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            给地图工具加上高德逆地理编码
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我日常用的地图工具（<code>maps_client.py</code>）基于 OpenStreetMap 生态 —— Nominatim 做 geocode&#x2F;reverse geocode，OSRM 算路径，Overpass 查 POI。这套组合在全球大部分地区够用，但在中国有个硬伤：</p>
+<p><strong>Nominatim 的中国地址数据极其稀疏。</strong> 输入一组经纬度，返回的往往只有街道名（如”玉清东街”），没有小区名、没有楼栋、没有 landmark。对于 “我在哪个小区附近” 这种日常需求，完全不可用。</p>
+<h2 id="方案：接入高德-Web-服务-API"><a href="#方案：接入高德-Web-服务-API" class="headerlink" title="方案：接入高德 Web 服务 API"></a>方案：接入高德 Web 服务 API</h2><p>高德开放平台提供 Web 服务 API，免费个人开发者每天 5000 次调用额度。<code>regeo</code> 接口（逆地理编码）直接返回：</p>
+<ul>
+<li>格式化地址（省市区街道+地标）</li>
+<li>小区&#x2F;建筑物名称</li>
+<li>周边 POI 列表（医院、学校、商场等）</li>
+</ul>
+<p>接入成本极低：一个 HTTP GET 请求。</p>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="1-申请-Key"><a href="#1-申请-Key" class="headerlink" title="1. 申请 Key"></a>1. 申请 Key</h3><p>去 <a target="_blank" rel="noopener" href="https://console.amap.com/">高德开放平台控制台</a> 注册个人开发者 → 创建应用 → 添加 <strong>Web 服务 API</strong> 类型的 Key。不需要绑域名，不需要备案。</p>
+<p>Key 是一串 32 位 hex 字符串，像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5bcc282ebffd771255da0aca935b6636</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-API-调用"><a href="#2-API-调用" class="headerlink" title="2. API 调用"></a>2. API 调用</h3><p>高德的 regeo 接口极其简单：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET https://restapi.amap.com/v3/geocode/regeo?key=YOUR_KEY&amp;location=116.3974,39.9042&amp;output=json&amp;extensions=all</span><br></pre></td></tr></table></figure>
+
+<p>返回示例（北京天安门）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;regeocode&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;formatted_address&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京市东城区东华门街道天安门广场人民英雄纪念碑&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;addressComponent&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;province&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京市&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;district&quot;</span><span class="punctuation">:</span> <span class="string">&quot;东城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;township&quot;</span><span class="punctuation">:</span> <span class="string">&quot;东华门街道&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;building&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;天安门广场&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;风景名胜;公园广场;城市广场&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;pois&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;人民英雄纪念碑&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;风景名胜;纪念馆&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;distance&quot;</span><span class="punctuation">:</span> <span class="string">&quot;54&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;天安门广场&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;风景名胜;公园广场&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;distance&quot;</span><span class="punctuation">:</span> <span class="string">&quot;117&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;毛主席纪念堂&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;风景名胜;纪念馆&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;distance&quot;</span><span class="punctuation">:</span> <span class="string">&quot;190&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>对比 Nominatim 同一位置的返回：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;display_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;东长安街, 南池子社区, 东华门街道, 东城区, 北京市, 100010, 中国&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;address&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;road&quot;</span><span class="punctuation">:</span> <span class="string">&quot;东长安街&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;suburb&quot;</span><span class="punctuation">:</span> <span class="string">&quot;东华门街道&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;city&quot;</span><span class="punctuation">:</span> <span class="string">&quot;东城区&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>差距明显</strong>：Nominatim 只给到街道级，高德给到”人民英雄纪念碑” + 周边 5 个 POI。</p>
+<h3 id="3-代码改动"><a href="#3-代码改动" class="headerlink" title="3. 代码改动"></a>3. 代码改动</h3><p>在 <code>maps_client.py</code> 的 <code>cmd_reverse</code> 函数里，优先尝试 Amap，失败则回退 Nominatim：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">AMAP_REVERSE = <span class="string">&quot;https://restapi.amap.com/v3/geocode/regeo&quot;</span></span><br><span class="line">AMAP_KEY = os.environ.get(<span class="string">&quot;AMAP_KEY&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cmd_reverse</span>(<span class="params">args</span>):</span><br><span class="line">    <span class="comment"># ... 参数校验 ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 先试高德</span></span><br><span class="line">    <span class="keyword">if</span> AMAP_KEY:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            params = &#123;</span><br><span class="line">                <span class="string">&quot;key&quot;</span>: AMAP_KEY,</span><br><span class="line">                <span class="string">&quot;location&quot;</span>: <span class="string">f&quot;<span class="subst">&#123;lon&#125;</span>,<span class="subst">&#123;lat&#125;</span>&quot;</span>,</span><br><span class="line">                <span class="string">&quot;output&quot;</span>: <span class="string">&quot;json&quot;</span>,</span><br><span class="line">                <span class="string">&quot;extensions&quot;</span>: <span class="string">&quot;all&quot;</span>,</span><br><span class="line">                <span class="string">&quot;radius&quot;</span>: <span class="number">1000</span>,</span><br><span class="line">            &#125;</span><br><span class="line">            data = http_get(AMAP_REVERSE, params=params, silent=<span class="literal">True</span>)</span><br><span class="line">            <span class="keyword">if</span> data.get(<span class="string">&quot;status&quot;</span>) == <span class="string">&quot;1&quot;</span> <span class="keyword">and</span> data.get(<span class="string">&quot;regeocode&quot;</span>):</span><br><span class="line">                regeo = data[<span class="string">&quot;regeocode&quot;</span>]</span><br><span class="line">                <span class="comment"># 提取小区名</span></span><br><span class="line">                <span class="keyword">for</span> poi <span class="keyword">in</span> regeo.get(<span class="string">&quot;pois&quot;</span>, [])[:<span class="number">10</span>]:</span><br><span class="line">                    <span class="keyword">if</span> <span class="string">&quot;住宅小区&quot;</span> <span class="keyword">in</span> poi.get(<span class="string">&quot;type&quot;</span>, <span class="string">&quot;&quot;</span>):</span><br><span class="line">                        community = poi[<span class="string">&quot;name&quot;</span>]</span><br><span class="line">                <span class="comment"># 输出结构化结果</span></span><br><span class="line">                <span class="keyword">return</span> print_json(&#123;...&#125;)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span>  <span class="comment"># 失败则 fall through</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 回退 Nominatim</span></span><br><span class="line">    <span class="keyword">return</span> nominatim_reverse(lat, lon)</span><br></pre></td></tr></table></figure>
+
+<p>完整改动在 <code>maps_client.py v1.3.0</code>。Python stdlib 即可，零外部依赖。</p>
+<h3 id="4-效果对比"><a href="#4-效果对比" class="headerlink" title="4. 效果对比"></a>4. 效果对比</h3><p>青岛市区某点（36.07, 120.38）：</p>
+<p><strong>Nominatim（之前）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">仅返回街道名，无小区信息</span><br></pre></td></tr></table></figure>
+
+<p><strong>Amap&#x2F;高德地图（之后）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">山东省青岛市市南区香港中路街道华佗路中国人民解放军海军第九七一医院 · 在正一家园附近</span><br><span class="line"></span><br><span class="line">周边 POI:</span><br><span class="line">- 中国人民解放军海军第九七一医院 (226m)</span><br><span class="line">- 闽江路52号小区 (87m)</span><br><span class="line">- 正一家园 (126m) ← 小区级别</span><br><span class="line">- 青岛市教育局 (177m)</span><br><span class="line">- 府新大厦 (179m)</span><br></pre></td></tr></table></figure>
+
+<p>“在正一家园附近” —— 这才是日常问路需要的精度。</p>
+<h2 id="配置方式"><a href="#配置方式" class="headerlink" title="配置方式"></a>配置方式</h2><p>设置环境变量即可启用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> AMAP_KEY=<span class="string">&quot;你的32位key&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以写进 shell profile：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export AMAP_KEY=&quot;你的32位key&quot;&#x27;</span> &gt;&gt; ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>之后 <code>maps_client.py reverse 纬度 经度</code> 自动走高德，无需任何其他配置。</p>
+<h2 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h2><h3 id="1-Key-类型必须选-Web-服务-API"><a href="#1-Key-类型必须选-Web-服务-API" class="headerlink" title="1. Key 类型必须选 Web 服务 API"></a>1. Key 类型必须选 Web 服务 API</h3><p>高德有多个产品线：JS API、Android SDK、iOS SDK、Web 服务 API。如果选了 JS API 或 SDK 类型的 key，调用 REST 接口会返回：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;info&quot;</span><span class="punctuation">:</span> <span class="string">&quot;USERKEY_PLAT_NOMATCH&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;infocode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;10009&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法</strong>：在控制台重新创建一个”Web 服务 API”类型的 key。</p>
+<h3 id="2-免费的够用"><a href="#2-免费的够用" class="headerlink" title="2. 免费的够用"></a>2. 免费的够用</h3><p>个人开发者免费额度 5000 次&#x2F;天。对于个人工具使用，完全不可能用完 —— 一天手动查几十次已经很多了。</p>
+<h3 id="3-非中国坐标自动回退"><a href="#3-非中国坐标自动回退" class="headerlink" title="3. 非中国坐标自动回退"></a>3. 非中国坐标自动回退</h3><p>高德只覆盖中国地区。代码里做了 fallback：如果高德请求失败（网络超时、非中国坐标等），自动降级到 Nominatim，不影响海外使用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><strong>问题</strong>：Nominatim 中国数据稀疏，只能到街道级</li>
+<li><strong>方案</strong>：优先调用高德 Web 服务 API，失败回退 Nominatim</li>
+<li><strong>成效</strong>：小区级地址 + 周边 POI，零外部依赖</li>
+<li><strong>成本</strong>：免费（5000次&#x2F;天），一行环境变量即可启用</li>
+</ul>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/06/12/hermes-deepseek-auth-fix/" data-toggle="tooltip" data-placement="top"
+                           title="Hermes Agent DeepSeek API 认证失败排查与修复">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%EF%BC%9A%E6%8E%A5%E5%85%A5%E9%AB%98%E5%BE%B7-Web-%E6%9C%8D%E5%8A%A1-API"><span class="toc-text">方案：接入高德 Web 服务 API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%B3%E8%AF%B7-Key"><span class="toc-text">1. 申请 Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-API-%E8%B0%83%E7%94%A8"><span class="toc-text">2. API 调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%A3%E7%A0%81%E6%94%B9%E5%8A%A8"><span class="toc-text">3. 代码改动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%95%88%E6%9E%9C%E5%AF%B9%E6%AF%94"><span class="toc-text">4. 效果对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="toc-text">配置方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95"><span class="toc-text">踩坑记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Key-%E7%B1%BB%E5%9E%8B%E5%BF%85%E9%A1%BB%E9%80%89-Web-%E6%9C%8D%E5%8A%A1-API"><span class="toc-text">1. Key 类型必须选 Web 服务 API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%8D%E8%B4%B9%E7%9A%84%E5%A4%9F%E7%94%A8"><span class="toc-text">2. 免费的够用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9D%9E%E4%B8%AD%E5%9B%BD%E5%9D%90%E6%A0%87%E8%87%AA%E5%8A%A8%E5%9B%9E%E9%80%80"><span class="toc-text">3. 非中国坐标自动回退</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
