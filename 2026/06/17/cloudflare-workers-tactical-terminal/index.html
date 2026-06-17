@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        用 Cloudflare Workers 搭建战术终端风格界面｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/06/17/cloudflare-workers-tactical-terminal/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>用 Cloudflare Workers 搭建战术终端风格界面</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-06-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Cloudflare"
+                           title="Cloudflare">Cloudflare</a>
+                        
+                        <a class="tag" href="/tags/#Workers"
+                           title="Workers">Workers</a>
+                        
+                        <a class="tag" href="/tags/#CSS"
+                           title="CSS">CSS</a>
+                        
+                        <a class="tag" href="/tags/#前端"
+                           title="前端">前端</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            用 Cloudflare Workers 搭建战术终端风格界面
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>最近给 GeekZip 的下载页做了个「战术终端」风格的界面，跑了 Cloudflare Workers 上。记录一下思路和实现。</p>
+<span id="more"></span>
+
+<h2 id="为什么选-Workers"><a href="#为什么选-Workers" class="headerlink" title="为什么选 Workers"></a>为什么选 Workers</h2><p>简单原则：<strong>不要多一个服务器</strong>。GeekZip 本身在 GitHub Releases 上托管二进制，但需要一个好看的下载页。如果为了一个静态页面去配 Nginx&#x2F;Caddy&#x2F;Vercel，太重了。</p>
+<p>Workers 的好处：</p>
+<ul>
+<li>免费计划每天 10 万请求，个人项目用不完</li>
+<li>全球边缘节点，延迟约等于 0</li>
+<li>可以在 fetch handler 里直接代理 GitHub 下载，比静态 CDN 灵活</li>
+<li>自定义域名绑定一行命令搞定</li>
+</ul>
+<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户 → z.xpai.uk</span><br><span class="line">         ↓</span><br><span class="line">    Cloudflare Edge</span><br><span class="line">         ↓</span><br><span class="line">    Worker (geekzip)</span><br><span class="line">         ├── /  → 返回战术终端 HTML</span><br><span class="line">         ├── /download/*  → 代理 GitHub Release 文件</span><br><span class="line">         └── /api/releases → 转发 GitHub API</span><br></pre></td></tr></table></figure>
+
+<p>Worker 的代码结构很简单——一个 <code>fetch()</code> 函数根据路径分发：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">fetch</span>(<span class="params">request</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(request.<span class="property">url</span>);</span><br><span class="line">    <span class="keyword">if</span> (url.<span class="property">pathname</span> === <span class="string">&quot;/&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="variable constant_">HTML</span>, &#123;</span><br><span class="line">        <span class="attr">headers</span>: &#123; <span class="string">&quot;content-type&quot;</span>: <span class="string">&quot;text/html;charset=UTF-8&quot;</span> &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (url.<span class="property">pathname</span>.<span class="title function_">startsWith</span>(<span class="string">&quot;/download/&quot;</span>)) &#123;</span><br><span class="line">      <span class="comment">// 代理下载</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="战术终端设计"><a href="#战术终端设计" class="headerlink" title="战术终端设计"></a>战术终端设计</h2><p>风格参考了军用终端 UI 和 CRT 显示器的视觉效果。全部用纯 CSS 实现，没有图片。</p>
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>正文用 <strong>JetBrains Mono</strong>（等宽字体，编程感），标题用 <strong>Major Mono Display</strong>（粗犷的显示字体，军事感）。Google Fonts 加载：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Major+Mono+Display&amp;display=swap&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="单色调色盘"><a href="#单色调色盘" class="headerlink" title="单色调色盘"></a>单色调色盘</h3><p>只用了绿色 <code>#00ff95</code>，通过透明度变化分出层次：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--green</span>: <span class="number">#00ff95</span>;</span><br><span class="line">  <span class="attr">--green-dim</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">255</span>,<span class="number">149</span>,<span class="number">0.15</span>);</span><br><span class="line">  <span class="attr">--green-mid</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">255</span>,<span class="number">149</span>,<span class="number">0.5</span>);</span><br><span class="line">  <span class="attr">--border</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">255</span>,<span class="number">149</span>,<span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CRT-扫描线"><a href="#CRT-扫描线" class="headerlink" title="CRT 扫描线"></a>CRT 扫描线</h3><p>用 <code>repeating-linear-gradient</code> 在 <code>body::after</code> 上绘制 2px 间隔的黑线，模拟老式 CRT 显示器的扫描线纹理：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">inset</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">repeating-linear-gradient</span>(</span><br><span class="line">    <span class="number">0deg</span>,</span><br><span class="line">    transparent,</span><br><span class="line">    transparent <span class="number">2px</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.08</span>) <span class="number">2px</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.08</span>) <span class="number">4px</span></span><br><span class="line">  );</span><br><span class="line">  <span class="attribute">pointer-events</span>: none;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再加一个径向渐变模拟 CRT 屏幕边缘的暗角：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(</span><br><span class="line">    ellipse at center,</span><br><span class="line">    transparent <span class="number">60%</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.4</span>) <span class="number">100%</span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四角作战标记"><a href="#四角作战标记" class="headerlink" title="四角作战标记"></a>四角作战标记</h3><p>四个 <code>&lt;svg&gt;</code> 定位在页面的四个角，L 形线条，旋转&#x2F;镜像组合：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;corner corner-tl&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">svg</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 28 28&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M26,2 L26,10 M26,2 L18,2 M26,2 L2,26&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>四个的变换分别是 <code>scaleX(-1)</code>、<code>scaleY(-1)</code>、<code>scale(-1,-1)</code>，形成一个封闭的”框”效果。</p>
+<h3 id="LED-脉冲指示灯"><a href="#LED-脉冲指示灯" class="headerlink" title="LED 脉冲指示灯"></a>LED 脉冲指示灯</h3><p>用 CSS animation 模拟三个状态指示灯（SYS、NET、DOCK），<code>pulse</code> 关键帧控制发光圆点的呼吸节奏：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.led-dot</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">6px</span>; <span class="attribute">height</span>: <span class="number">6px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--green);</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">4px</span> <span class="built_in">var</span>(--green);</span><br><span class="line">  <span class="attribute">animation</span>: pulse <span class="number">2s</span> ease-in-out infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> pulse &#123;</span><br><span class="line">  <span class="number">0%</span>, <span class="number">100%</span> &#123; <span class="attribute">opacity</span>: <span class="number">1</span>; <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1</span>); &#125;</span><br><span class="line">  <span class="number">50%</span> &#123; <span class="attribute">opacity</span>: <span class="number">0.3</span>; <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0.8</span>); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>DOCK 指示灯用 <code>.off</code> 类关掉（灰色），表示「当前未对接」。</p>
+<h3 id="按钮扫光动画"><a href="#按钮扫光动画" class="headerlink" title="按钮扫光动画"></a>按钮扫光动画</h3><p>鼠标移入下载按钮时，一道高光从左侧扫过。用伪元素 <code>::before</code> 实现：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.dl-btn</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">left</span>: -<span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(</span><br><span class="line">    <span class="number">90deg</span>,</span><br><span class="line">    transparent,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">255</span>,<span class="number">149</span>,<span class="number">0.08</span>),</span><br><span class="line">    transparent</span><br><span class="line">  );</span><br><span class="line">  <span class="attribute">transition</span>: left <span class="number">0.5s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dl-btn</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CLI-命令框-闪烁光标"><a href="#CLI-命令框-闪烁光标" class="headerlink" title="CLI 命令框 + 闪烁光标"></a>CLI 命令框 + 闪烁光标</h3><p>模拟终端输入效果，<code>cursor</code> 用 step-end 动画实现 blink：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.cli-box</span> <span class="selector-class">.cursor</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">7px</span>; <span class="attribute">height</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--green);</span><br><span class="line">  <span class="attribute">animation</span>: blink <span class="number">1s</span> step-end infinite;</span><br><span class="line">  <span class="attribute">vertical-align</span>: text-bottom;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> blink &#123; <span class="number">50%</span> &#123; <span class="attribute">opacity</span>: <span class="number">0</span>; &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作日志"><a href="#操作日志" class="headerlink" title="操作日志"></a>操作日志</h3><p>日志区域模拟终端输出，每行包含时间戳、等级标签和消息。等级用颜色区分：</p>
+<ul>
+<li>INFO → 半透明白</li>
+<li>OK → 亮绿</li>
+<li>WARN → 橙黄</li>
+<li>ERR → 红色</li>
+</ul>
+<p>偶数列用 <code>nth-child(even)</code> 加微弱斑马纹，类似 TUI 日志查看器。</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>使用 <code>wrangler</code> CLI，一条命令搞定：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 wrangler</span></span><br><span class="line">npm install -g wrangler</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录（或用 API token 环境变量）</span></span><br><span class="line"><span class="built_in">export</span> CLOUDFLARE_API_TOKEN=<span class="string">&quot;cfat_xxxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署并绑定自定义域名</span></span><br><span class="line">wrangler deploy --domain z.xpai.uk</span><br></pre></td></tr></table></figure>
+
+<p>Worker 的路由配置在 <code>wrangler.toml</code>：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span> = <span class="string">&quot;geekzip&quot;</span></span><br><span class="line"><span class="attr">main</span> = <span class="string">&quot;index.js&quot;</span></span><br><span class="line"><span class="attr">compatibility_date</span> = <span class="string">&quot;2026-06-17&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="下载代理"><a href="#下载代理" class="headerlink" title="下载代理"></a>下载代理</h2><p>Worker 同时担任 GitHub Release 的下载代理。<code>/download/GeekZip-macos-arm64.app.zip</code> 会被转发到 <code>https://github.com/mcxen/GeekZip/releases/latest/download/...</code>，这样用户下载时走 Cloudflare 边缘节点，比直连 GitHub 快很多。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (url.<span class="property">pathname</span>.<span class="title function_">startsWith</span>(<span class="string">&quot;/download/&quot;</span>)) &#123;</span><br><span class="line">  <span class="keyword">const</span> asset = url.<span class="property">pathname</span>.<span class="title function_">slice</span>(<span class="number">10</span>);</span><br><span class="line">  <span class="keyword">const</span> gh = <span class="keyword">await</span> <span class="title function_">fetch</span>(</span><br><span class="line">    <span class="string">&quot;https://github.com/mcxen/GeekZip/releases/latest/download/&quot;</span> + asset,</span><br><span class="line">    &#123; <span class="attr">headers</span>: &#123; <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;GeekZip-Worker&quot;</span> &#125; &#125;</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> hdrs = <span class="keyword">new</span> <span class="title class_">Headers</span>(gh.<span class="property">headers</span>);</span><br><span class="line">  hdrs.<span class="title function_">set</span>(<span class="string">&quot;content-disposition&quot;</span>, <span class="string">&#x27;attachment; filename=&quot;&#x27;</span> + asset + <span class="string">&#x27;&quot;&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(gh.<span class="property">body</span>, &#123; <span class="attr">headers</span>: hdrs &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h2><h3 id="DNS-的问题"><a href="#DNS-的问题" class="headerlink" title="DNS 的问题"></a>DNS 的问题</h3><p>一开始把 <code>go.opencode.ai</code> 和 <code>opencode.ai/zen/go/v1</code> 搞混了，在 DNS 上浪费了不少时间。检查域名是否真的是公共 DNS 记录，可以直接 <code>dig +short &lt;domain&gt;</code> 验证。</p>
+<h3 id="透明代理-vs-显式代理"><a href="#透明代理-vs-显式代理" class="headerlink" title="透明代理 vs 显式代理"></a>透明代理 vs 显式代理</h3><p>在 Ubuntu VM上试验时，iptables REDIRECT 把 443 流量导到代理的 redir-port，但代理看不到原始域名（只有 IP），导致路由失败。显式 HTTP CONNECT 代理更可靠。</p>
+<h3 id="Workers-自定义域名"><a href="#Workers-自定义域名" class="headerlink" title="Workers 自定义域名"></a>Workers 自定义域名</h3><p><code>wrangler deploy --domain</code> 会自动处理 DNS 记录和 Workers Route 的绑定，不需要手动去 Cloudflare Dashboard 点。但需要注意 API Token 需要有 Workers 和 DNS 的权限。</p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>访问 <a target="_blank" rel="noopener" href="https://z.xpai.uk/"><code>https://z.xpai.uk</code></a> 可以看到成品。整个页面不到 12KB（gzip 后 3.6KB），没有依赖任何框架或 UI 库，纯手写 CSS + Workers。代码在 <a target="_blank" rel="noopener" href="https://github.com/mcxen/GeekZip">GeekZip 仓库</a> 的 <code>workers/</code> 目录下。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/06/14/amap-reverse-geocoding/" data-toggle="tooltip" data-placement="top"
+                           title="给地图工具加上高德逆地理编码">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89-Workers"><span class="toc-text">为什么选 Workers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%98%E6%9C%AF%E7%BB%88%E7%AB%AF%E8%AE%BE%E8%AE%A1"><span class="toc-text">战术终端设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E4%BD%93"><span class="toc-text">字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%89%B2%E8%B0%83%E8%89%B2%E7%9B%98"><span class="toc-text">单色调色盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CRT-%E6%89%AB%E6%8F%8F%E7%BA%BF"><span class="toc-text">CRT 扫描线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E8%A7%92%E4%BD%9C%E6%88%98%E6%A0%87%E8%AE%B0"><span class="toc-text">四角作战标记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LED-%E8%84%89%E5%86%B2%E6%8C%87%E7%A4%BA%E7%81%AF"><span class="toc-text">LED 脉冲指示灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E6%89%AB%E5%85%89%E5%8A%A8%E7%94%BB"><span class="toc-text">按钮扫光动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CLI-%E5%91%BD%E4%BB%A4%E6%A1%86-%E9%97%AA%E7%83%81%E5%85%89%E6%A0%87"><span class="toc-text">CLI 命令框 + 闪烁光标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%97%A5%E5%BF%97"><span class="toc-text">操作日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E4%BB%A3%E7%90%86"><span class="toc-text">下载代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95"><span class="toc-text">踩坑记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS-%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">DNS 的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86-vs-%E6%98%BE%E5%BC%8F%E4%BB%A3%E7%90%86"><span class="toc-text">透明代理 vs 显式代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Workers-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-text">Workers 自定义域名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="toc-text">最终效果</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
