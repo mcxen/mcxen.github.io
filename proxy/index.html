@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        终端代理配置指南｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk//proxy/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>终端代理配置指南</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-06-23
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#proxy"
+                           title="proxy">proxy</a>
+                        
+                        <a class="tag" href="/tags/#terminal"
+                           title="terminal">terminal</a>
+                        
+                        <a class="tag" href="/tags/#opencode"
+                           title="opencode">opencode</a>
+                        
+                        <a class="tag" href="/tags/#codex"
+                           title="codex">codex</a>
+                        
+                        <a class="tag" href="/tags/#brew"
+                           title="brew">brew</a>
+                        
+                        <a class="tag" href="/tags/#github"
+                           title="github">github</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            终端代理配置指南
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在中国大陆，GitHub、Homebrew、npm 等开发工具的海外源经常无法直连。最干净的解决方案：本地跑一个代理客户端（Clash Verge &#x2F; ClashX Pro &#x2F; Surge 等），然后在终端里配置环境变量让所有 CLI 工具自动走代理。</p>
+<h2 id="一句话配置"><a href="#一句话配置" class="headerlink" title="一句话配置"></a>一句话配置</h2><p>编辑 <code>~/.zshrc</code>，加入：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 代理</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">&quot;http://127.0.0.1:7897&quot;</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">&quot;http://127.0.0.1:7897&quot;</span></span><br><span class="line"><span class="built_in">export</span> all_proxy=<span class="string">&quot;http://127.0.0.1:7897&quot;</span></span><br><span class="line"><span class="comment"># 不走代理的地址</span></span><br><span class="line"><span class="built_in">export</span> no_proxy=<span class="string">&quot;127.0.0.1,localhost,.local,.localdomain&quot;</span></span><br><span class="line"><span class="built_in">export</span> NO_PROXY=<span class="string">&quot;<span class="variable">$no_proxy</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后 <code>source ~/.zshrc</code> 即可生效。<strong>7897</strong> 换成你的代理客户端实际端口（Clash 默认 7890&#x2F;7897，Surge 默认 6152 等）。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>终端的工作流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Tabby / iTerm2 / VS Code Terminal</span><br><span class="line">          ↓</span><br><span class="line">     zsh（读取 ~/.zshrc）</span><br><span class="line">          ↓</span><br><span class="line">     http_proxy / https_proxy 环境变量</span><br><span class="line">          ↓</span><br><span class="line">  OpenCode / Codex CLI / brew / curl / git 自动继承</span><br></pre></td></tr></table></figure>
+
+<p>所有从终端启动的程序都会继承 shell 的环境变量，所以<strong>只需配置一次，所有终端和所有 CLI 工具通用</strong>。</p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看看环境变量是否生效</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$http_proxy</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试 curl 能否通过代理访问外网</span></span><br><span class="line">curl -I https://github.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试 brew（之前被墙的）</span></span><br><span class="line">brew tap mcxen/qx</span><br><span class="line">brew install --cask qx</span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h2><h3 id="brew-tap-被墙-HTTPS-克隆失败"><a href="#brew-tap-被墙-HTTPS-克隆失败" class="headerlink" title="brew tap 被墙 (HTTPS 克隆失败)"></a>brew tap 被墙 (HTTPS 克隆失败)</h3><p>brew tap 默认走 HTTPS 克隆，国内容易被墙。改用 SSH：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:mcxen/homebrew-qx.git /opt/homebrew/Library/Taps/mcxen/homebrew-qx</span><br><span class="line">brew trust mcxen/qx</span><br><span class="line">brew install --cask qx</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-push-超时"><a href="#git-push-超时" class="headerlink" title="git push 超时"></a>git push 超时</h3><p>Github 项目 remote 换成 SSH：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin git@github.com:用户名/仓库名.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="VS-Code-Tasks"><a href="#VS-Code-Tasks" class="headerlink" title="VS Code Tasks"></a>VS Code Tasks</h3><p>如果 VS Code 的 Task Runner 不走终端环境变量，在 <code>.vscode/tasks.json</code> 的 task 配置里加 <code>&quot;options&quot;: {&quot;env&quot;: {&quot;http_proxy&quot;: &quot;...&quot;}}</code>。</p>
+<h3 id="no-proxy-的作用"><a href="#no-proxy-的作用" class="headerlink" title="no_proxy 的作用"></a>no_proxy 的作用</h3><p><code>no_proxy</code> 保证内网地址不走代理直连：</p>
+<ul>
+<li>本地开发服务器（<code>localhost:1420</code>、<code>127.0.0.1:3000</code>）</li>
+<li>NAS 内网地址（<code>10.0.0.x</code>）</li>
+<li>局域网路由器（<code>192.168.x.x</code>）</li>
+</ul>
+<p>需要额外添加用逗号分隔：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> no_proxy=<span class="string">&quot;<span class="variable">$no_proxy</span>,10.0.0.0/24,192.168.0.0/16&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="推荐实践"><a href="#推荐实践" class="headerlink" title="推荐实践"></a>推荐实践</h2><p>如果要临时开关代理，在 <code>~/.zshrc</code> 加两个函数：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">proxy</span></span>() &#123;</span><br><span class="line">  <span class="built_in">export</span> http_proxy=<span class="string">&quot;http://127.0.0.1:7897&quot;</span></span><br><span class="line">  <span class="built_in">export</span> https_proxy=<span class="string">&quot;http://127.0.0.1:7897&quot;</span></span><br><span class="line">  <span class="built_in">export</span> all_proxy=<span class="string">&quot;http://127.0.0.1:7897&quot;</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Proxy ON&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">noproxy</span></span>() &#123;</span><br><span class="line">  <span class="built_in">unset</span> http_proxy https_proxy all_proxy</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Proxy OFF&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">proxy     <span class="comment"># 开</span></span><br><span class="line">noproxy   <span class="comment"># 关</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="短链接"><a href="#短链接" class="headerlink" title="短链接"></a>短链接</h2><p>本文永久链接： <strong><a href="https://b.xpai.uk/proxy/">b.xpai.uk&#x2F;proxy</a></strong></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/06/20/20260620-xiapu-peninsula/" data-toggle="tooltip" data-placement="top"
+                           title="霞浦半岛 — 沿着东海一号线，从高罗到闾峡">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E9%85%8D%E7%BD%AE"><span class="toc-text">一句话配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="toc-text">特殊情况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#brew-tap-%E8%A2%AB%E5%A2%99-HTTPS-%E5%85%8B%E9%9A%86%E5%A4%B1%E8%B4%A5"><span class="toc-text">brew tap 被墙 (HTTPS 克隆失败)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-push-%E8%B6%85%E6%97%B6"><span class="toc-text">git push 超时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VS-Code-Tasks"><span class="toc-text">VS Code Tasks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#no-proxy-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">no_proxy 的作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E5%AE%9E%E8%B7%B5"><span class="toc-text">推荐实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%AD%E9%93%BE%E6%8E%A5"><span class="toc-text">短链接</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>

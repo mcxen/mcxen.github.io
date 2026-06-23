@@ -38,6 +38,9 @@
     
 <link rel="stylesheet" href="/css/syntax.css">
 
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
 <meta name="generator" content="Hexo 8.1.2"></head>
 
 <style>
@@ -279,6 +282,106 @@
 
 <div class="post-preview "
      style="background-image: url('')">
+    <a target="_blank" rel="noopener" href="//proxy/">
+        <h2 class="post-title">
+            终端代理配置指南
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-23
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                背景在中国大陆，GitHub、Homebrew、npm 等开发工具的海外源经常无法直连。最干净的解决方案：本地跑一个代理客户端（Clash Verge &#x2F; ClashX Pro &#x2F; Surge 等），然后在终端里配置环境变量让所有 CLI 工具自动走代理。
+一句话配置编辑 ~..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('/images/20260620-xiapu-peninsula/IMG_0989.jpg')">
+    <a href="/2026/06/20/20260620-xiapu-peninsula/">
+        <h2 class="post-title">
+            霞浦半岛 — 沿着东海一号线，从高罗到闾峡
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-20
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                接续前一天的霞浦之旅，第二天的路线是沿着 东海一号线 深入霞浦半岛，把南线的精华海滩和海湾走了一遍。
+
+
+11:51 · 尾炉坑从霞浦城区出来沿东海一号线南下，在长春镇的尾炉坑附近停下来拍了第一张。这条沿海公路是霞浦的景观大道，一边是山一边是海，弯道多、视野开阔。六月的福建已经热起来，但海风吹着..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('')">
+    <a href="/2026/06/20/amap-poi-search/">
+        <h2 class="post-title">
+            给地图工具加上高德周边POI搜索
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-20
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                问题几个月前我给 maps_client.py 接入了高德逆地理编码（reverse 命令），解决了中国地址只能到街道级的痛点。但 nearby 命令（周边POI搜索）一直用的 Overpass API（OpenStreetMap 数据），在中国小县城效果惨不忍睹。
+之前在霞浦旅行时搜附近餐厅，..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('/images/20260619-xiapu/xiapu-evening.jpg')">
+    <a href="/2026/06/19/20260619-xiapu-trip/">
+        <h2 class="post-title">
+            霞浦之旅 — 从杭州到闽东的九小时海鲜与山海
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-19
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                出发：从杭州到闽东六月的一个周六，我们从杭州余杭出发，驱车南下，目标——福建霞浦。
+
+上午九点三十七分，坐进车里，第一眼看到的是仪表盘上那块液晶屏——这是一辆增程式电动车，纯电续航只剩下 20 公里，但燃油续航显示还有 1900 公里。心里踏实了，一脚油门，出发。
+这趟路程全长大约 500 公里..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('')">
     <a href="/2026/06/17/cloudflare-workers-tactical-terminal/">
         <h2 class="post-title">
             用 Cloudflare Workers 搭建战术终端风格界面
@@ -404,33 +507,6 @@ Nominati..
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/06/09/claude-api-types/">
-        <h2 class="post-title">
-            Claude API 的三种来源及其区别
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                很多人不知道，Claude 的官方 API 其实分为三种来源，价格、可用范围和质量各不相同。
-一、官方 API来源：直接在 console.anthropic.com 注册，绑定信用卡充值。
-价格：按 token 计费，明码标价。比如 Claude Sonnet 4：
-
-输入：$3 &#x2F;..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
     <a href="/2026/06/09/caddy-icp-lesson/">
         <h2 class="post-title">
             Caddy + Cloudflare + 阿里云 ICP 备案踩坑记录
@@ -444,85 +520,6 @@ Nominati..
                 背景手里有一台阿里云 ECS（Ubuntu 22.04），IP SERVER_IP，上面跑着一个服务监听 12201 端口。
 想通过域名 f.example.com 用 HTTPS 访问这个服务，于是开始了折腾之旅。
 第一步：安装 CaddyCaddy 是现代 Web 服务器，自动 HTTPS ..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2026/06/09/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2024/06/10/linux-java/">
-        <h2 class="post-title">
-            linux下的java部署
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2024-06-10
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                linux 下的 java 部署jar 命令简介java 部署 jar 包可以使用 java -jar 命令，比如：
-1java -jar demo.jar
-
-执行上述命令后，JAR 包中的程序将在 Linux 系统中运行。
-注：在运行 JAR 包之前，确保你的 JAR 文件是可执行的，并且包含..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2024/04/08/algo-note/">
-        <h2 class="post-title">
-            algo-note
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2024-04-08
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                一、数据结构模板数组问题41. 缺失的第一个正整数给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
-请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
-示例 1：
-12输入：nums = [1,2,0]输出：3
-
-示例 2：
-12输入：nums = ..
             </p>
         </div>
     </a>
