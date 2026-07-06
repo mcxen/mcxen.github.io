@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Hermes Agent DeepSeek API 认证失败排查与修复｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/06/12/hermes-deepseek-auth-fix/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Hermes Agent DeepSeek API 认证失败排查与修复</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-06-12
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Hermes"
+                           title="Hermes">Hermes</a>
+                        
+                        <a class="tag" href="/tags/#DeepSeek"
+                           title="DeepSeek">DeepSeek</a>
+                        
+                        <a class="tag" href="/tags/#Troubleshooting"
+                           title="Troubleshooting">Troubleshooting</a>
+                        
+                        <a class="tag" href="/tags/#DevOps"
+                           title="DevOps">DevOps</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Hermes Agent DeepSeek API 认证失败排查与修复
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p><img src="/hermes-deepseek-auth-fix.assets/theo-hall-pmUgUMvfmUg-unsplash.jpg" alt="theo-hall-pmUgUMvfmUg-unsplash"></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在使用 Hermes Agent 时，所有请求突然全部失败，Gateway 日志反复报出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error code: 401 - Authentication Fails, Your api key: ****OcWp is invalid</span><br></pre></td></tr></table></figure>
+
+<p>伴随 <code>Transient agent failure</code> 错误。API key 明明刚换过新的，为什么一直 401？</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>Hermes Agent（最新版）</li>
+<li>Provider: DeepSeek（官方 API）</li>
+<li>认证方式：<code>DEEPSEEK_API_KEY</code> 环境变量</li>
+</ul>
+<h2 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h2><h3 id="1-配置结构分析"><a href="#1-配置结构分析" class="headerlink" title="1. 配置结构分析"></a>1. 配置结构分析</h3><p>Hermes 的凭证体系有两层：</p>
+<p><strong><code>~/.hermes/.env</code></strong> — 环境变量文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEEPSEEK_API_KEY=sk-new-key</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>~/.hermes/config.yaml</code></strong> — 主配置，包含：</p>
+<ul>
+<li><code>providers.deepseek-official</code> — 官方 provider，通过 <code>key_env: DEEPSEEK_API_KEY</code> 引用上述变量</li>
+<li><code>custom_providers</code> — 自定义 provider 列表，每个独立配置了 <code>api_key</code></li>
+</ul>
+<p>看起来没什么问题：环境变量是最新的 key，官方 provider 正确引用它。</p>
+<h3 id="2-发现冲突"><a href="#2-发现冲突" class="headerlink" title="2. 发现冲突"></a>2. 发现冲突</h3><p>深入检查 <code>custom_providers</code>，发现一个叫 <code>muapi</code> 的 provider：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">api_key:</span> <span class="string">sk-old-invalid-key</span></span><br><span class="line">  <span class="attr">base_url:</span> <span class="string">https://api.deepseek.com</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">muapi</span></span><br></pre></td></tr></table></figure>
+
+<p>关键线索：<code>muapi</code> 和 <code>deepseek-official</code> 使用了<strong>完全相同的 base URL</strong>。</p>
+<h3 id="3-凭证池机制"><a href="#3-凭证池机制" class="headerlink" title="3. 凭证池机制"></a>3. 凭证池机制</h3><p>Hermes 内部维护一个<strong>凭证池（credential pool）</strong>，以 base URL 为 key 缓存 provider 到 API key 的映射。当请求发往 <code>https://api.deepseek.com</code> 时：</p>
+<ol>
+<li>凭证池查找 base URL → 匹配到 <code>muapi</code>（而非 <code>deepseek-official</code>）</li>
+<li>使用 <code>muapi</code> 缓存的旧密钥</li>
+<li>旧密钥已过期 → <strong>401</strong></li>
+</ol>
+<p>日志中已有明确信号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run_agent: Credential pool provider mismatch:</span><br><span class="line">  pool=custom:muapi, agent=custom — skipping pool mutation</span><br></pre></td></tr></table></figure>
+
+<p>凭证池已经被 <code>muapi</code> 的旧密钥锁定，即使切换 provider 也无法刷新。</p>
+<h2 id="修复步骤"><a href="#修复步骤" class="headerlink" title="修复步骤"></a>修复步骤</h2><h3 id="Step-1-更新环境变量"><a href="#Step-1-更新环境变量" class="headerlink" title="Step 1: 更新环境变量"></a>Step 1: 更新环境变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.hermes/.env</span></span><br><span class="line">DEEPSEEK_API_KEY=sk-new-key</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-2-同步更新冲突-provider"><a href="#Step-2-同步更新冲突-provider" class="headerlink" title="Step 2: 同步更新冲突 provider"></a>Step 2: 同步更新冲突 provider</h3><p>在 <code>config.yaml</code> 中找到 <code>muapi</code> 条目，将其 <code>api_key</code> 更新为与 <code>DEEPSEEK_API_KEY</code> 相同的新密钥。</p>
+<p>**为什么？**凭证池缓存的是 base URL → key 的映射，不更新的话即使 <code>.env</code> 正确，请求仍然走旧密钥。</p>
+<h3 id="Step-3-清除凭证池缓存"><a href="#Step-3-清除凭证池缓存" class="headerlink" title="Step 3: 清除凭证池缓存"></a>Step 3: 清除凭证池缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -f ~/.hermes/state.db ~/.hermes/state.db-shm ~/.hermes/state.db-wal</span><br></pre></td></tr></table></figure>
+
+<p>Hermes 将凭证映射缓存在 SQLite state.db 中，删除后强制重建。</p>
+<h3 id="Step-4-重启-Gateway"><a href="#Step-4-重启-Gateway" class="headerlink" title="Step 4: 重启 Gateway"></a>Step 4: 重启 Gateway</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hermes gateway restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直测 API</span></span><br><span class="line">curl -X POST https://api.deepseek.com/v1/chat/completions \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer sk-new-key&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;model&quot;:&quot;deepseek-chat&quot;,&quot;messages&quot;:[&#123;&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;hi&quot;&#125;],&quot;max_tokens&quot;:5&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认网关无 401</span></span><br><span class="line"><span class="built_in">tail</span> -f ~/.hermes/logs/agent.log | grep -v <span class="string">&quot;Authentication Fails&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="经验教训"><a href="#经验教训" class="headerlink" title="经验教训"></a>经验教训</h2><ol>
+<li><strong>避免同一 base URL 对应多个 provider</strong> — 凭证池以 URL 为 key，同名端点会导致路由混乱</li>
+<li><strong>轮换密钥后务必清除 <code>state.db</code></strong> — 旧的凭证缓存是静默杀手</li>
+<li><strong>留意 <code>Credential pool provider mismatch</code> 警告</strong> — 这是凭证路由异常的直接信号，不要忽视</li>
+</ol>
+<p>当多个 provider 指向同一 API endpoint 时，凭证池的行为不是「按 provider 隔离」而是「按 URL 共享」—— 谁先注册谁占位。这个行为细节在文档中不容易注意到，但踩过一次以后就很清晰了。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2026/06/14/amap-reverse-geocoding/" data-toggle="tooltip" data-placement="top"
+                           title="给地图工具加上高德逆地理编码">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/06/11/115-skill-journey/" data-toggle="tooltip" data-placement="top"
+                           title="逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B"><span class="toc-text">排查过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-text">1. 配置结构分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%91%E7%8E%B0%E5%86%B2%E7%AA%81"><span class="toc-text">2. 发现冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%87%AD%E8%AF%81%E6%B1%A0%E6%9C%BA%E5%88%B6"><span class="toc-text">3. 凭证池机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E6%AD%A5%E9%AA%A4"><span class="toc-text">修复步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-%E6%9B%B4%E6%96%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">Step 1: 更新环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-%E5%90%8C%E6%AD%A5%E6%9B%B4%E6%96%B0%E5%86%B2%E7%AA%81-provider"><span class="toc-text">Step 2: 同步更新冲突 provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-%E6%B8%85%E9%99%A4%E5%87%AD%E8%AF%81%E6%B1%A0%E7%BC%93%E5%AD%98"><span class="toc-text">Step 3: 清除凭证池缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-%E9%87%8D%E5%90%AF-Gateway"><span class="toc-text">Step 4: 重启 Gateway</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E9%AA%8C%E6%95%99%E8%AE%AD"><span class="toc-text">经验教训</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>

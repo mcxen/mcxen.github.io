@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        我的 AI 助手 — Hermes Agent 日常使用记录｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/07/06/hermes-agent-workflow/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>我的 AI 助手 — Hermes Agent 日常使用记录</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-07-06
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#AI"
+                           title="AI">AI</a>
+                        
+                        <a class="tag" href="/tags/#效率工具"
+                           title="效率工具">效率工具</a>
+                        
+                        <a class="tag" href="/tags/#工作流"
+                           title="工作流">工作流</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            我的 AI 助手 — Hermes Agent 日常使用记录
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>去年开始接触 Hermes Agent（Nous Research 出品的通用 AI 智能体），到现在已经深度嵌入了我的日常开发和工作流。这篇博客整理一下它的主要使用场景，作为自己的使用记录，也给好奇的人参考。</p>
+<blockquote>
+<p><strong>免责声明</strong>：本文涉及的所有敏感信息（IP、密码、Token、服务器配置等）均已脱敏处理。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="什么是-Hermes-Agent"><a href="#什么是-Hermes-Agent" class="headerlink" title="什么是 Hermes Agent"></a>什么是 Hermes Agent</h2><p>Hermes Agent 是一个开源的 CLI AI 智能体，运行在终端里，能直接操控 macOS&#x2F; Linux 系统——读写文件、执行命令、管理 git、调用 API、搜索网页——它不是”聊天机器人”，而是一个<strong>能动手干活的 AI 助手</strong>。</p>
+<p>它支持多种大模型后端（我主要用 DeepSeek），有工具链和技能系统，可以安装各种”技能”来扩展能力。</p>
+<h2 id="场景一：日常开发辅助"><a href="#场景一：日常开发辅助" class="headerlink" title="场景一：日常开发辅助"></a>场景一：日常开发辅助</h2><h3 id="代码编写与调试"><a href="#代码编写与调试" class="headerlink" title="代码编写与调试"></a>代码编写与调试</h3><p>最常用的场景。Hermes 可以直接操作文件系统，理解项目结构后帮我写代码、修 bug。</p>
+<p>比如我正在做的 Qx 项目（一个 Tauri 桌面应用），常见工作流程是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">写需求 → 让 Hermes 分析现有代码 → 生成代码实现 → 检查编译 → 修复错误 → 提交 PR</span><br></pre></td></tr></table></figure>
+
+<p>遇到编译错误，直接把错误日志扔给它，它能逐层追溯、定位问题根因，不像传统搜索引擎那样靠关键词猜。</p>
+<h3 id="代码审查"><a href="#代码审查" class="headerlink" title="代码审查"></a>代码审查</h3><p>PR 提交前用 Hermes 做自动审查——检查安全性、代码质量、风格一致性。发现问题后直接 inline comment 到 GitHub PR 上，省去人工 review 的重复劳动。</p>
+<h2 id="场景二：DevOps-与服务器管理"><a href="#场景二：DevOps-与服务器管理" class="headerlink" title="场景二：DevOps 与服务器管理"></a>场景二：DevOps 与服务器管理</h2><p>我需要管理一台远程 Linux 服务器，做 frp 隧道转发、自托管服务等。Hermes 通过 SSH 直连服务器执行命令：</p>
+<ul>
+<li>配置 frp 内网穿透</li>
+<li>检查服务状态、日志</li>
+<li>安装和更新软件包</li>
+<li>管理防火墙规则</li>
+<li>定时任务维护</li>
+</ul>
+<p>不需要记住一长串命令行参数，用自然语言描述需求就行。</p>
+<h2 id="场景三：知识管理与笔记"><a href="#场景三：知识管理与笔记" class="headerlink" title="场景三：知识管理与笔记"></a>场景三：知识管理与笔记</h2><p>我有个自托管的 Memos 实例（开源 flomo 替代品），Hermes 可以直接读写 memo 笔记。</p>
+<p>日常工作流：</p>
+<ul>
+<li>读到有价值的内容，让它记到 Memos</li>
+<li>搜索已有笔记做信息关联</li>
+<li>定期整理归档</li>
+</ul>
+<p>它还能维护”记忆系统”——跨会话保持用户偏好、环境配置、项目约定等信息，不用每次重复说。</p>
+<h2 id="场景四：技能系统与自动化"><a href="#场景四：技能系统与自动化" class="headerlink" title="场景四：技能系统与自动化"></a>场景四：技能系统与自动化</h2><p>Hermes 有”技能”（Skill）机制，可以预定义特定任务的工作流程。遇到重复性任务就打包成技能，下次直接复用。</p>
+<p>举个例子，我建了几个日常技能：</p>
+<ul>
+<li><strong>发布检查</strong>：发布前检查 git 状态、版本号、changelog</li>
+<li><strong>博客维护</strong>：在 Hexo 博客上写文章、生成、部署</li>
+<li><strong>系统诊断</strong>：快速检查磁盘、内存、网络状况</li>
+</ul>
+<p>把复杂流程封装成技能后，一句话就能启动一整套操作。</p>
+<h2 id="场景五：研究与信息获取"><a href="#场景五：研究与信息获取" class="headerlink" title="场景五：研究与信息获取"></a>场景五：研究与信息获取</h2><p>当需要调研新技术、查 API 文档、找解决方案时：</p>
+<ul>
+<li>搜索网页 + 提取页面内容 + 综合分析</li>
+<li>读 arXiv 论文摘要</li>
+<li>跟踪技术博客更新</li>
+</ul>
+<p>比我自己搜索的效率高很多——它能把分散的信息合成一个完整的结论。</p>
+<h2 id="场景六：创意与-Media"><a href="#场景六：创意与-Media" class="headerlink" title="场景六：创意与 Media"></a>场景六：创意与 Media</h2><p>偶尔也用 Hermes 做一些创意类工作：</p>
+<ul>
+<li>用 ComfyUI 生成图片</li>
+<li>生成 ASCII art</li>
+<li>制作 SVG 信息图和架构图</li>
+<li>操作 TouchDesigner 做视觉创意</li>
+</ul>
+<h2 id="我的心得"><a href="#我的心得" class="headerlink" title="我的心得"></a>我的心得</h2><p>用了 Hermes 大半年，最深的感觉是：</p>
+<ol>
+<li><strong>AI 助手的能力 &#x3D; 工具链 × 模型智能</strong>。光有聪明的模型不够，能直接操作系统才是生产力。</li>
+<li><strong>技能系统的价值被低估了</strong>。把重复工作打包成技能，比每次手写 prompt 高效得多。</li>
+<li><strong>不完美，但在进步</strong>。长上下文仍有 token 耗尽的问题，复杂代码重构有时需要人工介入。但整体趋势是正向的。</li>
+</ol>
+<hr>
+<p>这篇文章本身就是 Hermes 帮我写的，从我的记忆和记录中自动整理成文。🫡</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a target="_blank" rel="noopener" href="//macos-setup/" data-toggle="tooltip" data-placement="top"
+                           title="macOS 重装环境恢复清单">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Hermes-Agent"><span class="toc-text">什么是 Hermes Agent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E8%BE%85%E5%8A%A9"><span class="toc-text">场景一：日常开发辅助</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E4%B8%8E%E8%B0%83%E8%AF%95"><span class="toc-text">代码编写与调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5"><span class="toc-text">代码审查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9ADevOps-%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%A1%E7%90%86"><span class="toc-text">场景二：DevOps 与服务器管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%89%EF%BC%9A%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E4%B8%8E%E7%AC%94%E8%AE%B0"><span class="toc-text">场景三：知识管理与笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E5%9B%9B%EF%BC%9A%E6%8A%80%E8%83%BD%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">场景四：技能系统与自动化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%94%EF%BC%9A%E7%A0%94%E7%A9%B6%E4%B8%8E%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96"><span class="toc-text">场景五：研究与信息获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E5%85%AD%EF%BC%9A%E5%88%9B%E6%84%8F%E4%B8%8E-Media"><span class="toc-text">场景六：创意与 Media</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%BF%83%E5%BE%97"><span class="toc-text">我的心得</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="">
+</body>
+
+</html>
