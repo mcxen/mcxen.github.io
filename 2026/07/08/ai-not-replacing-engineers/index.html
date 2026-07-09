@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Hermes Agent 帮我做了些什么｜undefined
+        AI 为什么没有替代软件工程师｜undefined
         
     </title>
 
-    <link rel="canonical" href="https://b.xpai.uk/2026/07/06/hermes-agent-helps/">
+    <link rel="canonical" href="https://b.xpai.uk/2026/07/08/ai-not-replacing-engineers/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -154,24 +154,24 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Hermes Agent 帮我做了些什么</h1>
+                    <h1>AI 为什么没有替代软件工程师</h1>
                     
                     <span class="meta">
                          作者 mcx
                         <span>
-                          日期 2026-07-06
+                          日期 2026-07-08
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#Hermes"
-                           title="Hermes">Hermes</a>
-                        
                         <a class="tag" href="/tags/#AI"
                            title="AI">AI</a>
                         
-                        <a class="tag" href="/tags/#效率工具"
-                           title="效率工具">效率工具</a>
+                        <a class="tag" href="/tags/#软件工程"
+                           title="软件工程">软件工程</a>
+                        
+                        <a class="tag" href="/tags/#经济"
+                           title="经济">经济</a>
                         
                     </div>
                 </div>
@@ -180,7 +180,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Hermes Agent 帮我做了些什么
+            AI 为什么没有替代软件工程师
         </span>
     </div>
 </header>
@@ -191,57 +191,109 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>最近深度体验了 <a target="_blank" rel="noopener" href="https://hermes-agent.nousresearch.com/">Hermes Agent</a> 这个 AI 助手，记录一下它帮我搞定的几件事。</p>
+                <p>最近读了一篇很好的文章 “Why AI hasn’t replaced software engineers, and won’t”（AI Snake Oil 通讯），结合自己的一些思考，整理一下核心观点。</p>
 <span id="more"></span>
 
-<h2 id="🚀-项目发布一条龙"><a href="#🚀-项目发布一条龙" class="headerlink" title="🚀 项目发布一条龙"></a>🚀 项目发布一条龙</h2><p>最频繁的工作就是给 <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx">Qx</a> 项目做发布流程。从 <code>v0.4.36</code> 到 <code>v0.4.57</code>，中间发布了十多个版本：</p>
+<h2 id="一层层剥开”AI-替代程序员”的叙事"><a href="#一层层剥开”AI-替代程序员”的叙事" class="headerlink" title="一层层剥开”AI 替代程序员”的叙事"></a>一层层剥开”AI 替代程序员”的叙事</h2><h3 id="1-那些”AI-导致裁员”的新闻，经不起推敲"><a href="#1-那些”AI-导致裁员”的新闻，经不起推敲" class="headerlink" title="1. 那些”AI 导致裁员”的新闻，经不起推敲"></a>1. 那些”AI 导致裁员”的新闻，经不起推敲</h3><p>文章追踪了几个著名的案例：</p>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>官方说法</th>
+<th>实际情况</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Block</strong>（Square）</td>
+<td>CEO Jack Dorsey 说 AI 让团队更扁平，裁员 4000</td>
+<td>疫情间招了三倍人，财务压力才是真因</td>
+</tr>
+<tr>
+<td><strong>Snap</strong></td>
+<td>说 AI 写了 65% 的代码，裁员 1000</td>
+<td>实际上是被激进投资者逼着降成本，公司上市以来年年亏损</td>
+</tr>
+<tr>
+<td><strong>Intuit</strong></td>
+<td>裁员 3000，同时签了 AI 合作</td>
+<td>CEO 自己否认跟 AI 有关，说是管理层级太多</td>
+</tr>
+</tbody></table>
+<p>这不是挑出来的特例。文章调查发现了一个普遍现象：</p>
+<blockquote>
+<p>59% 的美国招聘经理承认，他们拿 AI 当裁员的借口，因为对股东说”AI 替代了人”比说”我们财务紧张”好听得多。</p>
+</blockquote>
+<p>Forrester 的分析师说得很直白：<strong>“问他们有没有成熟的 AI 产品能顶上那些岗位，十有八九答案是没有，甚至还没开始做。”</strong></p>
+<h3 id="2-“三明治”模型：为什么写代码从来不是瓶颈"><a href="#2-“三明治”模型：为什么写代码从来不是瓶颈" class="headerlink" title="2. “三明治”模型：为什么写代码从来不是瓶颈"></a>2. “三明治”模型：为什么写代码从来不是瓶颈</h3><p>文章提出了一个很好的框架——<strong>软件开发的”决定—执行—交付”三明治</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────┐</span><br><span class="line">│    决定层 (Decide)       │  ← 理解需求、拆解问题、方案设计</span><br><span class="line">├─────────────────────────┤</span><br><span class="line">│    执行层 (Execute)      │  ← 写代码（AI 正在压缩的部分）</span><br><span class="line">├─────────────────────────┤</span><br><span class="line">│    交付层 (Deliver)      │  ← 测试、集成、部署、运维</span><br><span class="line">└─────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<p>AI 压缩的是中间的”执行层”。但两端的”决定”和”交付”几乎没变。</p>
+<p>一组关键数据：GitHub 上 10 万开发者的研究发现，AI 让代码产出提高了 <strong>8 倍</strong>，但最终发布只增加了 <strong>30%</strong>。这 30% vs 800% 的差距，就是人和 AI 之间不可替代的部分。</p>
+<h3 id="3-为什么员工总数反而可能增加"><a href="#3-为什么员工总数反而可能增加" class="headerlink" title="3. 为什么员工总数反而可能增加"></a>3. 为什么员工总数反而可能增加</h3><p>这就回到了经济学的核心逻辑。不是简单的”写代码变快了所以不需要那么多人”，而是：</p>
+<p><strong>软件需求有高价格弹性。当软件变便宜了，市场会需要多得多的软件。</strong></p>
+<p>举个例子：</p>
 <ul>
-<li>自动检测未提交的变更</li>
-<li>更新版本号（package.json、Cargo.toml、tauri.conf.json）</li>
-<li>运行 <code>tsc --noEmit</code> 和 <code>cargo check</code> 验证</li>
-<li>打 tag、推送到 GitHub</li>
-<li>一条命令搞定，再也不用手动敲 <code>git add</code> → <code>git commit</code> → <code>git tag</code> → <code>git push</code></li>
+<li>以前开发一个功能要 10 人月，成本 50 万，公司算不过账，不做了</li>
+<li>现在 AI 辅助下只要 2 人月，成本 10 万，公司觉得划算，决定做</li>
+<li><strong>净效果：需要的人更多了</strong></li>
 </ul>
-<p>遇到网络波动推送失败会自动重试，省心很多。</p>
-<h2 id="🔧-frp-隧道配置"><a href="#🔧-frp-隧道配置" class="headerlink" title="🔧 frp 隧道配置"></a>🔧 frp 隧道配置</h2><p>因为需要在外面连回家里的 Mac，它帮我：</p>
+<p>这个逻辑有个响亮的经济学名字——<strong>杰文斯悖论（Jevons’ Paradox）</strong>：</p>
+<blockquote>
+<p>蒸汽机效率提高后，每吨煤能做的功变多了，但煤炭总消耗反而上升了——因为煤变”划算”了，大家用得更狠。</p>
+</blockquote>
+<p>放到软件行业就是：AI 让每个工程师的产出变高，但市场对软件的总需求增长更快。</p>
+<h3 id="4-历史不会撒谎"><a href="#4-历史不会撒谎" class="headerlink" title="4. 历史不会撒谎"></a>4. 历史不会撒谎</h3><table>
+<thead>
+<tr>
+<th>历史事件</th>
+<th>当时的主流恐惧</th>
+<th>实际结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>高级语言出现</td>
+<td>不需要那么多程序员了</td>
+<td>程序员数量翻了几十倍</td>
+</tr>
+<tr>
+<td>开源运动</td>
+<td>商业软件公司要完</td>
+<td>催生了全新的产业</td>
+</tr>
+<tr>
+<td>云计算</td>
+<td>IT 运维人员要失业</td>
+<td>运维需求暴涨</td>
+</tr>
+<tr>
+<td><strong>AI 辅助编程</strong></td>
+<td><strong>程序员要被替代了</strong></td>
+<td><strong>？</strong></td>
+</tr>
+</tbody></table>
+<p>每一轮”技术替代人”的恐慌过后，事实都证明：技术不是替代人，而是重新定义人的工作内容，并且总需求在增长。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>这不是盲目乐观。文章也承认：<strong>即使总需求在增长，个体软件工程师的职业生涯可能会更动荡。</strong> 比如：</p>
 <ul>
-<li>检查 frps 服务器是否在线</li>
-<li>配置 frpc 客户端</li>
-<li>开机自启 <code>brew services start frpc</code></li>
-<li>全程不需要手动编辑配置文件</li>
+<li>初级岗位可能减少，因为 AI 补了部分”执行”能力</li>
+<li>纯”码代码”的岗位价值下降</li>
+<li>但懂业务、能决策、能交付的人会更值钱</li>
 </ul>
-<h2 id="🤖-qodercli-自动化"><a href="#🤖-qodercli-自动化" class="headerlink" title="🤖 qodercli 自动化"></a>🤖 qodercli 自动化</h2><p>Qx 项目里很多代码改动是通过 qodercli 完成的，Hermes 负责帮我操作：</p>
-<ul>
-<li><strong>主题切换卡顿修复</strong> — 排查 CSS 变量在暗黑模式下缺失的问题</li>
-<li><strong>Markdown 渲染升级</strong> — 安装 react-markdown + shiki，后续换成更轻量的 <code>@webc.site/math</code></li>
-<li><strong>流式输出卡死修复</strong> — 重构 Rust 后端的流式处理逻辑</li>
-<li><strong>设置面板布局修复</strong> — 导航项固定行高 + label 截断</li>
-<li><strong>快捷键范围限制</strong> — Cmd+, 只在搜索框焦点时才触发</li>
-<li><strong>NSPanel 悬浮面板</strong> — macOS 原生无焦点面板实现</li>
-</ul>
-<h2 id="📦-资源下载"><a href="#📦-资源下载" class="headerlink" title="📦 资源下载"></a>📦 资源下载</h2><ul>
-<li><strong>X&#x2F;Twitter 视频</strong> — 用 yt-dlp 下载指定推文视频</li>
-<li><strong>Facebook Astryx</strong> — 克隆并运行 Storybook 预览 Meta 的开源设计系统</li>
-<li><strong>720yun 全景图</strong> — 下载全景切片并合成为等距柱状投影图</li>
-</ul>
-<h2 id="🎯-小结"><a href="#🎯-小结" class="headerlink" title="🎯 小结"></a>🎯 小结</h2><p>AI 助手已经从聊天玩具变成了真的能干活的生产力工具。从项目发布、代码重构、服务器配置到资源下载，基本上说”帮我搞一下”，它就能自己折腾出来。</p>
+<p>最让我有共鸣的是这句话：</p>
+<blockquote>
+<p>AI 压缩了三明治的中间层，但两端的”决定”和”交付”几乎没有变化。而真正重要的是两端。</p>
+</blockquote>
 <hr>
-<p><em>这篇文章本身就是 Hermes 根据会话记录自动整理成文的。</em></p>
+<p><em>参考：Arvind Narayanan &amp; Sayash Kapoor, “Why AI hasn’t replaced software engineers, and won’t”, AI Snake Oil, Jun 2026</em></p>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2026/07/08/ai-not-replacing-engineers/" data-toggle="tooltip" data-placement="top"
-                           title="AI 为什么没有替代软件工程师">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2026/07/06/hermes-agent-workflow/" data-toggle="tooltip" data-placement="top"
-                           title="我的 AI 助手 — Hermes Agent 日常使用记录">Next Post &rarr;</a>
+                        <a href="/2026/07/06/hermes-agent-helps/" data-toggle="tooltip" data-placement="top"
+                           title="Hermes Agent 帮我做了些什么">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -260,7 +312,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83%E4%B8%80%E6%9D%A1%E9%BE%99"><span class="toc-text">🚀 项目发布一条龙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-frp-%E9%9A%A7%E9%81%93%E9%85%8D%E7%BD%AE"><span class="toc-text">🔧 frp 隧道配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A4%96-qodercli-%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">🤖 qodercli 自动化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A6-%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD"><span class="toc-text">📦 资源下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E5%B0%8F%E7%BB%93"><span class="toc-text">🎯 小结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%B1%82%E5%B1%82%E5%89%A5%E5%BC%80%E2%80%9DAI-%E6%9B%BF%E4%BB%A3%E7%A8%8B%E5%BA%8F%E5%91%98%E2%80%9D%E7%9A%84%E5%8F%99%E4%BA%8B"><span class="toc-text">一层层剥开”AI 替代程序员”的叙事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%82%A3%E4%BA%9B%E2%80%9DAI-%E5%AF%BC%E8%87%B4%E8%A3%81%E5%91%98%E2%80%9D%E7%9A%84%E6%96%B0%E9%97%BB%EF%BC%8C%E7%BB%8F%E4%B8%8D%E8%B5%B7%E6%8E%A8%E6%95%B2"><span class="toc-text">1. 那些”AI 导致裁员”的新闻，经不起推敲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E2%80%9C%E4%B8%89%E6%98%8E%E6%B2%BB%E2%80%9D%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E4%BB%A3%E7%A0%81%E4%BB%8E%E6%9D%A5%E4%B8%8D%E6%98%AF%E7%93%B6%E9%A2%88"><span class="toc-text">2. “三明治”模型：为什么写代码从来不是瓶颈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%91%98%E5%B7%A5%E6%80%BB%E6%95%B0%E5%8F%8D%E8%80%8C%E5%8F%AF%E8%83%BD%E5%A2%9E%E5%8A%A0"><span class="toc-text">3. 为什么员工总数反而可能增加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8E%86%E5%8F%B2%E4%B8%8D%E4%BC%9A%E6%92%92%E8%B0%8E"><span class="toc-text">4. 历史不会撒谎</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-text">写在最后</span></a></li></ol>
                 </div>
             </div>
         </div>
