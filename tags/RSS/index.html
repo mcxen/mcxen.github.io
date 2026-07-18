@@ -22,7 +22,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://b.xpai.uk/archives/page/2/">
+    <link rel="canonical" href="https://b.xpai.uk/tags/RSS/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -52,7 +52,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="true
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -165,250 +165,18 @@
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/06/17/cloudflare-workers-tactical-terminal/">
+    <a href="/2026/07/18/fxembed-wsrv-guide/">
         <h2 class="post-title">
-            用 Cloudflare Workers 搭建战术终端风格界面
+            FxEmbed 与 wsrv.nl：两个低调但实用的网络工具
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-17
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-18
         </p>
         
         <div class="post-content-preview">
             <p>
-                最近给 GeekZip 的下载页做了个「战术终端」风格的界面，跑了 Cloudflare Workers 上。记录一下思路和实现。
-
-
-为什么选 Workers简单原则：不要多一个服务器。GeekZip 本身在 GitHub Releases 上托管二进制，但需要一个好看的下载页。如果为了一个静..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://fastly.picsum.photos/id/166/1600/900.jpg?hmac=og_FIiy7_UfhvQ4qBXm3CmJO-_2Yqr9B463kqUODJlU')">
-    <a href="/2026/06/14/amap-reverse-geocoding/">
-        <h2 class="post-title">
-            给地图工具加上高德逆地理编码
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-14
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                背景我日常用的地图工具（maps_client.py）基于 OpenStreetMap 生态 —— Nominatim 做 geocode&#x2F;reverse geocode，OSRM 算路径，Overpass 查 POI。这套组合在全球大部分地区够用，但在中国有个硬伤：
-Nominati..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2026/06/12/hermes-deepseek-auth-fix/">
-        <h2 class="post-title">
-            Hermes Agent DeepSeek API 认证失败排查与修复
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-12
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-背景最近在使用 Hermes Agent 时，所有请求突然全部失败，Gateway 日志反复报出：
-1Error code: 401 - Authentication Fails, Your api key: ****OcWp is invalid
-
-伴随 Transient agent fa..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2026/06/11/115-skill-journey/">
-        <h2 class="post-title">
-            逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-11
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录起因拿到一个 115-publish 的 Hermes skill 包，功能很全：扫码登录、文件浏览、搜索、转存、离线下载。但装上一跑，全部 404。
-1QR_FAIL:Request failed with sta..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2026/06/10/pdf-ink-annotation-implementation/">
-        <h2 class="post-title">
-            PDF 手绘批注技术实现
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-10
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                PDF 手绘批注技术实现概述PDFHelper 的批注功能基于苹果原生 PDFKit 框架实现，未引入任何第三方 PDF 批注库。整个批注子系统约 300 行核心代码，分为三层：视图编排层、PDF 桥接层、手势处理层。
-架构设计三层结构12345PDFAnnotationView (SwiftU..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2026/06/09/caddy-icp-lesson/">
-        <h2 class="post-title">
-            Caddy + Cloudflare + 阿里云 ICP 备案踩坑记录
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                背景手里有一台阿里云 ECS（Ubuntu 22.04），IP SERVER_IP，上面跑着一个服务监听 12201 端口。
-想通过域名 f.example.com 用 HTTPS 访问这个服务，于是开始了折腾之旅。
-第一步：安装 CaddyCaddy 是现代 Web 服务器，自动 HTTPS ..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2026/06/09/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2026/06/09/claude-api-types/">
-        <h2 class="post-title">
-            Claude API 的三种来源及其区别
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                很多人不知道，Claude 的官方 API 其实分为三种来源，价格、可用范围和质量各不相同。
-一、官方 API来源：直接在 console.anthropic.com 注册，绑定信用卡充值。
-价格：按 token 计费，明码标价。比如 Claude Sonnet 4：
-
-输入：$3 &#x2F;..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2024/06/10/linux-java/">
-        <h2 class="post-title">
-            linux下的java部署
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2024-06-10
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                linux 下的 java 部署jar 命令简介java 部署 jar 包可以使用 java -jar 命令，比如：
-1java -jar demo.jar
-
-执行上述命令后，JAR 包中的程序将在 Linux 系统中运行。
-注：在运行 JAR 包之前，确保你的 JAR 文件是可执行的，并且包含..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2024/04/08/algo-note/">
-        <h2 class="post-title">
-            algo-note
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2024-04-08
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                一、数据结构模板数组问题41. 缺失的第一个正整数给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
-请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
-示例 1：
-12输入：nums = [1,2,0]输出：3
-
-示例 2：
-12输入：nums = ..
+                缘起最近整理了一些日常用到的网络工具，其中 FxEmbed 和 wsrv.nl 是两个虽然知名度不高、但实际场景中非常趁手的服务。写篇文章记录一下用法和案例。
+FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项目，提供 fxtwitter...
             </p>
         </div>
     </a>
@@ -424,14 +192,6 @@ Nominati..
 
 <ul class="pager">
     
-    <li class="previous">
-        <a href="/archives/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/archives/page/3/">Older Posts &rarr;</a>
-    </li>
     
 </ul>
 
