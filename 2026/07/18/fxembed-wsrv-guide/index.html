@@ -291,16 +291,19 @@
 <td>输出格式：jpg、png、webp 等</td>
 </tr>
 </tbody></table>
-<h3 id="实际演示"><a href="#实际演示" class="headerlink" title="实际演示"></a>实际演示</h3><p>以 Julie 那条推文配图为例，原图是 2834x1666 的高清大图：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://pbs.twimg.com/media/HNXD1PWaQAAblnq.jpg?name=orig</span><br></pre></td></tr></table></figure>
-
-<p>如果直接给博客用，图片太大。用 wsrv.nl 缩放到合适尺寸：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">Quick Launcher</span>](<span class="link">https://wsrv.nl/?url=https://pbs.twimg.com/media/HNXD1PWaQAAblnq.jpg&amp;w=800</span>)</span><br></pre></td></tr></table></figure>
-
-<p>效果：自动裁剪为 800px 宽，保持比例，CDN 加速加载。</p>
-<p>也可以用 <code>fit=cover</code> 配合固定尺寸做缩略图：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://wsrv.nl/?url=https://pbs.twimg.com/media/HNXD1PWaQAAblnq.jpg&amp;w=400&amp;h=300&amp;fit=cover</span><br></pre></td></tr></table></figure>
-
+<h3 id="实际演示"><a href="#实际演示" class="headerlink" title="实际演示"></a>实际演示</h3><p>以 Julie 那条推文配图为例，原图是 2834x1666 的高清大图，体积约 1MB+。下面是不同处理方式的对比。</p>
+<p><strong>原图直接引用</strong>（不做任何处理，加载慢且撑爆页面）：</p>
+<p><img src="https://pbs.twimg.com/media/HNXD1PWaQAAblnq.jpg?name=orig" alt="原图 - 2834x1666"></p>
+<hr>
+<p><strong>用 wsrv.nl 缩放到 800px 宽</strong>（保持比例，CDN 加速）：</p>
+<p><img src="https://wsrv.nl/?url=https://pbs.twimg.com/media/HNXD1PWaQAAblnq.jpg&w=800" alt="wsrv.nl w&#x3D;800"></p>
+<hr>
+<p><strong>用 wsrv.nl 裁剪为 400x300 缩略图</strong>（<code>fit=cover</code>）：</p>
+<p><img src="https://wsrv.nl/?url=https://pbs.twimg.com/media/HNXD1PWaQAAblnq.jpg&w=400&h=300&fit=cover" alt="wsrv.nl w&#x3D;400 h&#x3D;300 fit&#x3D;cover"></p>
+<hr>
+<p><strong>格式转换</strong>：原图是 JPEG，用 <code>output=webp</code> 转换为 WebP 格式（体积更小）：</p>
+<p><img src="https://wsrv.nl/?url=https://pbs.twimg.com/media/HNXD1PWaQAAblnq.jpg&w=800&output=webp" alt="wsrv.nl output&#x3D;webp"></p>
+<p>可以看到，wsrv.nl 一行 URL 就能完成缩放、裁剪、格式转换，无需部署任何后端服务。</p>
 <h3 id="常见用途"><a href="#常见用途" class="headerlink" title="常见用途"></a>常见用途</h3><ol>
 <li><strong>HTTPS 混合内容修复</strong>：给 HTTPS 网站嵌入 HTTP 图片</li>
 <li><strong>动态缩略图</strong>：不需要自己搭图片处理服务</li>
