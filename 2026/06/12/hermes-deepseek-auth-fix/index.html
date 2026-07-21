@@ -140,13 +140,13 @@
 
 
 <img class="wechat-title-img"
-     src="">
+     src="undefinedhermes-deepseek-auth-fix.assets/theo-hall-pmUgUMvfmUg-unsplash.jpg">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('')
+        background-image: url('hermes-deepseek-auth-fix.assets/theo-hall-pmUgUMvfmUg-unsplash.jpgundefined')
     }
 
     
@@ -209,7 +209,7 @@
 </ul>
 <h2 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h2><h3 id="1-配置结构分析"><a href="#1-配置结构分析" class="headerlink" title="1. 配置结构分析"></a>1. 配置结构分析</h3><p>Hermes 的凭证体系有两层：</p>
 <p><strong><code>~/.hermes/.env</code></strong> — 环境变量文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEEPSEEK_API_KEY=sk-new-key</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEEPSEEK_API_KEY=***</span><br></pre></td></tr></table></figure>
 
 <p><strong><code>~/.hermes/config.yaml</code></strong> — 主配置，包含：</p>
 <ul>
@@ -218,7 +218,7 @@
 </ul>
 <p>看起来没什么问题：环境变量是最新的 key，官方 provider 正确引用它。</p>
 <h3 id="2-发现冲突"><a href="#2-发现冲突" class="headerlink" title="2. 发现冲突"></a>2. 发现冲突</h3><p>深入检查 <code>custom_providers</code>，发现一个叫 <code>muapi</code> 的 provider：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">api_key:</span> <span class="string">sk-old-invalid-key</span></span><br><span class="line">  <span class="attr">base_url:</span> <span class="string">https://api.deepseek.com</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">muapi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">api_key:</span> <span class="string">sk-old...-key</span></span><br><span class="line">  <span class="attr">base_url:</span> <span class="string">https://api.deepseek.com</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">muapi</span></span><br></pre></td></tr></table></figure>
 
 <p>关键线索：<code>muapi</code> 和 <code>deepseek-official</code> 使用了<strong>完全相同的 base URL</strong>。</p>
 <h3 id="3-凭证池机制"><a href="#3-凭证池机制" class="headerlink" title="3. 凭证池机制"></a>3. 凭证池机制</h3><p>Hermes 内部维护一个<strong>凭证池（credential pool）</strong>，以 base URL 为 key 缓存 provider 到 API key 的映射。当请求发往 <code>https://api.deepseek.com</code> 时：</p>
@@ -231,7 +231,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run_agent: Credential pool provider mismatch:</span><br><span class="line">  pool=custom:muapi, agent=custom — skipping pool mutation</span><br></pre></td></tr></table></figure>
 
 <p>凭证池已经被 <code>muapi</code> 的旧密钥锁定，即使切换 provider 也无法刷新。</p>
-<h2 id="修复步骤"><a href="#修复步骤" class="headerlink" title="修复步骤"></a>修复步骤</h2><h3 id="Step-1-更新环境变量"><a href="#Step-1-更新环境变量" class="headerlink" title="Step 1: 更新环境变量"></a>Step 1: 更新环境变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.hermes/.env</span></span><br><span class="line">DEEPSEEK_API_KEY=sk-new-key</span><br></pre></td></tr></table></figure>
+<h2 id="修复步骤"><a href="#修复步骤" class="headerlink" title="修复步骤"></a>修复步骤</h2><h3 id="Step-1-更新环境变量"><a href="#Step-1-更新环境变量" class="headerlink" title="Step 1: 更新环境变量"></a>Step 1: 更新环境变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.hermes/.env</span></span><br><span class="line">DEEPSEEK_API_KEY=***</span><br></pre></td></tr></table></figure>
 
 <h3 id="Step-2-同步更新冲突-provider"><a href="#Step-2-同步更新冲突-provider" class="headerlink" title="Step 2: 同步更新冲突 provider"></a>Step 2: 同步更新冲突 provider</h3><p>在 <code>config.yaml</code> 中找到 <code>muapi</code> 条目，将其 <code>api_key</code> 更新为与 <code>DEEPSEEK_API_KEY</code> 相同的新密钥。</p>
 <p>**为什么？**凭证池缓存的是 base URL → key 的映射，不更新的话即使 <code>.env</code> 正确，请求仍然走旧密钥。</p>
@@ -240,7 +240,7 @@
 <p>Hermes 将凭证映射缓存在 SQLite state.db 中，删除后强制重建。</p>
 <h3 id="Step-4-重启-Gateway"><a href="#Step-4-重启-Gateway" class="headerlink" title="Step 4: 重启 Gateway"></a>Step 4: 重启 Gateway</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hermes gateway restart</span><br></pre></td></tr></table></figure>
 
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直测 API</span></span><br><span class="line">curl -X POST https://api.deepseek.com/v1/chat/completions \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer sk-new-key&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;model&quot;:&quot;deepseek-chat&quot;,&quot;messages&quot;:[&#123;&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;hi&quot;&#125;],&quot;max_tokens&quot;:5&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认网关无 401</span></span><br><span class="line"><span class="built_in">tail</span> -f ~/.hermes/logs/agent.log | grep -v <span class="string">&quot;Authentication Fails&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直测 API</span></span><br><span class="line">curl -X POST https://api.deepseek.com/v1/chat/completions \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer *** \</span></span><br><span class="line"><span class="string">  -H &quot;</span>Content-Type: application/json<span class="string">&quot; \</span></span><br><span class="line"><span class="string">  -d &#x27;&#123;&quot;</span>model<span class="string">&quot;:&quot;</span>deepseek-chat<span class="string">&quot;,&quot;</span>messages<span class="string">&quot;:[&#123;&quot;</span>role<span class="string">&quot;:&quot;</span>user<span class="string">&quot;,&quot;</span>content<span class="string">&quot;:&quot;</span>hi<span class="string">&quot;&#125;],&quot;</span>max_tokens<span class="string">&quot;:5&#125;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 确认网关无 401</span></span><br><span class="line"><span class="string">tail -f ~/.hermes/logs/agent.log | grep -v &quot;</span>Authentication Fails<span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="经验教训"><a href="#经验教训" class="headerlink" title="经验教训"></a>经验教训</h2><ol>
 <li><strong>避免同一 base URL 对应多个 provider</strong> — 凭证池以 URL 为 key，同名端点会导致路由混乱</li>

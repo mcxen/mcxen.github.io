@@ -140,13 +140,13 @@
 
 
 <img class="wechat-title-img"
-     src="">
+     src="undefinedhttps://source.unsplash.com/random/1200x400/?productivity,workspace,technology">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('')
+        background-image: url('https://source.unsplash.com/random/1200x400/?productivity,workspace,technologyundefined')
     }
 
     
@@ -194,42 +194,64 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>最近深度体验了 <a target="_blank" rel="noopener" href="https://hermes-agent.nousresearch.com/">Hermes Agent</a> 这个 AI 助手，记录一下它帮我搞定的几件事。</p>
+                <p>深度使用 <a target="_blank" rel="noopener" href="https://hermes-agent.nousresearch.com/">Hermes Agent</a> 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。</p>
 <span id="more"></span>
 
-<h2 id="🚀-项目发布一条龙"><a href="#🚀-项目发布一条龙" class="headerlink" title="🚀 项目发布一条龙"></a>🚀 项目发布一条龙</h2><p>最频繁的工作就是给 <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx">Qx</a> 项目做发布流程。从 <code>v0.4.36</code> 到 <code>v0.4.57</code>，中间发布了十多个版本：</p>
+<h2 id="项目发布一条龙"><a href="#项目发布一条龙" class="headerlink" title="项目发布一条龙"></a>项目发布一条龙</h2><p>最频繁的工作就是给 <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx">Qx</a> 项目做发布。从 <code>v0.4.36</code> 到现在的 <code>v0.6.5</code>，发布了几十个版本：</p>
 <ul>
 <li>自动检测未提交的变更</li>
-<li>更新版本号（package.json、Cargo.toml、tauri.conf.json）</li>
-<li>运行 <code>tsc --noEmit</code> 和 <code>cargo check</code> 验证</li>
+<li>更新版本号（package.json、Cargo.toml、tauri.conf.json 三处同步）</li>
+<li>运行 <code>tsc --noEmit</code> 和 <code>cargo check</code> 验证编译</li>
 <li>打 tag、推送到 GitHub</li>
-<li>一条命令搞定，再也不用手动敲 <code>git add</code> → <code>git commit</code> → <code>git tag</code> → <code>git push</code></li>
+<li>一条命令搞定，遇到网络波动会自动重试</li>
 </ul>
-<p>遇到网络波动推送失败会自动重试，省心很多。</p>
-<h2 id="🔧-frp-隧道配置"><a href="#🔧-frp-隧道配置" class="headerlink" title="🔧 frp 隧道配置"></a>🔧 frp 隧道配置</h2><p>因为需要在外面连回家里的 Mac，它帮我：</p>
+<p>另一个项目 <a target="_blank" rel="noopener" href="https://github.com/mcxen/shelfy">Shelfy</a>（Tauri 文件整理工具）也是同样的流程。后来还搞定了 Homebrew Cask 分发：<code>brew tap mcxen/qx &amp;&amp; brew install --cask mcxen/qx/qx</code>。</p>
+<h2 id="frp-隧道和远程管理"><a href="#frp-隧道和远程管理" class="headerlink" title="frp 隧道和远程管理"></a>frp 隧道和远程管理</h2><p>需要在外面连回家里的 Mac，Hermes 帮我：</p>
 <ul>
-<li>检查 frps 服务器是否在线</li>
-<li>配置 frpc 客户端</li>
-<li>开机自启 <code>brew services start frpc</code></li>
-<li>全程不需要手动编辑配置文件</li>
+<li>检查 frps 服务器（121.40.88.21）是否在线</li>
+<li>配置 frpc 客户端，写好配置文件</li>
+<li><code>brew services start frpc</code> 开机自启</li>
+<li>SSH 到远程 Linux 服务器执行各种运维命令</li>
 </ul>
-<h2 id="🤖-qodercli-自动化"><a href="#🤖-qodercli-自动化" class="headerlink" title="🤖 qodercli 自动化"></a>🤖 qodercli 自动化</h2><p>Qx 项目里很多代码改动是通过 qodercli 完成的，Hermes 负责帮我操作：</p>
+<p>全程不需要手动编辑配置文件，自然语言描述需求就行。</p>
+<h2 id="qodercli-自动化"><a href="#qodercli-自动化" class="headerlink" title="qodercli 自动化"></a>qodercli 自动化</h2><p>Qx 项目里很多代码改动是通过 qodercli（AI 编码 CLI）完成的，Hermes 负责在 tmux 里操作它：</p>
 <ul>
-<li><strong>主题切换卡顿修复</strong> — 排查 CSS 变量在暗黑模式下缺失的问题</li>
-<li><strong>Markdown 渲染升级</strong> — 安装 react-markdown + shiki，后续换成更轻量的 <code>@webc.site/math</code></li>
-<li><strong>流式输出卡死修复</strong> — 重构 Rust 后端的流式处理逻辑</li>
-<li><strong>设置面板布局修复</strong> — 导航项固定行高 + label 截断</li>
-<li><strong>快捷键范围限制</strong> — Cmd+, 只在搜索框焦点时才触发</li>
-<li><strong>NSPanel 悬浮面板</strong> — macOS 原生无焦点面板实现</li>
+<li><strong>NSPanel 悬浮面板</strong> – macOS 原生无焦点面板实现，这是 Qx 的核心交互</li>
+<li><strong>主题切换卡顿修复</strong> – 排查 CSS 变量在暗黑模式下缺失的问题</li>
+<li><strong>Markdown 渲染升级</strong> – 从 react-markdown + shiki 换成更轻量的方案</li>
+<li><strong>流式输出卡死修复</strong> – 重构 Rust 后端的流式处理逻辑</li>
+<li><strong>设置面板布局修复</strong> – 导航项固定行高 + label 截断</li>
+<li><strong>GitHub Actions 步骤进度</strong> – 解析 CI 页面的 HTML 结构，显示真实的步骤完成情况</li>
 </ul>
-<h2 id="📦-资源下载"><a href="#📦-资源下载" class="headerlink" title="📦 资源下载"></a>📦 资源下载</h2><ul>
-<li><strong>X&#x2F;Twitter 视频</strong> — 用 yt-dlp 下载指定推文视频</li>
-<li><strong>Facebook Astryx</strong> — 克隆并运行 Storybook 预览 Meta 的开源设计系统</li>
-<li><strong>720yun 全景图</strong> — 下载全景切片并合成为等距柱状投影图</li>
+<h2 id="Memos-MCP-服务器"><a href="#Memos-MCP-服务器" class="headerlink" title="Memos MCP 服务器"></a>Memos MCP 服务器</h2><p>自己搞了个 <a target="_blank" rel="noopener" href="https://usememos.com/">Memos</a> 实例（121.40.88.21:12009），Hermes 帮我：</p>
+<ul>
+<li>搭建 FastMCP 服务器（<code>~/Documents/OpenSpring/memos-mcp/</code>）</li>
+<li>直接通过 API 读写 memo 笔记</li>
+<li>搜索已有笔记做信息关联</li>
 </ul>
-<h2 id="🎯-小结"><a href="#🎯-小结" class="headerlink" title="🎯 小结"></a>🎯 小结</h2><p>AI 助手已经从聊天玩具变成了真的能干活的生产力工具。从项目发布、代码重构、服务器配置到资源下载，基本上说”帮我搞一下”，它就能自己折腾出来。</p>
+<h2 id="博客维护"><a href="#博客维护" class="headerlink" title="博客维护"></a>博客维护</h2><p>Hexo 博客（mcxen.github.io）的日常维护基本都是 Hermes 在跑：</p>
+<ul>
+<li>写文章、整理内容</li>
+<li>HEIC 照片转 JPEG、图片放到 <code>source/images/</code></li>
+<li><code>hexo generate</code> + <code>hexo deploy</code>（走代理 7897）</li>
+<li>自动给没有封面的文章选 Unsplash 关键词配封面</li>
+<li>RSS 全文订阅配置</li>
+</ul>
+<h2 id="网络工具和资源下载"><a href="#网络工具和资源下载" class="headerlink" title="网络工具和资源下载"></a>网络工具和资源下载</h2><ul>
+<li><strong>X&#x2F;Twitter 视频</strong> – 用 yt-dlp 下载指定推文视频</li>
+<li><strong>720yun 全景图</strong> – 下载全景切片并合成为等距柱状投影图</li>
+<li><strong>NAS 文件管理</strong> – 通过 SMB 挂载飞牛 NAS（10.0.0.124），排查 macOS SMB 连接问题</li>
+<li><strong>Cloudflare Pages</strong> – 部署静态站点，配置自定义域名</li>
+</ul>
+<h2 id="DevOps-和-CI"><a href="#DevOps-和-CI" class="headerlink" title="DevOps 和 CI"></a>DevOps 和 CI</h2><ul>
+<li><strong>Cloudflare Workers</strong> – 搭建战术终端风格的 Web 界面</li>
+<li><strong>Caddy 反代 + ICP 备案</strong> – 踩坑记录，跟阿里云和 Cloudflare 的 DNS 配置斗智斗勇</li>
+<li><strong>GitHub Actions</strong> – 解析 CI 运行详情页的 HTML 结构，实现真实的步骤进度展示</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>AI 助手已经从聊天玩具变成了真的能干活的生产力工具。从项目发布、代码重构、服务器配置到内容创作，基本上说”帮我搞一下”，它就能自己折腾出来。</p>
+<p>最大的变化是：我现在遇到问题的第一反应不是去搜，而是让 Hermes 来处理。</p>
 <hr>
-<p><em>这篇文章本身就是 Hermes 根据会话记录自动整理成文的。</em></p>
+<p><em>这篇文章本身就是 Hermes 根据记忆和会话记录自动整理成文的。</em></p>
 
                 <hr>
                 
@@ -244,7 +266,7 @@
                     
                     <li class="next">
                         <a href="/2026/07/06/hermes-agent-workflow/" data-toggle="tooltip" data-placement="top"
-                           title="我的 AI 助手 — Hermes Agent 日常使用记录">Next Post &rarr;</a>
+                           title="我的 AI 助手 -- Hermes Agent 日常使用记录">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -263,7 +285,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83%E4%B8%80%E6%9D%A1%E9%BE%99"><span class="toc-text">🚀 项目发布一条龙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-frp-%E9%9A%A7%E9%81%93%E9%85%8D%E7%BD%AE"><span class="toc-text">🔧 frp 隧道配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A4%96-qodercli-%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">🤖 qodercli 自动化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A6-%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD"><span class="toc-text">📦 资源下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E5%B0%8F%E7%BB%93"><span class="toc-text">🎯 小结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83%E4%B8%80%E6%9D%A1%E9%BE%99"><span class="toc-text">项目发布一条龙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#frp-%E9%9A%A7%E9%81%93%E5%92%8C%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-text">frp 隧道和远程管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qodercli-%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">qodercli 自动化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memos-MCP-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Memos MCP 服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4"><span class="toc-text">博客维护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7%E5%92%8C%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD"><span class="toc-text">网络工具和资源下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DevOps-%E5%92%8C-CI"><span class="toc-text">DevOps 和 CI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol>
                 </div>
             </div>
         </div>
