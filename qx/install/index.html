@@ -89,16 +89,16 @@
                         
                     
                         
+                    
+                        
+                    
+                        
 							
                         <li>
                             <a href="/tags/">标签</a>
                         </li>
 							
 						
-                    
-                        
-                    
-                        
                     
                         
                     
@@ -186,7 +186,48 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            
+            <h1 id="安装指南"><a href="#安装指南" class="headerlink" title="安装指南"></a>安装指南</h1><h2 id="macOS（推荐-Homebrew）"><a href="#macOS（推荐-Homebrew）" class="headerlink" title="macOS（推荐 Homebrew）"></a>macOS（推荐 Homebrew）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap mcxen/qx</span><br><span class="line">brew install --cask qx</span><br></pre></td></tr></table></figure>
+
+<p>升级：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade --cask qx</span><br></pre></td></tr></table></figure>
+
+<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><p>从 <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/releases">GitHub Releases</a> 下载：</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>包格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>macOS Apple Silicon</td>
+<td><code>.app.zip</code></td>
+<td>解压拖入 <code>/Applications</code>，首次右键 → 打开</td>
+</tr>
+<tr>
+<td>macOS Intel</td>
+<td><code>.app.zip</code></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>Windows x64</td>
+<td>NSIS 安装器</td>
+<td>需要 <a target="_blank" rel="noopener" href="https://developer.microsoft.com/microsoft-edge/webview2/">WebView2</a></td>
+</tr>
+</tbody></table>
+<p>安装后 Qx 常驻菜单栏（macOS）或系统托盘（Windows）。</p>
+<h2 id="首次启动"><a href="#首次启动" class="headerlink" title="首次启动"></a>首次启动</h2><p>macOS 首次启动会引导你开启以下权限：</p>
+<ol>
+<li><strong>完全磁盘访问</strong> — 文件搜索功能必需</li>
+<li><strong>辅助功能</strong>（可选）— 剪贴板自动粘贴</li>
+<li><strong>屏幕录制</strong>（可选）— 截图与录屏功能</li>
+<li><strong>输入监控</strong>（可选）— 全局快捷键</li>
+</ol>
+<p>每个步骤可跳过，后续在系统设置中手动开启。</p>
+<hr>
+<p><a href="/qx/">← 返回手册</a> · <a href="/qx/quickstart/">快速开始 →</a></p>
+
         </div>
         <!-- Sidebar Container -->
         <div class="

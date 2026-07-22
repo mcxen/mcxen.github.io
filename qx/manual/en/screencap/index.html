@@ -89,16 +89,16 @@
                         
                     
                         
+                    
+                        
+                    
+                        
 							
                         <li>
                             <a href="/tags/">标签</a>
                         </li>
 							
 						
-                    
-                        
-                    
-                        
                     
                         
                     
@@ -186,7 +186,185 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            
+            <h1 id="Screenshot-Recording"><a href="#Screenshot-Recording" class="headerlink" title="Screenshot &amp; Recording"></a>Screenshot &amp; Recording</h1><p>Qx has built-in screenshot, screen recording, OCR, and annotation tools.</p>
+<hr>
+<h2 id="Screenshot-Flow"><a href="#Screenshot-Flow" class="headerlink" title="Screenshot Flow"></a>Screenshot Flow</h2><h3 id="1-Start-Screenshot"><a href="#1-Start-Screenshot" class="headerlink" title="1. Start Screenshot"></a>1. Start Screenshot</h3><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hotkey</td>
+<td><code>Alt+Shift+S</code> (default)</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Summon Qx → type “screenshot” → Enter</td>
+</tr>
+<tr>
+<td>Tray</td>
+<td>Menu bar icon → Screenshot</td>
+</tr>
+</tbody></table>
+<p>After starting:</p>
+<ul>
+<li>A <strong>semi-transparent dark overlay</strong> appears</li>
+<li>Cursor changes to a <strong>crosshair</strong></li>
+<li>Qx’s own UI hides (to avoid capturing itself)</li>
+</ul>
+<h3 id="2-Select-Area"><a href="#2-Select-Area" class="headerlink" title="2. Select Area"></a>2. Select Area</h3><p><strong>Standard:</strong> Hold left mouse button and drag a rectangle.</p>
+<p><strong>Fast mode (v0.6.11+):</strong> Hold <code>Ctrl</code>&#x2F;<code>⌘</code> while dragging — release instantly captures and copies to clipboard, skipping the toolbar.</p>
+<p><strong>Window mode:</strong> Switch to window mode, hover over a window to highlight it, click to select.</p>
+<p>After releasing, <strong>resize handles</strong> appear — drag edges to adjust size and position.</p>
+<h3 id="3-Confirm-Screenshot"><a href="#3-Confirm-Screenshot" class="headerlink" title="3. Confirm Screenshot"></a>3. Confirm Screenshot</h3><p>After selecting, a toolbar appears at the bottom:</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Screenshot</strong></td>
+<td>Confirm capture (auto-copies to clipboard)</td>
+</tr>
+<tr>
+<td><strong>Record</strong></td>
+<td>Start recording the selected area</td>
+</tr>
+<tr>
+<td><strong>OCR → Clipboard</strong></td>
+<td>Recognize text, copy to clipboard</td>
+</tr>
+<tr>
+<td><strong>OCR → Text Tool</strong></td>
+<td>Recognize text, send to built-in text editor</td>
+</tr>
+<tr>
+<td>Annotation tools</td>
+<td>Arrow, text, mosaic, numbered markers</td>
+</tr>
+<tr>
+<td><strong>Cancel</strong></td>
+<td>Press <code>Esc</code> to exit</td>
+</tr>
+</tbody></table>
+<p><strong>Quick confirm:</strong></p>
+<ul>
+<li><code>Enter</code> — Screenshot to clipboard</li>
+<li><code>⌘C</code> — Screenshot to clipboard</li>
+<li>Double-click selection — Screenshot to clipboard</li>
+</ul>
+<h3 id="4-After-Screenshot"><a href="#4-After-Screenshot" class="headerlink" title="4. After Screenshot"></a>4. After Screenshot</h3><p>A <strong>Toast notification</strong> appears in the bottom-right corner. You can click to:</p>
+<ul>
+<li>Open the image</li>
+<li>Show in Finder&#x2F;Explorer</li>
+<li>Copy to clipboard</li>
+</ul>
+<p>Screenshots are saved to the configured directory (default <code>~/Pictures/Qx/</code>).</p>
+<h3 id="5-Cancel"><a href="#5-Cancel" class="headerlink" title="5. Cancel"></a>5. Cancel</h3><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Esc</code></td>
+<td>Cancel anytime, no side effects</td>
+</tr>
+<tr>
+<td>Toolbar close button</td>
+<td>Click X to cancel</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Recapture-Last-Region-v0-6-11"><a href="#Recapture-Last-Region-v0-6-11" class="headerlink" title="Recapture Last Region (v0.6.11+)"></a>Recapture Last Region (v0.6.11+)</h2><p>After taking a screenshot, quickly recapture the same area without re-selecting:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Global hotkey</td>
+<td><code>Alt+Shift+R</code> (disabled by default, enable in Settings)</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Summon Qx → type “recapture last region” → Enter</td>
+</tr>
+<tr>
+<td>Press R in picker</td>
+<td>Open screenshot tool → press <code>R</code> to restore last selection</td>
+</tr>
+</tbody></table>
+<p><strong>Note:</strong> You must have taken at least one screenshot before this works.</p>
+<hr>
+<h2 id="Screen-Recording"><a href="#Screen-Recording" class="headerlink" title="Screen Recording"></a>Screen Recording</h2><h3 id="Start-Recording"><a href="#Start-Recording" class="headerlink" title="Start Recording"></a>Start Recording</h3><ol>
+<li>Start the screenshot flow (hotkey or search)</li>
+<li>Drag to select the recording area</li>
+<li>Click the <strong>Record</strong> button in the toolbar</li>
+</ol>
+<p>After recording, an MP4&#x2F;MOV file is generated automatically.</p>
+<h3 id="GIF-Export"><a href="#GIF-Export" class="headerlink" title="GIF Export"></a>GIF Export</h3><p>After recording, you can export as GIF format from the preview interface.</p>
+<hr>
+<h2 id="Quick-Reference"><a href="#Quick-Reference" class="headerlink" title="Quick Reference"></a>Quick Reference</h2><table>
+<thead>
+<tr>
+<th>Hotkey</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Alt+Shift+S</code></td>
+<td>Start screenshot</td>
+</tr>
+<tr>
+<td><code>Alt+Shift+R</code></td>
+<td>Recapture last region (must enable)</td>
+</tr>
+<tr>
+<td><code>Alt+G</code></td>
+<td>Start recording</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>Cancel current operation</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>Confirm screenshot</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Restore last selection in picker</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>Switch to recording intent in picker</td>
+</tr>
+<tr>
+<td><code>Ctrl/⌘+drag</code></td>
+<td>Instant screenshot + copy</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h2><p>In <strong>Settings → Screenshot &amp; Recording</strong>, you can configure:</p>
+<ul>
+<li>Screenshot save directory</li>
+<li>Auto-copy to clipboard (default: on)</li>
+<li>Screenshot delay (seconds)</li>
+<li>Confirm mode (refine &#x2F; release)</li>
+<li>Recording format (MP4&#x2F;MOV&#x2F;GIF)</li>
+<li>Custom global hotkeys</li>
+</ul>
+<hr>
+<p><a href="/qx/manual/en/quickstart/">← Quick Start</a> · <a href="/qx/manual/en/plugins/">Plugin System →</a></p>
+
         </div>
         <!-- Sidebar Container -->
         <div class="

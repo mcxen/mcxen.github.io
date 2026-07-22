@@ -89,16 +89,16 @@
                         
                     
                         
+                    
+                        
+                    
+                        
 							
                         <li>
                             <a href="/tags/">标签</a>
                         </li>
 							
 						
-                    
-                        
-                    
-                        
                     
                         
                     
@@ -186,7 +186,100 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            
+            <h1 id="插件系统"><a href="#插件系统" class="headerlink" title="插件系统"></a>插件系统</h1><p>Qx 支持通过插件扩展功能。插件运行在沙盒环境中，通过 <code>context.*</code> 接口调用宿主能力。</p>
+<hr>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><h3 id="从市场安装"><a href="#从市场安装" class="headerlink" title="从市场安装"></a>从市场安装</h3><ol>
+<li>唤起 Qx → 输入「设置」→ Enter</li>
+<li>进入 <strong>扩展</strong> 页面</li>
+<li>浏览插件市场，点击安装</li>
+</ol>
+<h3 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h3><p>将 <code>.qx-plugin</code> 或 <code>.zip</code> 包拖入 Qx 窗口，或在设置中点击 <strong>导入</strong>。</p>
+<hr>
+<h2 id="内置插件"><a href="#内置插件" class="headerlink" title="内置插件"></a>内置插件</h2><table>
+<thead>
+<tr>
+<th>插件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V2EX</td>
+<td>浏览 V2EX 帖子</td>
+</tr>
+<tr>
+<td>天气</td>
+<td>查看天气预报</td>
+</tr>
+<tr>
+<td>Qx Bing Wallpaper</td>
+<td>每日壁纸</td>
+</tr>
+<tr>
+<td>Calendar</td>
+<td>日历</td>
+</tr>
+<tr>
+<td>Brew</td>
+<td>macOS 包管理器</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="开发插件"><a href="#开发插件" class="headerlink" title="开发插件"></a>开发插件</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>插件位于 <code>~/.qx/plugins/&lt;id&gt;/</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~/.qx/plugins/my-plugin/</span><br><span class="line">├── manifest.json    # 插件清单</span><br><span class="line">├── index.js         # 入口文件</span><br><span class="line">└── assets/          # 资源文件（可选）</span><br></pre></td></tr></table></figure>
+
+<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;my-plugin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Plugin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;A sample plugin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Your Name&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;permissions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;cli&quot;</span><span class="punctuation">,</span> <span class="string">&quot;http&quot;</span><span class="punctuation">,</span> <span class="string">&quot;storage&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="核心-API"><a href="#核心-API" class="headerlink" title="核心 API"></a>核心 API</h3><table>
+<thead>
+<tr>
+<th>接口</th>
+<th>用途</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>context.cli</code></td>
+<td>执行本地命令</td>
+<td><code>cli</code></td>
+</tr>
+<tr>
+<td><code>context.http</code></td>
+<td>HTTP 请求</td>
+<td><code>http</code></td>
+</tr>
+<tr>
+<td><code>context.storage</code></td>
+<td>持久化存储</td>
+<td><code>storage</code></td>
+</tr>
+<tr>
+<td><code>context.showNotification(msg)</code></td>
+<td>显示通知</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>context.closePlugin()</code></td>
+<td>关闭插件</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3 id="Workbench-模式"><a href="#Workbench-模式" class="headerlink" title="Workbench 模式"></a>Workbench 模式</h3><p>插件可以声明 Workbench 布局，显示列表+详情的双栏视图：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">context.<span class="property">workbench</span>.<span class="title function_">show</span>(&#123;</span><br><span class="line">  <span class="attr">items</span>: [</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">&quot;1&quot;</span>, <span class="attr">title</span>: <span class="string">&quot;Item 1&quot;</span>, <span class="attr">subtitle</span>: <span class="string">&quot;Description&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">&quot;2&quot;</span>, <span class="attr">title</span>: <span class="string">&quot;Item 2&quot;</span>, <span class="attr">subtitle</span>: <span class="string">&quot;Description&quot;</span> &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">detail</span>: &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;Detail View&quot;</span>,</span><br><span class="line">    <span class="attr">body</span>: <span class="string">&quot;Content here&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="从-Raycast-转换"><a href="#从-Raycast-转换" class="headerlink" title="从 Raycast 转换"></a>从 Raycast 转换</h3><p>Qx 支持将 Raycast 扩展转换为 Qx 插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node scripts/convert-raycast-extension.mjs /path/to/extension --out /tmp/qx-out --package</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="发布插件"><a href="#发布插件" class="headerlink" title="发布插件"></a>发布插件</h2><p>推送到 <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx-plugins">mcxen&#x2F;qx-plugins</a> 仓库，即可在市场中出现。</p>
+<hr>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/public/doc/plugin-development-guide.md">插件开发指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/public/doc/plugin-cli-protocol.md">CLI 协议</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/docs/plugin-storage.md">存储文档</a></li>
+</ul>
+<hr>
+<p><a href="/qx/features/screencap/">← 截图与录屏</a> · <a href="/qx/build/">从源码构建 →</a></p>
+
         </div>
         <!-- Sidebar Container -->
         <div class="

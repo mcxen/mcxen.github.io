@@ -89,16 +89,16 @@
                         
                     
                         
+                    
+                        
+                    
+                        
 							
                         <li>
                             <a href="/tags/">标签</a>
                         </li>
 							
 						
-                    
-                        
-                    
-                        
                     
                         
                     
@@ -186,7 +186,48 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            
+            <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><h2 id="macOS-Recommended-Homebrew"><a href="#macOS-Recommended-Homebrew" class="headerlink" title="macOS (Recommended: Homebrew)"></a>macOS (Recommended: Homebrew)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap mcxen/qx</span><br><span class="line">brew install --cask qx</span><br></pre></td></tr></table></figure>
+
+<p>Upgrade:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade --cask qx</span><br></pre></td></tr></table></figure>
+
+<h2 id="Manual-Install"><a href="#Manual-Install" class="headerlink" title="Manual Install"></a>Manual Install</h2><p>Download from <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/releases">GitHub Releases</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Package</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>macOS Apple Silicon</td>
+<td><code>.app.zip</code></td>
+<td>Unzip into <code>/Applications</code>, right-click → Open on first launch</td>
+</tr>
+<tr>
+<td>macOS Intel</td>
+<td><code>.app.zip</code></td>
+<td>Same as above</td>
+</tr>
+<tr>
+<td>Windows x64</td>
+<td>NSIS installer</td>
+<td>Requires <a target="_blank" rel="noopener" href="https://developer.microsoft.com/microsoft-edge/webview2/">WebView2</a></td>
+</tr>
+</tbody></table>
+<p>After installation, Qx stays in the menu bar (macOS) or system tray (Windows).</p>
+<h2 id="First-Launch"><a href="#First-Launch" class="headerlink" title="First Launch"></a>First Launch</h2><p>On macOS, the first launch guides you through permissions:</p>
+<ol>
+<li><strong>Full Disk Access</strong> — Required for file search</li>
+<li><strong>Accessibility</strong> (optional) — Auto-paste from clipboard</li>
+<li><strong>Screen Recording</strong> (optional) — Screenshot &amp; recording</li>
+<li><strong>Input Monitoring</strong> (optional) — Global hotkeys</li>
+</ol>
+<p>Each step can be skipped and enabled later in System Settings.</p>
+<hr>
+<p><a href="/qx/manual/en/">← Back to Manual</a> · <a href="/qx/manual/en/quickstart/">Quick Start →</a></p>
+
         </div>
         <!-- Sidebar Container -->
         <div class="

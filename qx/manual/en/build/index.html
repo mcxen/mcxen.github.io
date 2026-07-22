@@ -89,16 +89,16 @@
                         
                     
                         
+                    
+                        
+                    
+                        
 							
                         <li>
                             <a href="/tags/">标签</a>
                         </li>
 							
 						
-                    
-                        
-                    
-                        
                     
                         
                     
@@ -186,7 +186,83 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            
+            <h1 id="Build-from-Source"><a href="#Build-from-Source" class="headerlink" title="Build from Source"></a>Build from Source</h1><h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node.js</td>
+<td>&gt;&#x3D; 20</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>stable (via rustup)</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>14+</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>10&#x2F;11 + MSVC + WebView2</td>
+</tr>
+</tbody></table>
+<h2 id="Clone-Build"><a href="#Clone-Build" class="headerlink" title="Clone &amp; Build"></a>Clone &amp; Build</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/mcxen/qx.git</span><br><span class="line"><span class="built_in">cd</span> qx</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="Development-Mode"><a href="#Development-Mode" class="headerlink" title="Development Mode"></a>Development Mode</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run tauri dev</span><br></pre></td></tr></table></figure>
+
+<p>Compiles and launches the desktop app with hot reload.</p>
+<h3 id="Code-Checks"><a href="#Code-Checks" class="headerlink" title="Code Checks"></a>Code Checks</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npx tsc --noEmit          <span class="comment"># TypeScript type check</span></span><br><span class="line">npm run build              <span class="comment"># Frontend build</span></span><br><span class="line">npm run check              <span class="comment"># Architecture + docs + i18n + shell + island checks</span></span><br><span class="line"><span class="built_in">cd</span> src-tauri &amp;&amp; cargo <span class="built_in">fmt</span> --check &amp;&amp; cargo check  <span class="comment"># Rust checks</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Package-for-Release"><a href="#Package-for-Release" class="headerlink" title="Package for Release"></a>Package for Release</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># macOS Apple Silicon</span></span><br><span class="line">npm run tauri build -- --target aarch64-apple-darwin --bundles app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows x64</span></span><br><span class="line">npm run tauri build</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Project-Structure"><a href="#Project-Structure" class="headerlink" title="Project Structure"></a>Project Structure</h2><table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/</code></td>
+<td>React frontend, built-in modules (clipboard, RSS, capture, settings)</td>
+</tr>
+<tr>
+<td><code>src/plugin/</code></td>
+<td>Plugin registry, runtime iframe, RPC, host ports</td>
+</tr>
+<tr>
+<td><code>src-tauri/</code></td>
+<td>Rust core: marketplace, clipboard, capture, CLI&#x2F;file&#x2F;HTTP ports</td>
+</tr>
+<tr>
+<td><code>public/doc/</code></td>
+<td>User and developer docs</td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>Internal architecture docs</td>
+</tr>
+<tr>
+<td><code>scripts/</code></td>
+<td>Check scripts, Raycast converter, packaging helpers</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Development-Guidelines"><a href="#Development-Guidelines" class="headerlink" title="Development Guidelines"></a>Development Guidelines</h2><p>See <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/AGENTS.md">AGENTS.md</a>:</p>
+<ul>
+<li>SOLID principles at port boundaries</li>
+<li>Cross-platform Rust strategy (<code>#[cfg(target_os)]</code> separation)</li>
+<li>Files capped at 1000 lines, split by domain boundary</li>
+<li>Public interface changes must sync with docs</li>
+</ul>
+<hr>
+<p><a href="/qx/manual/en/plugins/">← Plugin System</a> · <a href="/qx/manual/en/">Back to Manual</a></p>
+
         </div>
         <!-- Sidebar Container -->
         <div class="

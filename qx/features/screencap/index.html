@@ -89,16 +89,16 @@
                         
                     
                         
+                    
+                        
+                    
+                        
 							
                         <li>
                             <a href="/tags/">标签</a>
                         </li>
 							
 						
-                    
-                        
-                    
-                        
                     
                         
                     
@@ -186,7 +186,185 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            
+            <h1 id="截图与录屏"><a href="#截图与录屏" class="headerlink" title="截图与录屏"></a>截图与录屏</h1><p>Qx 内置截图、录屏、OCR、标注功能，无需安装第三方工具。</p>
+<hr>
+<h2 id="截图流程"><a href="#截图流程" class="headerlink" title="截图流程"></a>截图流程</h2><h3 id="1-启动截图"><a href="#1-启动截图" class="headerlink" title="1. 启动截图"></a>1. 启动截图</h3><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>快捷键</td>
+<td><code>Alt+Shift+S</code>（默认）</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>唤起 Qx → 输入「截图」→ Enter</td>
+</tr>
+<tr>
+<td>托盘</td>
+<td>菜单栏图标 → 截图</td>
+</tr>
+</tbody></table>
+<p>启动后：</p>
+<ul>
+<li>屏幕出现<strong>半透明暗色遮罩</strong></li>
+<li>光标变为<strong>十字准星</strong></li>
+<li>Qx 自身界面隐藏（避免截到自己）</li>
+</ul>
+<h3 id="2-选择区域"><a href="#2-选择区域" class="headerlink" title="2. 选择区域"></a>2. 选择区域</h3><p><strong>标准方式：</strong> 按住鼠标左键拖拽矩形。</p>
+<p><strong>加速方式（v0.6.11+）：</strong> 按住 <code>Ctrl</code>&#x2F;<code>⌘</code> 开始拖拽，松手直接截图并复制到剪贴板，跳过工具栏。</p>
+<p><strong>窗口吸附：</strong> 切换到窗口模式，悬停在窗口上方自动高亮，单击选中。</p>
+<p>松手后选区出现<strong>调整手柄</strong>，可以拖动边缘微调大小和位置。</p>
+<h3 id="3-确认截图"><a href="#3-确认截图" class="headerlink" title="3. 确认截图"></a>3. 确认截图</h3><p>选区确定后，底部出现工具栏：</p>
+<table>
+<thead>
+<tr>
+<th>按钮</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>截图</strong></td>
+<td>确认截图（自动复制到剪贴板）</td>
+</tr>
+<tr>
+<td><strong>录屏</strong></td>
+<td>开始录制选区</td>
+</tr>
+<tr>
+<td><strong>OCR → 剪贴板</strong></td>
+<td>识别文字，复制到剪贴板</td>
+</tr>
+<tr>
+<td><strong>OCR → 文本工具</strong></td>
+<td>识别文字，发送到内置文本编辑器</td>
+</tr>
+<tr>
+<td>标注工具</td>
+<td>箭头、文字、马赛克、序号等</td>
+</tr>
+<tr>
+<td><strong>取消</strong></td>
+<td>按 <code>Esc</code> 退出</td>
+</tr>
+</tbody></table>
+<p><strong>快捷确认：</strong></p>
+<ul>
+<li><code>Enter</code> — 截图进剪贴板</li>
+<li><code>⌘C</code> — 截图进剪贴板</li>
+<li>双击选区 — 截图进剪贴板</li>
+</ul>
+<h3 id="4-截图完成"><a href="#4-截图完成" class="headerlink" title="4. 截图完成"></a>4. 截图完成</h3><p>截图后右下角弹出 <strong>Toast 通知</strong>，可点击：</p>
+<ul>
+<li>打开图片</li>
+<li>在 Finder&#x2F;资源管理器中显示</li>
+<li>复制到剪贴板</li>
+</ul>
+<p>截图自动保存到设置中指定的目录（默认 <code>~/Pictures/Qx/</code>）。</p>
+<h3 id="5-取消"><a href="#5-取消" class="headerlink" title="5. 取消"></a>5. 取消</h3><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Esc</code></td>
+<td>随时取消，无副作用</td>
+</tr>
+<tr>
+<td>工具栏关闭按钮</td>
+<td>点 X 取消</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="重截上次区域（v0-6-11-）"><a href="#重截上次区域（v0-6-11-）" class="headerlink" title="重截上次区域（v0.6.11+）"></a>重截上次区域（v0.6.11+）</h2><p>截过一次后，可以快速重截同一区域，无需重新拖拽：</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局快捷键</td>
+<td><code>Alt+Shift+R</code>（默认关闭，需在设置中启用）</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>唤起 Qx → 输入「重截上次区域」→ Enter</td>
+</tr>
+<tr>
+<td>Picker 内按 R</td>
+<td>打开截图后按 <code>R</code> 键恢复上次选区</td>
+</tr>
+</tbody></table>
+<p><strong>注意：</strong> 需要至少成功截过一次图，才会记录上次选区。</p>
+<hr>
+<h2 id="录屏"><a href="#录屏" class="headerlink" title="录屏"></a>录屏</h2><h3 id="启动录屏"><a href="#启动录屏" class="headerlink" title="启动录屏"></a>启动录屏</h3><ol>
+<li>启动截图流程（快捷键或搜索）</li>
+<li>拖拽选择录制区域</li>
+<li>点击工具栏的<strong>录屏</strong>按钮</li>
+</ol>
+<p>录制完成后自动生成 MP4&#x2F;MOV 文件。</p>
+<h3 id="GIF-导出"><a href="#GIF-导出" class="headerlink" title="GIF 导出"></a>GIF 导出</h3><p>录制完成后可在预览界面导出为 GIF 格式。</p>
+<hr>
+<h2 id="快捷键速查"><a href="#快捷键速查" class="headerlink" title="快捷键速查"></a>快捷键速查</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Alt+Shift+S</code></td>
+<td>开始截图</td>
+</tr>
+<tr>
+<td><code>Alt+Shift+R</code></td>
+<td>重截上次区域（需启用）</td>
+</tr>
+<tr>
+<td><code>Alt+G</code></td>
+<td>开始录屏</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>取消当前操作</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>确认截图</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Picker 内恢复上次选区</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>Picker 内切换到录屏意图</td>
+</tr>
+<tr>
+<td><code>Ctrl/⌘+拖拽</code></td>
+<td>即时截图+复制</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="设置项"><a href="#设置项" class="headerlink" title="设置项"></a>设置项</h2><p>在 <strong>设置 → 截图与录屏</strong> 中可配置：</p>
+<ul>
+<li>截图保存目录</li>
+<li>自动复制到剪贴板（默认开启）</li>
+<li>截图延迟（秒）</li>
+<li>确认模式（精修&#x2F;松手即截）</li>
+<li>录屏格式（MP4&#x2F;MOV&#x2F;GIF）</li>
+<li>全局快捷键自定义</li>
+</ul>
+<hr>
+<p><a href="/qx/quickstart/">← 快速开始</a> · <a href="/qx/plugins/">插件系统 →</a></p>
+
         </div>
         <!-- Sidebar Container -->
         <div class="
