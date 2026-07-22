@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        从源码构建｜undefined
+        Screenshot &amp; Recording｜undefined
         
     </title>
 
-    <link rel="canonical" href="https://b.xpai.uk//qx/build/">
+    <link rel="canonical" href="https://b.xpai.uk//qx/manual/en/screencap/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -160,7 +160,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>从源码构建</h1>
+                    <h1>Screenshot &amp; Recording</h1>
                     
                     <span class="meta">
                          作者 mcx
@@ -177,7 +177,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            从源码构建
+            Screenshot & Recording
         </span>
     </div>
 </header>
@@ -188,82 +188,116 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="从源码构建"><a href="#从源码构建" class="headerlink" title="从源码构建"></a>从源码构建</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><table>
+                <h1 id="Screenshot-Recording"><a href="#Screenshot-Recording" class="headerlink" title="Screenshot &amp; Recording"></a>Screenshot &amp; Recording</h1><p>Qx has built-in screenshot, screen recording, OCR, and annotation tools.</p>
+<hr>
+<h2 id="Screenshot-Flow"><a href="#Screenshot-Flow" class="headerlink" title="Screenshot Flow"></a>Screenshot Flow</h2><h3 id="1-Start-Screenshot"><a href="#1-Start-Screenshot" class="headerlink" title="1. Start Screenshot"></a>1. Start Screenshot</h3><table>
 <thead>
 <tr>
-<th>依赖</th>
-<th>版本要求</th>
+<th>Method</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Node.js</td>
-<td>&gt;&#x3D; 20</td>
+<td>Hotkey</td>
+<td><code>Alt+Shift+S</code> (default)</td>
 </tr>
 <tr>
-<td>Rust</td>
-<td>stable（通过 rustup 安装）</td>
+<td>Search</td>
+<td>Summon Qx → type “screenshot” → Enter</td>
 </tr>
 <tr>
-<td>macOS</td>
-<td>14+</td>
-</tr>
-<tr>
-<td>Windows</td>
-<td>10&#x2F;11 + MSVC + WebView2</td>
+<td>Tray</td>
+<td>Menu bar icon → Screenshot</td>
 </tr>
 </tbody></table>
-<h2 id="克隆与构建"><a href="#克隆与构建" class="headerlink" title="克隆与构建"></a>克隆与构建</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/mcxen/qx.git</span><br><span class="line"><span class="built_in">cd</span> qx</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<h3 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run tauri dev</span><br></pre></td></tr></table></figure>
-
-<p>编译并启动桌面应用，支持热重载。</p>
-<h3 id="代码检查"><a href="#代码检查" class="headerlink" title="代码检查"></a>代码检查</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npx tsc --noEmit          <span class="comment"># TypeScript 类型检查</span></span><br><span class="line">npm run build              <span class="comment"># 前端构建</span></span><br><span class="line">npm run check              <span class="comment"># 架构 + 文档 + i18n + shell + island 检查</span></span><br><span class="line"><span class="built_in">cd</span> src-tauri &amp;&amp; cargo <span class="built_in">fmt</span> --check &amp;&amp; cargo check  <span class="comment"># Rust 检查</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="打包发布"><a href="#打包发布" class="headerlink" title="打包发布"></a>打包发布</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># macOS Apple Silicon</span></span><br><span class="line">npm run tauri build -- --target aarch64-apple-darwin --bundles app</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows x64</span></span><br><span class="line">npm run tauri build</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><table>
+<p>After starting: semi-transparent overlay + crosshair cursor.</p>
+<h3 id="2-Select-Area"><a href="#2-Select-Area" class="headerlink" title="2. Select Area"></a>2. Select Area</h3><p><strong>Standard:</strong> Hold left mouse button and drag a rectangle.</p>
+<p><strong>Fast mode (v0.6.11+):</strong> Hold <code>Ctrl</code>&#x2F;<code>⌘</code> while dragging — release instantly captures and copies to clipboard.</p>
+<h3 id="3-Confirm-Screenshot"><a href="#3-Confirm-Screenshot" class="headerlink" title="3. Confirm Screenshot"></a>3. Confirm Screenshot</h3><table>
 <thead>
 <tr>
-<th>路径</th>
-<th>内容</th>
+<th>Button</th>
+<th>Function</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>src/</code></td>
-<td>React 前端，内置模块（剪贴板、RSS、截图、设置等）</td>
+<td><strong>Screenshot</strong></td>
+<td>Confirm capture (auto-copies to clipboard)</td>
 </tr>
 <tr>
-<td><code>src/plugin/</code></td>
-<td>插件注册、运行时 iframe、RPC、宿主端口</td>
+<td><strong>Record</strong></td>
+<td>Start recording the selected area</td>
 </tr>
 <tr>
-<td><code>src-tauri/</code></td>
-<td>Rust 核心：市场、剪贴板、截图、CLI&#x2F;文件&#x2F;HTTP 端口</td>
+<td><strong>OCR → Clipboard</strong></td>
+<td>Recognize text, copy to clipboard</td>
 </tr>
 <tr>
-<td><code>public/doc/</code></td>
-<td>用户和开发者文档</td>
+<td>Annotation tools</td>
+<td>Arrow, text, mosaic, numbered markers</td>
 </tr>
 <tr>
-<td><code>docs/</code></td>
-<td>内部架构文档</td>
+<td><strong>Cancel</strong></td>
+<td>Press <code>Esc</code> to exit</td>
+</tr>
+</tbody></table>
+<p><strong>Quick confirm:</strong> <code>Enter</code> or <code>⌘C</code> — Screenshot to clipboard.</p>
+<hr>
+<h2 id="Recapture-Last-Region-v0-6-11"><a href="#Recapture-Last-Region-v0-6-11" class="headerlink" title="Recapture Last Region (v0.6.11+)"></a>Recapture Last Region (v0.6.11+)</h2><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Global hotkey</td>
+<td><code>Alt+Shift+R</code> (enable in Settings)</td>
 </tr>
 <tr>
-<td><code>scripts/</code></td>
-<td>检查脚本、Raycast 转换器、打包工具</td>
+<td>Press R in picker</td>
+<td>Restore last selection</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h2><p>详见 <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/AGENTS.md">AGENTS.md</a>：</p>
-<ul>
-<li>SOLID 原则在端口边界的应用</li>
-<li>跨平台 Rust 策略（<code>#[cfg(target_os)]</code> 分离）</li>
-<li>文件不超过 1000 行，按领域边界拆分</li>
-<li>公共接口变更必须同步文档</li>
-</ul>
+<h2 id="Quick-Reference"><a href="#Quick-Reference" class="headerlink" title="Quick Reference"></a>Quick Reference</h2><table>
+<thead>
+<tr>
+<th>Hotkey</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Alt+Shift+S</code></td>
+<td>Start screenshot</td>
+</tr>
+<tr>
+<td><code>Alt+Shift+R</code></td>
+<td>Recapture last region</td>
+</tr>
+<tr>
+<td><code>Alt+G</code></td>
+<td>Start recording</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>Cancel</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>Confirm screenshot</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Restore last selection</td>
+</tr>
+<tr>
+<td><code>Ctrl/⌘+drag</code></td>
+<td>Instant screenshot + copy</td>
+</tr>
+</tbody></table>
 <hr>
-<p><a href="/qx/plugins/">← 插件系统</a> · <a href="/qx/">返回手册</a></p>
+<p><a href="/qx/manual/en/quickstart/">← Quick Start</a> · <a href="/qx/manual/en/plugins/">Plugin System →</a></p>
 
                 <hr>
                 
@@ -271,14 +305,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a target="_blank" rel="noopener" href="//qx/manual/en/quickstart/" data-toggle="tooltip" data-placement="top"
-                           title="Quick Start">&larr; Previous Post</a>
+                        <a target="_blank" rel="noopener" href="//qx/manual/en/build/" data-toggle="tooltip" data-placement="top"
+                           title="Build from Source">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a target="_blank" rel="noopener" href="//qx/" data-toggle="tooltip" data-placement="top"
-                           title="Qx 使用手册">Next Post &rarr;</a>
+                        <a target="_blank" rel="noopener" href="//qx/quickstart/" data-toggle="tooltip" data-placement="top"
+                           title="快速开始">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -297,7 +331,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E6%BA%90%E7%A0%81%E6%9E%84%E5%BB%BA"><span class="toc-text">从源码构建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E4%B8%8E%E6%9E%84%E5%BB%BA"><span class="toc-text">克隆与构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="toc-text">开发模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5"><span class="toc-text">代码检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83"><span class="toc-text">打包发布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="toc-text">开发规范</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Screenshot-Recording"><span class="toc-text">Screenshot &amp; Recording</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Screenshot-Flow"><span class="toc-text">Screenshot Flow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Start-Screenshot"><span class="toc-text">1. Start Screenshot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Select-Area"><span class="toc-text">2. Select Area</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Confirm-Screenshot"><span class="toc-text">3. Confirm Screenshot</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recapture-Last-Region-v0-6-11"><span class="toc-text">Recapture Last Region (v0.6.11+)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Reference"><span class="toc-text">Quick Reference</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
