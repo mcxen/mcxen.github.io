@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Plugin System｜undefined
+        
         
     </title>
 
-    <link rel="canonical" href="https://b.xpai.uk/qx/manual/en/plugins/">
+    <link rel="canonical" href="https://b.xpai.uk/archives/2026/page/3/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -87,36 +87,12 @@
 					
                     
                         
-                    
-                        
-                    
-                        
-                    
-                        
 							
                         <li>
                             <a href="/tags/">标签</a>
                         </li>
 							
 						
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
                     
 					
 					
@@ -186,100 +162,7 @@
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <h1 id="Plugin-System"><a href="#Plugin-System" class="headerlink" title="Plugin System"></a>Plugin System</h1><p>Qx supports extending functionality through plugins. Plugins run in a sandbox environment and access host capabilities via <code>context.*</code> interfaces.</p>
-<hr>
-<h2 id="Install-Plugins"><a href="#Install-Plugins" class="headerlink" title="Install Plugins"></a>Install Plugins</h2><h3 id="From-Marketplace"><a href="#From-Marketplace" class="headerlink" title="From Marketplace"></a>From Marketplace</h3><ol>
-<li>Summon Qx → type “settings” → Enter</li>
-<li>Go to <strong>Extensions</strong> page</li>
-<li>Browse the plugin marketplace, click Install</li>
-</ol>
-<h3 id="Manual-Install"><a href="#Manual-Install" class="headerlink" title="Manual Install"></a>Manual Install</h3><p>Drag a <code>.qx-plugin</code> or <code>.zip</code> file into the Qx window, or click <strong>Import</strong> in settings.</p>
-<hr>
-<h2 id="Built-in-Plugins"><a href="#Built-in-Plugins" class="headerlink" title="Built-in Plugins"></a>Built-in Plugins</h2><table>
-<thead>
-<tr>
-<th>Plugin</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>V2EX</td>
-<td>Browse V2EX forum</td>
-</tr>
-<tr>
-<td>Weather</td>
-<td>Weather forecast</td>
-</tr>
-<tr>
-<td>Qx Bing Wallpaper</td>
-<td>Daily wallpaper</td>
-</tr>
-<tr>
-<td>Calendar</td>
-<td>Calendar</td>
-</tr>
-<tr>
-<td>Brew</td>
-<td>macOS package manager</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="Develop-Plugins"><a href="#Develop-Plugins" class="headerlink" title="Develop Plugins"></a>Develop Plugins</h2><h3 id="Directory-Structure"><a href="#Directory-Structure" class="headerlink" title="Directory Structure"></a>Directory Structure</h3><p>Plugins live in <code>~/.qx/plugins/&lt;id&gt;/</code>:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~/.qx/plugins/my-plugin/</span><br><span class="line">├── manifest.json    # Plugin manifest</span><br><span class="line">├── index.js         # Entry file</span><br><span class="line">└── assets/          # Resource files (optional)</span><br></pre></td></tr></table></figure>
-
-<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;my-plugin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Plugin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;A sample plugin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Your Name&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;permissions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;cli&quot;</span><span class="punctuation">,</span> <span class="string">&quot;http&quot;</span><span class="punctuation">,</span> <span class="string">&quot;storage&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Core-API"><a href="#Core-API" class="headerlink" title="Core API"></a>Core API</h3><table>
-<thead>
-<tr>
-<th>Interface</th>
-<th>Purpose</th>
-<th>Permission</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>context.cli</code></td>
-<td>Execute local commands</td>
-<td><code>cli</code></td>
-</tr>
-<tr>
-<td><code>context.http</code></td>
-<td>HTTP requests</td>
-<td><code>http</code></td>
-</tr>
-<tr>
-<td><code>context.storage</code></td>
-<td>Persistent storage</td>
-<td><code>storage</code></td>
-</tr>
-<tr>
-<td><code>context.showNotification(msg)</code></td>
-<td>Show notification</td>
-<td>—</td>
-</tr>
-<tr>
-<td><code>context.closePlugin()</code></td>
-<td>Close plugin</td>
-<td>—</td>
-</tr>
-</tbody></table>
-<h3 id="Workbench-Mode"><a href="#Workbench-Mode" class="headerlink" title="Workbench Mode"></a>Workbench Mode</h3><p>Plugins can declare a Workbench layout with list + detail split view:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">context.<span class="property">workbench</span>.<span class="title function_">show</span>(&#123;</span><br><span class="line">  <span class="attr">items</span>: [</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">&quot;1&quot;</span>, <span class="attr">title</span>: <span class="string">&quot;Item 1&quot;</span>, <span class="attr">subtitle</span>: <span class="string">&quot;Description&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="string">&quot;2&quot;</span>, <span class="attr">title</span>: <span class="string">&quot;Item 2&quot;</span>, <span class="attr">subtitle</span>: <span class="string">&quot;Description&quot;</span> &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">detail</span>: &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&quot;Detail View&quot;</span>,</span><br><span class="line">    <span class="attr">body</span>: <span class="string">&quot;Content here&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="Convert-from-Raycast"><a href="#Convert-from-Raycast" class="headerlink" title="Convert from Raycast"></a>Convert from Raycast</h3><p>Qx supports converting Raycast extensions:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node scripts/convert-raycast-extension.mjs /path/to/extension --out /tmp/qx-out --package</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Publish-Plugins"><a href="#Publish-Plugins" class="headerlink" title="Publish Plugins"></a>Publish Plugins</h2><p>Push to <a target="_blank" rel="noopener" href="https://github.com/mcxen/qx-plugins">mcxen&#x2F;qx-plugins</a> repository to appear in the marketplace.</p>
-<hr>
-<h2 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/public/doc/plugin-development-guide.md">Plugin Development Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/public/doc/plugin-cli-protocol.md">CLI Protocol</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/mcxen/qx/blob/main/docs/plugin-storage.md">Storage Docs</a></li>
-</ul>
-<hr>
-<p><a href="/qx/manual/en/screencap/">← Screenshot &amp; Recording</a> · <a href="/qx/manual/en/build/">Build from Source →</a></p>
-
+            
         </div>
         <!-- Sidebar Container -->
         <div class="
