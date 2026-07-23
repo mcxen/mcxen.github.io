@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        免费随机图/壁纸/视频 API 集合（实测补充篇）｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/07/23/api-supplement/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+					<li>
+						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
+					</li>
+					<li>
+						<a href="/qx/" title="Qx 使用手册">Qx</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="undefinedhttps://picsum.photos/1200/400">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://picsum.photos/1200/400undefined')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>免费随机图/壁纸/视频 API 集合（实测补充篇）</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-07-23
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#API"
+                           title="API">API</a>
+                        
+                        <a class="tag" href="/tags/#壁纸"
+                           title="壁纸">壁纸</a>
+                        
+                        <a class="tag" href="/tags/#随机图"
+                           title="随机图">随机图</a>
+                        
+                        <a class="tag" href="/tags/#图片API"
+                           title="图片API">图片API</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            免费随机图/壁纸/视频 API 集合（实测补充篇）
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>上文收录了一批随机图 API，本篇是后续补充实测。所有接口均经 curl 验证（2026-07-23），按可用性分组整理。</p>
+<blockquote>
+<p>测试方法：<code>curl -sL -o /dev/null -w &quot;%{http_code}|%{content_type}|%{size_download}&quot; --max-time 8 &lt;url&gt;</code></p>
+</blockquote>
+<hr>
+<h2 id="久黎API"><a href="#久黎API" class="headerlink" title="久黎API"></a>久黎API</h2><p>主页：<code>http://jiuli.xiaoapi.cn/</code></p>
+<p>随机三次元，返回 JSON 含多张图片URL。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://jiuli.xiaoapi.cn/i/img/mnyjs.php</span><br></pre></td></tr></table></figure>
+
+<p>示例返回：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="number">200</span><span class="punctuation">,</span><span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span><span class="string">&quot;资源获取成功！&quot;</span><span class="punctuation">,</span><span class="attr">&quot;num&quot;</span><span class="punctuation">:</span><span class="string">&quot;约750&quot;</span><span class="punctuation">,</span><span class="attr">&quot;imgs&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;img&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;http://dounimei.com/...jpg&quot;</span><span class="punctuation">]</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="糖豆子API"><a href="#糖豆子API" class="headerlink" title="糖豆子API"></a>糖豆子API</h2><p>主页：<code>http://api.tangdouz.com/</code></p>
+<p>直接 GET 请求，返回图片直链（百度&#x2F;头条 CDN）。</p>
+<p><strong>可用接口：</strong></p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>说明</th>
+<th>实测示例输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/sjdmbz.php</code></td>
+<td>随机二次元</td>
+<td><code>https://image.baidu.com/search/down?url=https://tva4.sinaimg.cn/large/...jpg</code></td>
+</tr>
+<tr>
+<td><code>/sjer.php</code></td>
+<td>随机兽耳</td>
+<td><code>https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/...jpg</code></td>
+</tr>
+<tr>
+<td><code>/abz/dm.php</code></td>
+<td>随机二次元竖图</td>
+<td><code>http://img.aibizhi.adesk.com/...1080x1920...jpg</code></td>
+</tr>
+<tr>
+<td><code>/mt.php</code></td>
+<td>随机美腿</td>
+<td><code>http://gchat.qpic.cn/...jpg</code></td>
+</tr>
+<tr>
+<td><code>/mn.php</code></td>
+<td>美女图</td>
+<td><code>https://p1.toutiaoimg.com/origin/...jpg</code></td>
+</tr>
+</tbody></table>
+<p><strong>随机兽耳：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.tangdouz.com/sjer.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/ec43126fgy1gsgpgf0tljj216r1olkjn.jpg"></p>
+<p><strong>随机二次元：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.tangdouz.com/sjdmbz.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.baidu.com/search/down?url=https://tva4.sinaimg.cn/large/ec43126fgy1gy7udmr43sj211i1h17wi.jpg"></p>
+<hr>
+<h2 id="遇见API"><a href="#遇见API" class="headerlink" title="遇见API"></a>遇见API</h2><p>主页：<code>https://api.yujn.cn/</code></p>
+<p>接口最丰富的一组，图片和短视频都有，稳定返回 image&#x2F;jpeg 或 video&#x2F;mp4。</p>
+<h3 id="随机图片"><a href="#随机图片" class="headerlink" title="随机图片"></a>随机图片</h3><table>
+<thead>
+<tr>
+<th>接口</th>
+<th>类型</th>
+<th>单次大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/api/cos.php</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~68KB</td>
+</tr>
+<tr>
+<td><code>/api/ecy.php</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~1.3MB</td>
+</tr>
+<tr>
+<td><code>/api/ACG.php</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~421KB</td>
+</tr>
+<tr>
+<td><code>/api/dmfj.php?</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~482KB</td>
+</tr>
+<tr>
+<td><code>/api/heisi.php</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~135KB</td>
+</tr>
+<tr>
+<td><code>/api/ys.php?</code></td>
+<td>image&#x2F;png</td>
+<td>~147KB</td>
+</tr>
+<tr>
+<td><code>/api/jk.php?</code></td>
+<td>image&#x2F;png</td>
+<td>~129KB</td>
+</tr>
+<tr>
+<td><code>/api/tui.php?</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~83KB</td>
+</tr>
+<tr>
+<td><code>/api/duitang.php?type=image&amp;msg=关键词</code></td>
+<td>堆糖搜图</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p>使用方式：直接 GET 请求，返回图片二进制流。</p>
+<p><strong>随机动漫图：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.yujn.cn/api/ecy.php</span><br></pre></td></tr></table></figure>
+
+<p><strong>高质量acg：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.yujn.cn/api/ACG.php</span><br></pre></td></tr></table></figure>
+
+<p><strong>原神图：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.yujn.cn/api/ys.php?</span><br></pre></td></tr></table></figure>
+
+<p><strong>黑丝：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.yujn.cn/api/heisi.php</span><br></pre></td></tr></table></figure>
+
+<p><strong>jk图：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.yujn.cn/api/jk.php?</span><br></pre></td></tr></table></figure>
+
+<h3 id="随机短视频"><a href="#随机短视频" class="headerlink" title="随机短视频"></a>随机短视频</h3><table>
+<thead>
+<tr>
+<th>接口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/api/zzxjj.php</code></td>
+<td>最新小姐姐短视频</td>
+</tr>
+<tr>
+<td><code>/api/xjj.php</code></td>
+<td>小姐姐短视频</td>
+</tr>
+<tr>
+<td><code>/api/juhexjj.php</code></td>
+<td>各类小姐姐视频</td>
+</tr>
+</tbody></table>
+<p>返回 video&#x2F;mp4，直接 GET 即可播放。</p>
+<hr>
+<h2 id="问情免费API"><a href="#问情免费API" class="headerlink" title="问情免费API"></a>问情免费API</h2><p>主页：<code>https://free.wqwlkj.cn/</code></p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>类型</th>
+<th>单次大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/wqwlapi/ks_xjj.php?type=image</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~134KB</td>
+</tr>
+<tr>
+<td><code>/wqwlapi/sgfj.php?type=image</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~90KB</td>
+</tr>
+<tr>
+<td><code>/wqwlapi/hlxcos.php?type=image</code></td>
+<td>image&#x2F;jpeg</td>
+<td>~195KB</td>
+</tr>
+</tbody></table>
+<p><strong>快手小姐姐：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://free.wqwlkj.cn/wqwlapi/ks_xjj.php?type=image</span><br></pre></td></tr></table></figure>
+
+<p><strong>cos图：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://free.wqwlkj.cn/wqwlapi/hlxcos.php?type=image</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="ALAPI"><a href="#ALAPI" class="headerlink" title="ALAPI"></a>ALAPI</h2><p>需 token，实测可用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://v2.alapi.cn/api/acg?token=KA6k5H7oBNZavgEJ</span><br></pre></td></tr></table></figure>
+
+<p>返回 image&#x2F;jpeg，单次约 334KB。</p>
+<p><strong>随机动漫图：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://v2.alapi.cn/api/acg?token=KA6k5H7oBNZavgEJ</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="unsplash-it（通用随机图）"><a href="#unsplash-it（通用随机图）" class="headerlink" title="unsplash.it（通用随机图）"></a>unsplash.it（通用随机图）</h2><p>无需 key，返回高清随机图片，可指定尺寸。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://unsplash.it/1600/900?random</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://unsplash.it/1920/1080?random</span><br></pre></td></tr></table></figure>
+
+<p>缺点：偶尔超时（CDN 较慢），不适合高并发场景。</p>
+<hr>
+<h2 id="已失效（不要收录）"><a href="#已失效（不要收录）" class="headerlink" title="已失效（不要收录）"></a>已失效（不要收录）</h2><p>以下接口全部不可用，<strong>不要</strong>写进博客正文：</p>
+<p>星创补充（404）、林魂云API（连不上）、冲趣API（502）、璃安API（连不上）、恋酱API（全死）、椋袖API（502）、希速云（连不上）、PearAPI（502）、阿优API（403）、小虫API（401）、菜鸟API（502）、最要学习API（空返回）、远昔API（图片404）、独醉API（连不上）、TenAPI（502）、七彩云（连不上）、玖逸API（502）、海量API（连不上）、故梦API（403）、星辰API（接口不存在）、SG聚合（连不上）、殇白API（502）</p>
+<hr>
+<h2 id="快速更新"><a href="#快速更新" class="headerlink" title="快速更新"></a>快速更新</h2><p>实测可用接口速查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># 糖豆子</span><br><span class="line">http://api.tangdouz.com/sjdmbz.php</span><br><span class="line">http://api.tangdouz.com/sjer.php</span><br><span class="line">http://api.tangdouz.com/abz/dm.php</span><br><span class="line">http://api.tangdouz.com/mt.php</span><br><span class="line">http://api.tangdouz.com/mn.php</span><br><span class="line"></span><br><span class="line"># 遇见 - 图片</span><br><span class="line">http://api.yujn.cn/api/cos.php</span><br><span class="line">http://api.yujn.cn/api/ecy.php</span><br><span class="line">http://api.yujn.cn/api/ACG.php</span><br><span class="line">http://api.yujn.cn/api/dmfj.php?</span><br><span class="line">http://api.yujn.cn/api/heisi.php</span><br><span class="line">http://api.yujn.cn/api/ys.php?</span><br><span class="line">http://api.yujn.cn/api/jk.php?</span><br><span class="line">http://api.yujn.cn/api/tui.php?</span><br><span class="line"></span><br><span class="line"># 遇见 - 视频</span><br><span class="line">http://api.yujn.cn/api/zzxjj.php</span><br><span class="line">http://api.yujn.cn/api/xjj.php</span><br><span class="line">http://api.yujn.cn/api/juhexjj.php</span><br><span class="line"></span><br><span class="line"># 问情</span><br><span class="line">https://free.wqwlkj.cn/wqwlapi/ks_xjj.php?type=image</span><br><span class="line">https://free.wqwlkj.cn/wqwlapi/sgfj.php?type=image</span><br><span class="line">https://free.wqwlkj.cn/wqwlapi/hlxcos.php?type=image</span><br><span class="line"></span><br><span class="line"># ALAPI</span><br><span class="line">https://v2.alapi.cn/api/acg?token=KA6k5H7oBNZavgEJ</span><br><span class="line"></span><br><span class="line"># 久黎</span><br><span class="line">http://jiuli.xiaoapi.cn/i/img/mnyjs.php</span><br><span class="line"></span><br><span class="line"># unsplash</span><br><span class="line">https://unsplash.it/1600/900?random</span><br></pre></td></tr></table></figure>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/07/23/random-image-apis/" data-toggle="tooltip" data-placement="top"
+                           title="免费随机图片 API 实测汇总：壁纸、二次元、风景">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%85%E9%BB%8EAPI"><span class="toc-text">久黎API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%96%E8%B1%86%E5%AD%90API"><span class="toc-text">糖豆子API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E8%A7%81API"><span class="toc-text">遇见API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87"><span class="toc-text">随机图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E7%9F%AD%E8%A7%86%E9%A2%91"><span class="toc-text">随机短视频</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E6%83%85%E5%85%8D%E8%B4%B9API"><span class="toc-text">问情免费API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ALAPI"><span class="toc-text">ALAPI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unsplash-it%EF%BC%88%E9%80%9A%E7%94%A8%E9%9A%8F%E6%9C%BA%E5%9B%BE%EF%BC%89"><span class="toc-text">unsplash.it（通用随机图）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%B2%E5%A4%B1%E6%95%88%EF%BC%88%E4%B8%8D%E8%A6%81%E6%94%B6%E5%BD%95%EF%BC%89"><span class="toc-text">已失效（不要收录）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%9B%B4%E6%96%B0"><span class="toc-text">快速更新</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+
+</body>
+
+</html>
