@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
@@ -139,16 +140,15 @@
 
 <!-- Main Content -->
 
-
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+<div class="mobile-site-header col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
         <header class="intro-header">
             <div class="container">
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src=""/>
+                        
                         <h5><a href="/about/">mcx</a></h5>
                         <p></p>
                     </div>
@@ -163,36 +163,44 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
             <!-- Main Content -->
+<div class="post-card-list">
 
 
-
-<div class="post-preview "
-     style="background-image: url('hermes-deepseek-auth-fix.assets/theo-hall-pmUgUMvfmUg-unsplash.jpg')">
-    <a href="/2026/06/12/hermes-deepseek-auth-fix/">
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/06/12/hermes-deepseek-auth-fix/" aria-label="阅读《Hermes Agent DeepSeek API 认证失败排查与修复》">
+        <img src="hermes-deepseek-auth-fix.assets/theo-hall-pmUgUMvfmUg-unsplash.jpg"
+             alt=""
+             width="640"
+             height="360"
+             fetchpriority="high"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/06/12/hermes-deepseek-auth-fix/">
         <h2 class="post-title">
             Hermes Agent DeepSeek API 认证失败排查与修复
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-12
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-06-11T16:00:00.000Z">2026-06-12</time>
         </p>
         
         <div class="post-content-preview">
             <p>
-                
 背景最近在使用 Hermes Agent 时，所有请求突然全部失败，Gateway 日志反复报出：
 1Error code: 401 - Authentication Fails, Your api key: ****OcWp is invalid
 
-伴随 Transient agent fa..
-            </p>
+伴随 Transient agent fai…</p>
         </div>
-    </a>
+        <a class="post-card-more" href="/2026/06/12/hermes-deepseek-auth-fix/" aria-label="继续阅读《Hermes Agent DeepSeek API 认证失败排查与修复》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
 
 </div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -200,7 +208,6 @@
     
     
 </ul>
-
 
         </div>
         <!-- Sidebar Container -->
@@ -351,7 +358,7 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="">
+
 </body>
 
 </html>

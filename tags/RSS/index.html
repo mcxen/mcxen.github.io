@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
@@ -139,16 +140,15 @@
 
 <!-- Main Content -->
 
-
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+<div class="mobile-site-header col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
         <header class="intro-header">
             <div class="container">
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src=""/>
+                        
                         <h5><a href="/about/">mcx</a></h5>
                         <p></p>
                     </div>
@@ -163,33 +163,41 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
             <!-- Main Content -->
+<div class="post-card-list">
 
 
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/web,tool')">
-    <a href="/2026/07/18/fxembed-wsrv-guide/">
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/18/fxembed-wsrv-guide/" aria-label="阅读《FxEmbed 与 wsrv.nl：两个低调但实用的网络工具》">
+        <img src="https://loremflickr.com/1200/400/web,tool"
+             alt=""
+             width="640"
+             height="360"
+             fetchpriority="high"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/18/fxembed-wsrv-guide/">
         <h2 class="post-title">
             FxEmbed 与 wsrv.nl：两个低调但实用的网络工具
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-18
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-18T14:00:00.000Z">2026-07-18</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                缘起最近整理了一些日常用到的网络工具，其中 FxEmbed 和 wsrv.nl 是两个虽然知名度不高、但实际场景中非常趁手的服务。写篇文章记录一下用法和案例。
-FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项目，提供 fxtwitter...
-            </p>
+            <p>缘起最近整理了一些日常用到的网络工具，其中 FxEmbed 和 wsrv.nl 是两个虽然知名度不高、但实际场景中非常趁手的服务。写篇文章记录一下用法和案例。
+FxEmbed：让 X&amp;#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项目，提供 fxtwitter.c…</p>
         </div>
-    </a>
+        <a class="post-card-more" href="/2026/07/18/fxembed-wsrv-guide/" aria-label="继续阅读《FxEmbed 与 wsrv.nl：两个低调但实用的网络工具》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
 
 </div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -197,7 +205,6 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
     
     
 </ul>
-
 
         </div>
         <!-- Sidebar Container -->
@@ -348,7 +355,7 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="">
+
 </body>
 
 </html>

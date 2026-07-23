@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        免费随机图片 API 实测汇总：壁纸、二次元、风景｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/07/23/random-image-apis/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+					<li>
+						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
+					</li>
+					<li>
+						<a href="/qx/" title="Qx 使用手册">Qx</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>免费随机图片 API 实测汇总：壁纸、二次元、风景</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-07-23
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#API"
+                           title="API">API</a>
+                        
+                        <a class="tag" href="/tags/#图片"
+                           title="图片">图片</a>
+                        
+                        <a class="tag" href="/tags/#壁纸"
+                           title="壁纸">壁纸</a>
+                        
+                        <a class="tag" href="/tags/#二次元"
+                           title="二次元">二次元</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            免费随机图片 API 实测汇总：壁纸、二次元、风景
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>整理一批免费的随机图片 API，全部经过实测验证可用，适合做博客封面、壁纸、网站占位图。</p>
+<span id="more"></span>
+
+<h2 id="通用壁纸（稳定推荐）"><a href="#通用壁纸（稳定推荐）" class="headerlink" title="通用壁纸（稳定推荐）"></a>通用壁纸（稳定推荐）</h2><table>
+<thead>
+<tr>
+<th>API</th>
+<th>格式</th>
+<th>测试链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Picsum Photos</strong></td>
+<td>图片（56KB）</td>
+<td><code>https://picsum.photos/800/400</code></td>
+</tr>
+<tr>
+<td><strong>保罗壁纸</strong></td>
+<td>图片（129KB）</td>
+<td><code>https://api.paugram.com/wallpaper/</code></td>
+</tr>
+<tr>
+<td><strong>98壁纸</strong></td>
+<td>图片（130KB）</td>
+<td><code>http://www.98qy.com/sjbz/api.php</code></td>
+</tr>
+<tr>
+<td><strong>超级小兔</strong></td>
+<td>图片（914KB）</td>
+<td><code>https://imgapi.xl0408.top/index.php</code></td>
+</tr>
+</tbody></table>
+<h2 id="二次元-动漫（实测可用）"><a href="#二次元-动漫（实测可用）" class="headerlink" title="二次元&#x2F;动漫（实测可用）"></a>二次元&#x2F;动漫（实测可用）</h2><table>
+<thead>
+<tr>
+<th>API</th>
+<th>格式</th>
+<th>测试链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>次元API（PC横屏）</strong></td>
+<td>webp（334KB）</td>
+<td><code>https://t.mwm.moe/pc</code></td>
+</tr>
+<tr>
+<td><strong>次元API（手机竖屏）</strong></td>
+<td>webp</td>
+<td><code>https://t.mwm.moe/mp</code></td>
+</tr>
+<tr>
+<td><strong>次元API（风景）</strong></td>
+<td>webp</td>
+<td><code>https://t.mwm.moe/fj</code></td>
+</tr>
+<tr>
+<td><strong>樱花随机图</strong></td>
+<td>图片（870KB）</td>
+<td><code>https://www.dmoe.cc/random.php</code></td>
+</tr>
+<tr>
+<td><strong>墨天逸随机图</strong></td>
+<td>图片（1MB）</td>
+<td><code>https://api.mtyqx.cn/tapi/random.php</code></td>
+</tr>
+<tr>
+<td><strong>PAULZZH 东方Project</strong></td>
+<td>webp（113KB）</td>
+<td><code>https://img.paulzzh.com/touhou/random</code></td>
+</tr>
+</tbody></table>
+<h2 id="游戏主题"><a href="#游戏主题" class="headerlink" title="游戏主题"></a>游戏主题</h2><table>
+<thead>
+<tr>
+<th>API</th>
+<th>格式</th>
+<th>测试链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Lolicon API</strong></td>
+<td>JSON（含图片URL）</td>
+<td><code>https://api.lolicon.app/setu/v2</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Lolicon 返回 JSON 而非直接图片，需要解析 <code>data[0].urls.original</code> 获取图片地址。支持 tag、r18 等参数筛选。</p>
+</blockquote>
+<h2 id="测试效果（点击图片刷新）"><a href="#测试效果（点击图片刷新）" class="headerlink" title="测试效果（点击图片刷新）"></a>测试效果（点击图片刷新）</h2><h3 id="Picsum-Photos（通用风景）"><a href="#Picsum-Photos（通用风景）" class="headerlink" title="Picsum Photos（通用风景）"></a>Picsum Photos（通用风景）</h3><p><img src="https://picsum.photos/800/400" alt="随机图"></p>
+<h3 id="次元API（二次元PC）"><a href="#次元API（二次元PC）" class="headerlink" title="次元API（二次元PC）"></a>次元API（二次元PC）</h3><p><img src="https://t.mwm.moe/pc" alt="二次元"></p>
+<h3 id="樱花随机图"><a href="#樱花随机图" class="headerlink" title="樱花随机图"></a>樱花随机图</h3><p><img src="https://www.dmoe.cc/random.php" alt="樱花"></p>
+<h3 id="墨天逸"><a href="#墨天逸" class="headerlink" title="墨天逸"></a>墨天逸</h3><p><img src="https://api.mtyqx.cn/tapi/random.php" alt="墨天逸"></p>
+<h3 id="PAULZZH-东方"><a href="#PAULZZH-东方" class="headerlink" title="PAULZZH 东方"></a>PAULZZH 东方</h3><p><img src="https://img.paulzzh.com/touhou/random" alt="东方"></p>
+<h2 id="使用代码"><a href="#使用代码" class="headerlink" title="使用代码"></a>使用代码</h2><h3 id="HTML-背景"><a href="#HTML-背景" class="headerlink" title="HTML 背景"></a>HTML 背景</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background: url(&#x27;https://picsum.photos/1920/1080&#x27;) center/cover;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Markdown-图片"><a href="#Markdown-图片" class="headerlink" title="Markdown 图片"></a>Markdown 图片</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">封面</span>](<span class="link">https://picsum.photos/800/400</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-动态加载"><a href="#JavaScript-动态加载" class="headerlink" title="JavaScript 动态加载"></a>JavaScript 动态加载</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 每次刷新换一张</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">style</span>.<span class="property">background</span> = </span><br><span class="line">  <span class="string">`url(&#x27;https://t.mwm.moe/pc?<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>&#x27;) center/cover`</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>以上 API 全部免费、无需 Key、直接返回图片</li>
+<li>国内部分 API 可能因 CDN&#x2F;备案问题偶尔不可用</li>
+<li>Picsum 和次元API 最稳定，推荐优先使用</li>
+<li>Lolicon 需要解析 JSON，适合做机器人或动态加载</li>
+<li>生产环境建议自建图床，这些作为备用</li>
+</ul>
+<hr>
+<p><em>实测日期：2026-07-23</em></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a target="_blank" rel="noopener" href="//qx/install/" data-toggle="tooltip" data-placement="top"
+                           title="安装指南">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%A3%81%E7%BA%B8%EF%BC%88%E7%A8%B3%E5%AE%9A%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">通用壁纸（稳定推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E5%85%83-%E5%8A%A8%E6%BC%AB%EF%BC%88%E5%AE%9E%E6%B5%8B%E5%8F%AF%E7%94%A8%EF%BC%89"><span class="toc-text">二次元&#x2F;动漫（实测可用）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E4%B8%BB%E9%A2%98"><span class="toc-text">游戏主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C%EF%BC%88%E7%82%B9%E5%87%BB%E5%9B%BE%E7%89%87%E5%88%B7%E6%96%B0%EF%BC%89"><span class="toc-text">测试效果（点击图片刷新）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Picsum-Photos%EF%BC%88%E9%80%9A%E7%94%A8%E9%A3%8E%E6%99%AF%EF%BC%89"><span class="toc-text">Picsum Photos（通用风景）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A1%E5%85%83API%EF%BC%88%E4%BA%8C%E6%AC%A1%E5%85%83PC%EF%BC%89"><span class="toc-text">次元API（二次元PC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%B1%E8%8A%B1%E9%9A%8F%E6%9C%BA%E5%9B%BE"><span class="toc-text">樱花随机图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%A8%E5%A4%A9%E9%80%B8"><span class="toc-text">墨天逸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PAULZZH-%E4%B8%9C%E6%96%B9"><span class="toc-text">PAULZZH 东方</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">使用代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-%E8%83%8C%E6%99%AF"><span class="toc-text">HTML 背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Markdown-%E5%9B%BE%E7%89%87"><span class="toc-text">Markdown 图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD"><span class="toc-text">JavaScript 动态加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+
+</body>
+
+</html>

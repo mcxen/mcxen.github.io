@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
@@ -139,16 +140,15 @@
 
 <!-- Main Content -->
 
-
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+<div class="mobile-site-header col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
         <header class="intro-header">
             <div class="container">
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src=""/>
+                        
                         <h5><a href="/about/">mcx</a></h5>
                         <p></p>
                     </div>
@@ -163,33 +163,41 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
             <!-- Main Content -->
+<div class="post-card-list">
 
 
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/terminal,network')">
-    <a href="/proxy/">
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/proxy/" aria-label="阅读《终端代理配置指南》">
+        <img src="https://loremflickr.com/1200/400/terminal,network"
+             alt=""
+             width="640"
+             height="360"
+             fetchpriority="high"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/proxy/">
         <h2 class="post-title">
             终端代理配置指南
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-23
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-06-23T14:00:00.000Z">2026-06-23</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                背景在中国大陆，GitHub、Homebrew、npm 等开发工具的海外源经常无法直连。最干净的解决方案：本地跑一个代理客户端（Clash Verge &#x2F; ClashX Pro &#x2F; Surge 等），然后在终端里配置环境变量让所有 CLI 工具自动走代理。
-一句话配置编辑 ~..
-            </p>
+            <p>背景在中国大陆，GitHub、Homebrew、npm 等开发工具的海外源经常无法直连。最干净的解决方案：本地跑一个代理客户端（Clash Verge &amp;#x2F; ClashX Pro &amp;#x2F; Surge 等），然后在终端里配置环境变量让所有 CLI 工具自动走代理。
+一句话配置编辑 ~/…</p>
         </div>
-    </a>
+        <a class="post-card-more" href="/proxy/" aria-label="继续阅读《终端代理配置指南》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
 
 </div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -197,7 +205,6 @@
     
     
 </ul>
-
 
         </div>
         <!-- Sidebar Container -->
@@ -348,7 +355,7 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="">
+
 </body>
 
 </html>

@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
@@ -139,16 +140,15 @@
 
 <!-- Main Content -->
 
-
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+<div class="mobile-site-header col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
         <header class="intro-header">
             <div class="container">
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src=""/>
+                        
                         <h5><a href="/about/">mcx</a></h5>
                         <p></p>
                     </div>
@@ -163,57 +163,73 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
             <!-- Main Content -->
+<div class="post-card-list">
 
 
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/map,navigation')">
-    <a href="/2026/06/20/amap-poi-search/">
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/06/20/amap-poi-search/" aria-label="阅读《给地图工具加上高德周边POI搜索》">
+        <img src="https://loremflickr.com/1200/400/map,navigation"
+             alt=""
+             width="640"
+             height="360"
+             fetchpriority="high"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/06/20/amap-poi-search/">
         <h2 class="post-title">
             给地图工具加上高德周边POI搜索
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-20
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-06-20T04:30:00.000Z">2026-06-20</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                问题几个月前我给 maps_client.py 接入了高德逆地理编码（reverse 命令），解决了中国地址只能到街道级的痛点。但 nearby 命令（周边POI搜索）一直用的 Overpass API（OpenStreetMap 数据），在中国小县城效果惨不忍睹。
-之前在霞浦旅行时搜附近餐厅，..
-            </p>
+            <p>问题几个月前我给 maps_client.py 接入了高德逆地理编码（reverse 命令），解决了中国地址只能到街道级的痛点。但 nearby 命令（周边POI搜索）一直用的 Overpass API（OpenStreetMap 数据），在中国小县城效果惨不忍睹。
+之前在霞浦旅行时搜附近餐厅，霞…</p>
         </div>
+        <a class="post-card-more" href="/2026/06/20/amap-poi-search/" aria-label="继续阅读《给地图工具加上高德周边POI搜索》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/06/14/amap-reverse-geocoding/" aria-label="阅读《给地图工具加上高德逆地理编码》">
+        <img src="https://fastly.picsum.photos/id/166/1600/900.jpg?hmac=og_FIiy7_UfhvQ4qBXm3CmJO-_2Yqr9B463kqUODJlU"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://fastly.picsum.photos/id/166/1600/900.jpg?hmac=og_FIiy7_UfhvQ4qBXm3CmJO-_2Yqr9B463kqUODJlU')">
-    <a href="/2026/06/14/amap-reverse-geocoding/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/06/14/amap-reverse-geocoding/">
         <h2 class="post-title">
             给地图工具加上高德逆地理编码
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-14
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-06-14T14:30:00.000Z">2026-06-14</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                背景我日常用的地图工具（maps_client.py）基于 OpenStreetMap 生态 —— Nominatim 做 geocode&#x2F;reverse geocode，OSRM 算路径，Overpass 查 POI。这套组合在全球大部分地区够用，但在中国有个硬伤：
-Nominati..
-            </p>
+            <p>背景我日常用的地图工具（maps_client.py）基于 OpenStreetMap 生态 —— Nominatim 做 geocode&amp;#x2F;reverse geocode，OSRM 算路径，Overpass 查 POI。这套组合在全球大部分地区够用，但在中国有个硬伤：
+Nominatim…</p>
         </div>
-    </a>
+        <a class="post-card-more" href="/2026/06/14/amap-reverse-geocoding/" aria-label="继续阅读《给地图工具加上高德逆地理编码》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
 
 </div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -221,7 +237,6 @@ Nominati..
     
     
 </ul>
-
 
         </div>
         <!-- Sidebar Container -->
@@ -372,7 +387,7 @@ Nominati..
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="">
+
 </body>
 
 </html>

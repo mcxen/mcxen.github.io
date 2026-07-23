@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
@@ -50,7 +51,7 @@
     }
 </style>
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
+<body ontouchstart="" class="animated fadeIn home-page-body">
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
 " data-ishome = "true" >
@@ -139,136 +140,15 @@
 
 <!-- Main Content -->
 
-
-<style>
-
-    .custom-haojen-container .post-preview:nth-of-type(1),
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-        text-align: center;
-        background-repeat: no-repeat;
-        border-radius: 3px;
-        background-size: cover;
-        padding: 0;
-        height: 300px;
-        display: table;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.16);
-    }
-
-    /*去掉诗歌的背景图片*/
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-        background-image: none !important;
-        background-color: rgba(255, 248, 220, 0.5);
-    }
-
-    .custom-haojen-container .post-preview:nth-child(1) h2,
-    .custom-haojen-container .post-preview:nth-child(1) .post-meta,
-    .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-        text-shadow: 0 0 40px rgba(0, 0, 0, 1);
-        letter-spacing: 1px;
-        color: #fff;
-        margin-top: 0;
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-
-    .custom-haojen-container .post-preview:nth-child(1) .post-meta {
-        font-size: .9em;
-        font-weight: 300;
-        margin-top: 0;
-    }
-
-    .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle {
-        letter-spacing: 6px;
-        font-size: 18px;
-        font-family: unset;
-        font-weight: 400;
-        color: rgba(0, 0, 0, .75)
-    }
-
-    /*不显示摘要*/
-    .custom-haojen-container .post-preview:nth-child(1) .post-content-preview {
-        display: none
-    }
-
-    /*只第一个显示背景图片*/
-    .custom-haojen-container .post-preview:not(:nth-child(1)) {
-        background-image: none !important;
-    }
-
-    /*第一个分界线去掉*/
-    .custom-haojen-container hr:nth-of-type(1) {
-        display: none;
-    }
-
-    /*主题*/
-    .custom-haojen-container .post-preview:nth-of-type(1) > a {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    /*诗词标题*/
-    .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-        font-size: 35px;
-        font-family: STKaiti;
-        color: rgba(0, 0, 0, .8);
-    }
-
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta {
-        color: #0e2231;
-    }
-
-    @media (max-width: 768px) {
-        .custom-haojen-container .post-preview:nth-child(1) {
-            height: 240px;
-        }
-
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-            font-size: 28px !important;
-            margin-top: 0;
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            font-size: 18px;
-            font-weight: 400;
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .custom-haojen-container .post-preview:nth-of-type(1) > a {
-            padding: 20px
-        }
-    }
-
-    /*手机屏幕*/
-    @media (max-width: 400px) {
-        .custom-haojen-container .post-preview:nth-child(1) {
-            height: 195px;
-        }
-
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-            font-size: 20px !important;
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            font-size: 16px;
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) a {
-            padding: 30px 20px;
-        }
-    }
-</style>
-
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+<div class="mobile-site-header col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
         <header class="intro-header">
             <div class="container">
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src=""/>
+                        
                         <h5><a href="/about/">mcx</a></h5>
                         <p></p>
                     </div>
@@ -278,27 +158,74 @@
     </div>
 </div>
 <!-- Main Content -->
-<div class="container custom-haojen-container">
+<div class="container custom-haojen-container home-page">
     <!-- Post Container -->
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
             <!-- Main Content -->
+<div class="post-card-list">
 
 
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/qx/manual/en/quickstart/">
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/qx/manual/en/screencap/" aria-label="阅读《Screenshot &amp; Recording》">
+        <img src="/images/post-placeholder.svg"
+             alt=""
+             width="640"
+             height="360"
+             fetchpriority="high"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/qx/manual/en/screencap/">
         <h2 class="post-title">
-            Quick Start
+            Screenshot &amp; Recording
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-22
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-22T12:00:00.000Z">2026-07-22</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                Quick StartSummon &amp; Hide
+            <p>Screenshot &amp;amp; RecordingQx has built-in screenshot, screen recording, OCR, and annotation tools.
+
+Screenshot Flow1. Start Screenshot
+
+
+Method
+Actio…</p>
+        </div>
+        <a class="post-card-more" href="/qx/manual/en/screencap/" aria-label="继续阅读《Screenshot &amp; Recording》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/qx/manual/en/quickstart/" aria-label="阅读《Quick Start》">
+        <img src="/images/post-placeholder.svg"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/qx/manual/en/quickstart/">
+        <h2 class="post-title">
+            Quick Start
+        </h2>
+        </a>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-22T12:00:00.000Z">2026-07-22</time>
+        </p>
+        
+        <div class="post-content-preview">
+            <p>Quick StartSummon &amp;amp; Hide
 
 
 Action
@@ -307,7 +234,7 @@ Windows
 
 
 
-Summon &#x2F; Hide Qx
+Summon &amp;#x2F; Hide Qx
 ⌥ Space
 Alt + Space
 
@@ -321,30 +248,38 @@ Windows
 
 
 
-Naviga..
-            </p>
+Navigat…</p>
         </div>
+        <a class="post-card-more" href="/qx/manual/en/quickstart/" aria-label="继续阅读《Quick Start》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/qx/manual/en/build/" aria-label="阅读《Build from Source》">
+        <img src="/images/post-placeholder.svg"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/qx/manual/en/build/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/qx/manual/en/build/">
         <h2 class="post-title">
             Build from Source
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-22
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-22T12:00:00.000Z">2026-07-22</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                Build from SourceRequirements
+            <p>Build from SourceRequirements
 
 
 Dependency
@@ -353,7 +288,7 @@ Version
 
 
 Node.js
-&gt;&#x3D; 20
+&amp;gt;&amp;#x3D; 20
 
 
 Rust
@@ -365,239 +300,237 @@ macOS
 
 
 Windows
-10&#x2F;11 + MSVC + Web..
-            </p>
+10&amp;#x2F;11 + MSVC + WebV…</p>
         </div>
+        <a class="post-card-more" href="/qx/manual/en/build/" aria-label="继续阅读《Build from Source》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/21/how-to-publish-blog-with-hermes/" aria-label="阅读《用 Hermes Agent 发博客：从写稿到上线的完整流程》">
+        <img src="https://loremflickr.com/1200/400/blog,writing"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/blog,writing')">
-    <a href="/2026/07/21/how-to-publish-blog-with-hermes/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/21/how-to-publish-blog-with-hermes/">
         <h2 class="post-title">
             用 Hermes Agent 发博客：从写稿到上线的完整流程
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-21
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-21T12:00:00.000Z">2026-07-21</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                很多人问我博客怎么更新的，其实现在大部分流程都是 Hermes Agent 在跑。这篇文章讲一下从写稿到上线的完整流程，顺便记录一些踩过的坑。
-
-
-博客架构我的博客是 Hexo + GitHub Pages，部署在 mcxen.github.io，自定义域名 b.xpai.uk。
-
-
-
-项目
-说..
-            </p>
+            <p>很多人问我博客怎么更新的，其实现在大部分流程都是 Hermes Agent 在跑。这篇文章讲一下从写稿到上线的完整流程，顺便记录一些踩过的坑。</p>
         </div>
+        <a class="post-card-more" href="/2026/07/21/how-to-publish-blog-with-hermes/" aria-label="继续阅读《用 Hermes Agent 发博客：从写稿到上线的完整流程》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/18/fxembed-wsrv-guide/" aria-label="阅读《FxEmbed 与 wsrv.nl：两个低调但实用的网络工具》">
+        <img src="https://loremflickr.com/1200/400/web,tool"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/web,tool')">
-    <a href="/2026/07/18/fxembed-wsrv-guide/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/18/fxembed-wsrv-guide/">
         <h2 class="post-title">
             FxEmbed 与 wsrv.nl：两个低调但实用的网络工具
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-18
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-18T14:00:00.000Z">2026-07-18</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                缘起最近整理了一些日常用到的网络工具，其中 FxEmbed 和 wsrv.nl 是两个虽然知名度不高、但实际场景中非常趁手的服务。写篇文章记录一下用法和案例。
-FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项目，提供 fxtwitter...
-            </p>
+            <p>缘起最近整理了一些日常用到的网络工具，其中 FxEmbed 和 wsrv.nl 是两个虽然知名度不高、但实际场景中非常趁手的服务。写篇文章记录一下用法和案例。
+FxEmbed：让 X&amp;#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项目，提供 fxtwitter.c…</p>
         </div>
+        <a class="post-card-more" href="/2026/07/18/fxembed-wsrv-guide/" aria-label="继续阅读《FxEmbed 与 wsrv.nl：两个低调但实用的网络工具》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/16/zhoushan-trip/" aria-label="阅读《舟山两日》">
+        <img src="/images/zhoushan-2026/IMG_1141.jpg"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('/images/zhoushan-2026/IMG_1141.jpg')">
-    <a href="/2026/07/16/zhoushan-trip/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/16/zhoushan-trip/">
         <h2 class="post-title">
             舟山两日
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-16
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-16T10:00:00.000Z">2026-07-16</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                六月末去了趟舟山，两天一夜，走了几个地方，记录一下。
-
-
-第一天到了已经快中午了，先在商业区找了家店吃点东西。宁海食府附近，选了个KFC——旅行的第一顿往往不是当地特色，而是你熟悉的连锁店，大概是舟山行的一个小注脚。
-
-商业区挺热闹，李府食府门口有黄色花茎艺术雕塑。
-
-下午去了长乔海洋国际旅游度..
-            </p>
+            <p>六月末去了趟舟山，两天一夜，走了几个地方，记录一下。</p>
         </div>
+        <a class="post-card-more" href="/2026/07/16/zhoushan-trip/" aria-label="继续阅读《舟山两日》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/10/pi-agent-extensions-guide/" aria-label="阅读《Pi Coding Agent 扩展生态指南 — 从安装到实战》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,programming"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,programming')">
-    <a href="/2026/07/10/pi-agent-extensions-guide/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/10/pi-agent-extensions-guide/">
         <h2 class="post-title">
             Pi Coding Agent 扩展生态指南 — 从安装到实战
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-10
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-10T02:00:00.000Z">2026-07-10</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                上次分享了怎么给 pi coding agent 配自定义 provider，这次聊聊它的扩展生态——一个被低估但非常强大的特性。
+            <p>上次分享了怎么给 pi coding agent 配自定义 provider，这次聊聊它的扩展生态——一个被低估但非常强大的特性。
 
 免责声明：本文涉及的 API Key 等敏感信息均已脱敏处理。实际使用请自行替换。
-
-
-
-为什么需要扩展Pi 的设计哲学是”最小核心 + 可插拔”——它本身只有最..
-            </p>
+</p>
         </div>
+        <a class="post-card-more" href="/2026/07/10/pi-agent-extensions-guide/" aria-label="继续阅读《Pi Coding Agent 扩展生态指南 — 从安装到实战》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/08/pi-agent-custom-provider/" aria-label="阅读《配置 pi agent 自定义模型提供商》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,coding"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,coding')">
-    <a href="/2026/07/08/pi-agent-custom-provider/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/08/pi-agent-custom-provider/">
         <h2 class="post-title">
             配置 pi agent 自定义模型提供商
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-08
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-08T10:30:00.000Z">2026-07-08</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                最近在折腾 pi 这个 AI 编码助手（@earendil-works/pi-coding-agent）——一个类似 Claude Code、Codex 的命令行工具，支持多种 AI 模型后端，可以用自然语言驱动写代码、执行命令。
-刚好手头有一些第三方 API 额度，所以记录一下怎么给它配一个自..
-            </p>
+            <p>最近在折腾 pi 这个 AI 编码助手（@earendil-works/pi-coding-agent）——一个类似 Claude Code、Codex 的命令行工具，支持多种 AI 模型后端，可以用自然语言驱动写代码、执行命令。
+刚好手头有一些第三方 API 额度，所以记录一下怎么给它配一个自定…</p>
         </div>
+        <a class="post-card-more" href="/2026/07/08/pi-agent-custom-provider/" aria-label="继续阅读《配置 pi agent 自定义模型提供商》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/08/ai-not-replacing-engineers/" aria-label="阅读《AI 为什么没有替代软件工程师》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,future"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,future')">
-    <a href="/2026/07/08/ai-not-replacing-engineers/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/08/ai-not-replacing-engineers/">
         <h2 class="post-title">
             AI 为什么没有替代软件工程师
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-08
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-08T04:00:00.000Z">2026-07-08</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                最近读了一篇很好的文章 “Why AI hasn’t replaced software engineers, and won’t”（AI Snake Oil 通讯），结合自己的一些思考，整理一下核心观点。
-
-
-一层层剥开”AI 替代程序员”的叙事1. 那些”AI 导致裁员”的新闻，经不起推敲文..
-            </p>
+            <p>最近读了一篇很好的文章 “Why AI hasn’t replaced software engineers, and won’t”（AI Snake Oil 通讯），结合自己的一些思考，整理一下核心观点。</p>
         </div>
+        <a class="post-card-more" href="/2026/07/08/ai-not-replacing-engineers/" aria-label="继续阅读《AI 为什么没有替代软件工程师》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/06/hermes-agent-helps/" aria-label="阅读《Hermes Agent 帮我做了些什么》">
+        <img src="https://loremflickr.com/1200/400/productivity,workspace"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/productivity,workspace')">
-    <a href="/2026/07/06/hermes-agent-helps/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/06/hermes-agent-helps/">
         <h2 class="post-title">
             Hermes Agent 帮我做了些什么
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-06
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-06T15:30:00.000Z">2026-07-06</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                深度使用 Hermes Agent 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。
-
-
-项目发布一条龙最频繁的工作就是给 Qx 项目做发布。从 v0.4.36 到现在的 v0.6.5，发布了几十个版本：
-
-自动检测未提交的变更
-更新版本号（package...
-            </p>
+            <p>深度使用 Hermes Agent 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。</p>
         </div>
-    </a>
+        <a class="post-card-more" href="/2026/07/06/hermes-agent-helps/" aria-label="继续阅读《Hermes Agent 帮我做了些什么》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
 
 </div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,assistant')">
-    <a href="/2026/07/06/hermes-agent-workflow/">
-        <h2 class="post-title">
-            我的 AI 助手 -- Hermes Agent 日常使用记录
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-06
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                从去年开始用 Hermes Agent（Nous Research 出品的 CLI AI 智能体），到现在已经深度嵌入了日常开发和工作流。这篇整理一下它的主要使用场景，也给好奇的人参考。
-
-本文涉及的所有敏感信息（IP、密码、Token、服务器配置等）均已脱敏处理。
-
-
-
-什么是 Hermes ..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -613,7 +546,6 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
     </li>
     
 </ul>
-
 
         </div>
         <!-- Sidebar Container -->
@@ -764,7 +696,7 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="">
+
 </body>
 
 </html>

@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
@@ -139,16 +140,15 @@
 
 <!-- Main Content -->
 
-
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+<div class="mobile-site-header col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
         <header class="intro-header">
             <div class="container">
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src=""/>
+                        
                         <h5><a href="/about/">mcx</a></h5>
                         <p></p>
                     </div>
@@ -163,173 +163,206 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
             <!-- Main Content -->
+<div class="post-card-list">
 
 
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,programming')">
-    <a href="/2026/07/10/pi-agent-extensions-guide/">
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/10/pi-agent-extensions-guide/" aria-label="阅读《Pi Coding Agent 扩展生态指南 — 从安装到实战》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,programming"
+             alt=""
+             width="640"
+             height="360"
+             fetchpriority="high"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/10/pi-agent-extensions-guide/">
         <h2 class="post-title">
             Pi Coding Agent 扩展生态指南 — 从安装到实战
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-10
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-10T02:00:00.000Z">2026-07-10</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                上次分享了怎么给 pi coding agent 配自定义 provider，这次聊聊它的扩展生态——一个被低估但非常强大的特性。
+            <p>上次分享了怎么给 pi coding agent 配自定义 provider，这次聊聊它的扩展生态——一个被低估但非常强大的特性。
 
 免责声明：本文涉及的 API Key 等敏感信息均已脱敏处理。实际使用请自行替换。
-
-
-
-为什么需要扩展Pi 的设计哲学是”最小核心 + 可插拔”——它本身只有最..
-            </p>
+</p>
         </div>
+        <a class="post-card-more" href="/2026/07/10/pi-agent-extensions-guide/" aria-label="继续阅读《Pi Coding Agent 扩展生态指南 — 从安装到实战》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/08/pi-agent-custom-provider/" aria-label="阅读《配置 pi agent 自定义模型提供商》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,coding"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,coding')">
-    <a href="/2026/07/08/pi-agent-custom-provider/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/08/pi-agent-custom-provider/">
         <h2 class="post-title">
             配置 pi agent 自定义模型提供商
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-08
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-08T10:30:00.000Z">2026-07-08</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                最近在折腾 pi 这个 AI 编码助手（@earendil-works/pi-coding-agent）——一个类似 Claude Code、Codex 的命令行工具，支持多种 AI 模型后端，可以用自然语言驱动写代码、执行命令。
-刚好手头有一些第三方 API 额度，所以记录一下怎么给它配一个自..
-            </p>
+            <p>最近在折腾 pi 这个 AI 编码助手（@earendil-works/pi-coding-agent）——一个类似 Claude Code、Codex 的命令行工具，支持多种 AI 模型后端，可以用自然语言驱动写代码、执行命令。
+刚好手头有一些第三方 API 额度，所以记录一下怎么给它配一个自定…</p>
         </div>
+        <a class="post-card-more" href="/2026/07/08/pi-agent-custom-provider/" aria-label="继续阅读《配置 pi agent 自定义模型提供商》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/08/ai-not-replacing-engineers/" aria-label="阅读《AI 为什么没有替代软件工程师》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,future"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,future')">
-    <a href="/2026/07/08/ai-not-replacing-engineers/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/08/ai-not-replacing-engineers/">
         <h2 class="post-title">
             AI 为什么没有替代软件工程师
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-08
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-08T04:00:00.000Z">2026-07-08</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                最近读了一篇很好的文章 “Why AI hasn’t replaced software engineers, and won’t”（AI Snake Oil 通讯），结合自己的一些思考，整理一下核心观点。
-
-
-一层层剥开”AI 替代程序员”的叙事1. 那些”AI 导致裁员”的新闻，经不起推敲文..
-            </p>
+            <p>最近读了一篇很好的文章 “Why AI hasn’t replaced software engineers, and won’t”（AI Snake Oil 通讯），结合自己的一些思考，整理一下核心观点。</p>
         </div>
+        <a class="post-card-more" href="/2026/07/08/ai-not-replacing-engineers/" aria-label="继续阅读《AI 为什么没有替代软件工程师》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/06/hermes-agent-helps/" aria-label="阅读《Hermes Agent 帮我做了些什么》">
+        <img src="https://loremflickr.com/1200/400/productivity,workspace"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/productivity,workspace')">
-    <a href="/2026/07/06/hermes-agent-helps/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/06/hermes-agent-helps/">
         <h2 class="post-title">
             Hermes Agent 帮我做了些什么
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-06
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-06T15:30:00.000Z">2026-07-06</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                深度使用 Hermes Agent 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。
-
-
-项目发布一条龙最频繁的工作就是给 Qx 项目做发布。从 v0.4.36 到现在的 v0.6.5，发布了几十个版本：
-
-自动检测未提交的变更
-更新版本号（package...
-            </p>
+            <p>深度使用 Hermes Agent 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。</p>
         </div>
+        <a class="post-card-more" href="/2026/07/06/hermes-agent-helps/" aria-label="继续阅读《Hermes Agent 帮我做了些什么》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/06/hermes-agent-workflow/" aria-label="阅读《我的 AI 助手 -- Hermes Agent 日常使用记录》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,assistant"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,assistant')">
-    <a href="/2026/07/06/hermes-agent-workflow/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/06/hermes-agent-workflow/">
         <h2 class="post-title">
             我的 AI 助手 -- Hermes Agent 日常使用记录
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-06
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-06T11:00:00.000Z">2026-07-06</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                从去年开始用 Hermes Agent（Nous Research 出品的 CLI AI 智能体），到现在已经深度嵌入了日常开发和工作流。这篇整理一下它的主要使用场景，也给好奇的人参考。
+            <p>从去年开始用 Hermes Agent（Nous Research 出品的 CLI AI 智能体），到现在已经深度嵌入了日常开发和工作流。这篇整理一下它的主要使用场景，也给好奇的人参考。
 
 本文涉及的所有敏感信息（IP、密码、Token、服务器配置等）均已脱敏处理。
-
-
-
-什么是 Hermes ..
-            </p>
+</p>
         </div>
+        <a class="post-card-more" href="/2026/07/06/hermes-agent-workflow/" aria-label="继续阅读《我的 AI 助手 -- Hermes Agent 日常使用记录》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/06/09/claude-api-types/" aria-label="阅读《Claude API 的三种来源及其区别》">
+        <img src="https://loremflickr.com/1200/400/artificial-intelligence,api"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/artificial-intelligence,api')">
-    <a href="/2026/06/09/claude-api-types/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/06/09/claude-api-types/">
         <h2 class="post-title">
             Claude API 的三种来源及其区别
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-06-08T16:00:00.000Z">2026-06-09</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                很多人不知道，Claude 的官方 API 其实分为三种来源，价格、可用范围和质量各不相同。
+            <p>很多人不知道，Claude 的官方 API 其实分为三种来源，价格、可用范围和质量各不相同。
 一、官方 API来源：直接在 console.anthropic.com 注册，绑定信用卡充值。
 价格：按 token 计费，明码标价。比如 Claude Sonnet 4：
 
-输入：$3 &#x2F;..
-            </p>
+输入：$3 &amp;#x2F; …</p>
         </div>
-    </a>
+        <a class="post-card-more" href="/2026/06/09/claude-api-types/" aria-label="继续阅读《Claude API 的三种来源及其区别》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
 
 </div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -337,7 +370,6 @@
     
     
 </ul>
-
 
         </div>
         <!-- Sidebar Container -->
@@ -488,7 +520,7 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="">
+
 </body>
 
 </html>

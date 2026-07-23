@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
     <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
@@ -139,16 +140,15 @@
 
 <!-- Main Content -->
 
-
 <!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+<div class="mobile-site-header col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
     <div class="row">
         <header class="intro-header">
             <div class="container">
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src=""/>
+                        
                         <h5><a href="/about/">mcx</a></h5>
                         <p></p>
                     </div>
@@ -163,120 +163,138 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
             <!-- Main Content -->
+<div class="post-card-list">
 
 
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/blog,writing')">
-    <a href="/2026/07/21/how-to-publish-blog-with-hermes/">
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/21/how-to-publish-blog-with-hermes/" aria-label="阅读《用 Hermes Agent 发博客：从写稿到上线的完整流程》">
+        <img src="https://loremflickr.com/1200/400/blog,writing"
+             alt=""
+             width="640"
+             height="360"
+             fetchpriority="high"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
+    </a>
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/21/how-to-publish-blog-with-hermes/">
         <h2 class="post-title">
             用 Hermes Agent 发博客：从写稿到上线的完整流程
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-21
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-21T12:00:00.000Z">2026-07-21</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                很多人问我博客怎么更新的，其实现在大部分流程都是 Hermes Agent 在跑。这篇文章讲一下从写稿到上线的完整流程，顺便记录一些踩过的坑。
-
-
-博客架构我的博客是 Hexo + GitHub Pages，部署在 mcxen.github.io，自定义域名 b.xpai.uk。
-
-
-
-项目
-说..
-            </p>
+            <p>很多人问我博客怎么更新的，其实现在大部分流程都是 Hermes Agent 在跑。这篇文章讲一下从写稿到上线的完整流程，顺便记录一些踩过的坑。</p>
         </div>
+        <a class="post-card-more" href="/2026/07/21/how-to-publish-blog-with-hermes/" aria-label="继续阅读《用 Hermes Agent 发博客：从写稿到上线的完整流程》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/07/06/hermes-agent-helps/" aria-label="阅读《Hermes Agent 帮我做了些什么》">
+        <img src="https://loremflickr.com/1200/400/productivity,workspace"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/productivity,workspace')">
-    <a href="/2026/07/06/hermes-agent-helps/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/07/06/hermes-agent-helps/">
         <h2 class="post-title">
             Hermes Agent 帮我做了些什么
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-06
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-07-06T15:30:00.000Z">2026-07-06</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                深度使用 Hermes Agent 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。
-
-
-项目发布一条龙最频繁的工作就是给 Qx 项目做发布。从 v0.4.36 到现在的 v0.6.5，发布了几十个版本：
-
-自动检测未提交的变更
-更新版本号（package...
-            </p>
+            <p>深度使用 Hermes Agent 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。</p>
         </div>
+        <a class="post-card-more" href="/2026/07/06/hermes-agent-helps/" aria-label="继续阅读《Hermes Agent 帮我做了些什么》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/06/12/hermes-deepseek-auth-fix/" aria-label="阅读《Hermes Agent DeepSeek API 认证失败排查与修复》">
+        <img src="hermes-deepseek-auth-fix.assets/theo-hall-pmUgUMvfmUg-unsplash.jpg"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('hermes-deepseek-auth-fix.assets/theo-hall-pmUgUMvfmUg-unsplash.jpg')">
-    <a href="/2026/06/12/hermes-deepseek-auth-fix/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/06/12/hermes-deepseek-auth-fix/">
         <h2 class="post-title">
             Hermes Agent DeepSeek API 认证失败排查与修复
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-12
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-06-11T16:00:00.000Z">2026-06-12</time>
         </p>
         
         <div class="post-content-preview">
             <p>
-                
 背景最近在使用 Hermes Agent 时，所有请求突然全部失败，Gateway 日志反复报出：
 1Error code: 401 - Authentication Fails, Your api key: ****OcWp is invalid
 
-伴随 Transient agent fa..
-            </p>
+伴随 Transient agent fai…</p>
         </div>
+        <a class="post-card-more" href="/2026/06/12/hermes-deepseek-auth-fix/" aria-label="继续阅读《Hermes Agent DeepSeek API 认证失败排查与修复》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
+
+
+<article class="post-preview post-card ">
+    <a class="post-card-cover" href="/2026/06/11/115-skill-journey/" aria-label="阅读《逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录》">
+        <img src="https://loremflickr.com/1200/400/code,hacking"
+             alt=""
+             width="640"
+             height="360"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='/images/post-placeholder.svg';">
     </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('https://loremflickr.com/1200/400/code,hacking')">
-    <a href="/2026/06/11/115-skill-journey/">
+    <div class="post-card-body">
+        <a class="post-card-title-link" href="/2026/06/11/115-skill-journey/">
         <h2 class="post-title">
             逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录
         </h2>
+        </a>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-11
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <time datetime="2026-06-10T16:00:00.000Z">2026-06-11</time>
         </p>
         
         <div class="post-content-preview">
-            <p>
-                逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录起因拿到一个 115-publish 的 Hermes skill 包，功能很全：扫码登录、文件浏览、搜索、转存、离线下载。但装上一跑，全部 404。
-1QR_FAIL:Request failed with sta..
-            </p>
+            <p>逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录起因拿到一个 115-publish 的 Hermes skill 包，功能很全：扫码登录、文件浏览、搜索、转存、离线下载。但装上一跑，全部 404。
+1QR_FAIL:Request failed with stat…</p>
         </div>
-    </a>
+        <a class="post-card-more" href="/2026/06/11/115-skill-journey/" aria-label="继续阅读《逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录》">
+            阅读全文 <span aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>
 
 </div>
-
-<hr>
-
-
-
 
 <!-- 翻页 pager -->
 
@@ -284,7 +302,6 @@
     
     
 </ul>
-
 
         </div>
         <!-- Sidebar Container -->
@@ -435,7 +452,7 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="">
+
 </body>
 
 </html>
