@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        用免费 Personal Team 给 Tauri macOS 应用签名，避免 TCC 权限反复失效｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/07/26/20260726-macos-tauri-personal-team-signing/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+					<li>
+						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
+					</li>
+					<li>
+						<a href="/qx/" title="Qx 使用手册">Qx</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="undefinedhttps://loremflickr.com/1600/900/macos,developer">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://loremflickr.com/1600/900/macos,developerundefined')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>用免费 Personal Team 给 Tauri macOS 应用签名，避免 TCC 权限反复失效</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-07-26
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#macOS"
+                           title="macOS">macOS</a>
+                        
+                        <a class="tag" href="/tags/#Tauri"
+                           title="Tauri">Tauri</a>
+                        
+                        <a class="tag" href="/tags/#Xcode"
+                           title="Xcode">Xcode</a>
+                        
+                        <a class="tag" href="/tags/#Code Signing"
+                           title="Code Signing">Code Signing</a>
+                        
+                        <a class="tag" href="/tags/#TCC"
+                           title="TCC">TCC</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            用免费 Personal Team 给 Tauri macOS 应用签名，避免 TCC 权限反复失效
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>最近给一个带屏幕截图、录屏、辅助功能和全局快捷键的 Tauri macOS 应用做本机测试时，遇到了一个很烦的问题：每次重新编译后，系统都像看到了一个新应用，需要重新到“系统设置 → 隐私与安全性”里授权屏幕录制。</p>
+<p>真正的问题不是 TCC 本身“随机失忆”，而是开发构建一直在使用 ad-hoc 签名。每次构建产生的代码身份不稳定，macOS 就可能把它当作另一个应用。</p>
+<p>解决办法是：使用免费的 Apple 账户登录 Xcode，创建 Personal Team 的 Apple Development 证书，然后让本机测试包始终使用同一个签名身份。</p>
+<span id="more"></span>
+
+<h2 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h2><p>本机开发测试可以使用免费 Apple 账户的 <code>Apple Development</code> 证书，不需要购买 Apple Developer Program。</p>
+<p>它适合：</p>
+<ul>
+<li>本机运行和调试 macOS 应用；</li>
+<li>保持同一个应用代码身份；</li>
+<li>减少屏幕录制、麦克风、辅助功能等 TCC 权限的重复授权。</li>
+</ul>
+<p>它不适合：</p>
+<ul>
+<li>Developer ID 分发；</li>
+<li>公证（Notarization）；</li>
+<li>面向其他用户的正式安装包发布。</li>
+</ul>
+<p>发布和本机开发应该分开：本机使用 Apple Development，CI&#x2F;Release 继续使用项目原来的 ad-hoc 签名策略。</p>
+<h2 id="1-在-Xcode-中登录免费-Apple-账户"><a href="#1-在-Xcode-中登录免费-Apple-账户" class="headerlink" title="1. 在 Xcode 中登录免费 Apple 账户"></a>1. 在 Xcode 中登录免费 Apple 账户</h2><p>打开 Xcode，进入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Xcode → Settings → Apple Accounts</span><br></pre></td></tr></table></figure>
+
+<p>点击 <code>Add Apple Account...</code>，登录 Apple 账户。登录成功后，账户下应该能看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Personal Team</span><br></pre></td></tr></table></figure>
+
+<p>进入 Personal Team，点击 <code>Manage Certificates...</code>，通过 <code>Create Certificate</code> 创建 <code>Apple Development</code> 证书。</p>
+<p>免费账户的 Personal Team 足够用于本机测试，但不会提供 Developer ID Application 证书，也不会让你绕过公证要求。</p>
+<h2 id="2-检查代码签名身份"><a href="#2-检查代码签名身份" class="headerlink" title="2. 检查代码签名身份"></a>2. 检查代码签名身份</h2><p>用下面的命令检查本机是否已经有可用签名身份：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">security find-identity -v -p codesigning</span><br></pre></td></tr></table></figure>
+
+<p>正常情况下应该看到类似输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) ABCDEF0123456789ABCDEF0123456789ABCDEF01</span><br><span class="line">   &quot;Apple Development: your-apple-id@example.com (TEAMID1234)&quot;</span><br><span class="line">   1 valid identities found</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的 <code>Apple Development</code> 才是我们想要的开发签名。下面这些都不是同一回事：</p>
+<ul>
+<li><code>Developer ID Application</code>：付费开发者账号用于外部分发；</li>
+<li><code>Apple Distribution</code>：分发或提交 App Store；</li>
+<li><code>-</code>：ad-hoc 签名，免费但代码身份不适合解决 TCC 反复授权。</li>
+</ul>
+<h2 id="3-处理-WWDR-G3-证书链"><a href="#3-处理-WWDR-G3-证书链" class="headerlink" title="3. 处理 WWDR G3 证书链"></a>3. 处理 WWDR G3 证书链</h2><p>这一步是最容易被忽略的地方。</p>
+<p>某些 macOS 环境里，钥匙串中只有已经过期的旧版 WWDR 中间证书。此时 Xcode 可能已经创建了 Apple Development 证书，但命令行签名会报：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Warning: unable to build chain to self-signed root</span><br><span class="line">errSecInternalComponent</span><br></pre></td></tr></table></figure>
+
+<p>Apple Development 证书现在通常由 <code>Worldwide Developer Relations - G3</code> 中间证书签发。可以从 Apple 官方 PKI 页面下载：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.apple.com/certificateauthority/">Apple PKI</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.apple.com/help/account/certificates/wwdr-intermediate-certificates">WWDR 中间证书说明</a></li>
+</ul>
+<p>命令行安装方式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tmp_dir=<span class="string">&quot;<span class="subst">$(mktemp -d /tmp/apple-wwdr-g3.XXXXXX)</span>&quot;</span></span><br><span class="line">curl -fsSL \</span><br><span class="line">  <span class="string">&quot;https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer&quot;</span> \</span><br><span class="line">  -o <span class="string">&quot;<span class="variable">$tmp_dir</span>/AppleWWDRCAG3.cer&quot;</span></span><br><span class="line"></span><br><span class="line">security import <span class="string">&quot;<span class="variable">$tmp_dir</span>/AppleWWDRCAG3.cer&quot;</span> \</span><br><span class="line">  -k <span class="string">&quot;<span class="variable">$HOME</span>/Library/Keychains/login.keychain-db&quot;</span> \</span><br><span class="line">  -T /usr/bin/codesign \</span><br><span class="line">  -T /usr/bin/security</span><br><span class="line"></span><br><span class="line"><span class="built_in">rm</span> -R <span class="string">&quot;<span class="variable">$tmp_dir</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后再次检查：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">security find-identity -v -p codesigning</span><br></pre></td></tr></table></figure>
+
+<p>如果从 <code>0 valid identities found</code> 变成出现 Apple Development 身份，说明证书链已经恢复。</p>
+<h2 id="4-Tauri-应用的签名思路"><a href="#4-Tauri-应用的签名思路" class="headerlink" title="4. Tauri 应用的签名思路"></a>4. Tauri 应用的签名思路</h2><p>Tauri 的 macOS 应用不是只有一个可执行文件。典型 bundle 结构大致如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Qx.app/</span><br><span class="line">└── Contents/</span><br><span class="line">    └── MacOS/</span><br><span class="line">        ├── qx</span><br><span class="line">        └── qx-ffmpeg</span><br></pre></td></tr></table></figure>
+
+<p>主程序和嵌套的 helper、外部二进制都需要保持可验证的签名。对于 Tauri bundle，本机测试可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">codesign \</span><br><span class="line">  --force \</span><br><span class="line">  --deep \</span><br><span class="line">  --sign <span class="string">&quot;Apple Development: your-apple-id@example.com (TEAMID1234)&quot;</span> \</span><br><span class="line">  --timestamp=none \</span><br><span class="line">  --identifier <span class="string">&quot;com.example.myapp&quot;</span> \</span><br><span class="line">  --entitlements <span class="string">&quot;src-tauri/Entitlements.plist&quot;</span> \</span><br><span class="line">  <span class="string">&quot;path/to/MyApp.app&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里几个参数的作用是：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--force</code></td>
+<td>替换 bundle 中已有的 ad-hoc 或旧签名</td>
+</tr>
+<tr>
+<td><code>--deep</code></td>
+<td>递归处理 bundle 内的嵌套代码</td>
+</tr>
+<tr>
+<td><code>--sign</code></td>
+<td>指定 Apple Development 签名身份</td>
+</tr>
+<tr>
+<td><code>--timestamp=none</code></td>
+<td>本机开发签名不依赖分发时间戳</td>
+</tr>
+<tr>
+<td><code>--identifier</code></td>
+<td>固定代码签名标识，通常与 Bundle ID 一致</td>
+</tr>
+<tr>
+<td><code>--entitlements</code></td>
+<td>使用应用声明的 macOS 权限配置</td>
+</tr>
+</tbody></table>
+<p><code>--deep</code> 适合这里的 Tauri 本机 bundle 快速签名。正式分发时，应该根据嵌套代码的层级逐个签名，再签最外层 bundle，并使用 Developer ID 和公证流程。</p>
+<h2 id="5-一个可复用的本机签名脚本"><a href="#5-一个可复用的本机签名脚本" class="headerlink" title="5. 一个可复用的本机签名脚本"></a>5. 一个可复用的本机签名脚本</h2><p>下面是这次本机测试实际采用的脚本模板。把它保存为项目外的本地脚本，或者放到不提交的个人工具目录中，避免把本机证书身份写进公共配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -euo pipefail</span><br><span class="line"></span><br><span class="line">APP_PATH=<span class="string">&quot;<span class="variable">$&#123;1:?用法：sign-macos-dev.sh /path/to/MyApp.app&#125;</span>&quot;</span></span><br><span class="line">ENTITLEMENTS_PATH=<span class="string">&quot;<span class="variable">$&#123;ENTITLEMENTS_PATH:-src-tauri/Entitlements.plist&#125;</span>&quot;</span></span><br><span class="line">IDENTITY=<span class="string">&quot;<span class="variable">$&#123;APPLE_DEVELOPMENT_IDENTITY:?请设置 APPLE_DEVELOPMENT_IDENTITY&#125;</span>&quot;</span></span><br><span class="line">BUNDLE_ID=<span class="string">&quot;<span class="variable">$&#123;BUNDLE_ID:-com.example.myapp&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ ! -d <span class="string">&quot;<span class="variable">$APP_PATH</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;找不到应用 bundle：<span class="variable">$APP_PATH</span>&quot;</span> &gt;&amp;2</span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;使用签名身份：<span class="variable">$IDENTITY</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;签名应用：<span class="variable">$APP_PATH</span>&quot;</span></span><br><span class="line"></span><br><span class="line">codesign \</span><br><span class="line">  --force \</span><br><span class="line">  --deep \</span><br><span class="line">  --sign <span class="string">&quot;<span class="variable">$IDENTITY</span>&quot;</span> \</span><br><span class="line">  --timestamp=none \</span><br><span class="line">  --identifier <span class="string">&quot;<span class="variable">$BUNDLE_ID</span>&quot;</span> \</span><br><span class="line">  --entitlements <span class="string">&quot;<span class="variable">$ENTITLEMENTS_PATH</span>&quot;</span> \</span><br><span class="line">  <span class="string">&quot;<span class="variable">$APP_PATH</span>&quot;</span></span><br><span class="line"></span><br><span class="line">codesign \</span><br><span class="line">  --verify \</span><br><span class="line">  --deep \</span><br><span class="line">  --strict \</span><br><span class="line">  --verbose=2 \</span><br><span class="line">  <span class="string">&quot;<span class="variable">$APP_PATH</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;签名验证通过：<span class="variable">$APP_PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用时：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> APPLE_DEVELOPMENT_IDENTITY=<span class="string">&#x27;Apple Development: your-apple-id@example.com (TEAMID1234)&#x27;</span></span><br><span class="line"><span class="built_in">export</span> BUNDLE_ID=<span class="string">&#x27;com.example.myapp&#x27;</span></span><br><span class="line"></span><br><span class="line">./sign-macos-dev.sh \</span><br><span class="line">  src-tauri/target/release/bundle/macos/MyApp.app</span><br></pre></td></tr></table></figure>
+
+<p>以 Qx 为例，本机实际签名命令类似下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">identity=<span class="string">&#x27;Apple Development: your-apple-id@example.com (TEAMID1234)&#x27;</span></span><br><span class="line">entitlements=<span class="string">&#x27;src-tauri/Entitlements.plist&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> app <span class="keyword">in</span> \</span><br><span class="line">  src-tauri/target/release/bundle/macos/Qx.app \</span><br><span class="line">  /Applications/Qx.app</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  codesign \</span><br><span class="line">    --force \</span><br><span class="line">    --deep \</span><br><span class="line">    --sign <span class="string">&quot;<span class="variable">$identity</span>&quot;</span> \</span><br><span class="line">    --timestamp=none \</span><br><span class="line">    --identifier <span class="string">&#x27;com.mcx.qx&#x27;</span> \</span><br><span class="line">    --entitlements <span class="string">&quot;<span class="variable">$entitlements</span>&quot;</span> \</span><br><span class="line">    <span class="string">&quot;<span class="variable">$app</span>&quot;</span></span><br><span class="line"></span><br><span class="line">  codesign \</span><br><span class="line">    --verify \</span><br><span class="line">    --deep \</span><br><span class="line">    --strict \</span><br><span class="line">    --verbose=2 \</span><br><span class="line">    <span class="string">&quot;<span class="variable">$app</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>Qx bundle 内的 <code>qx-ffmpeg</code> 也会被递归处理。签名后可以看到类似结果：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Authority=Apple Development: ...</span><br><span class="line">Authority=Apple Worldwide Developer Relations Certification Authority</span><br><span class="line">Authority=Apple Root CA</span><br><span class="line">TeamIdentifier=...</span><br><span class="line">Identifier=com.mcx.qx</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-xcodeutil-不是关键"><a href="#6-xcodeutil-不是关键" class="headerlink" title="6. xcodeutil 不是关键"></a>6. <code>xcodeutil</code> 不是关键</h2><p>这次没有依赖名为 <code>xcodeutil</code> 的系统命令。macOS&#x2F;Xcode 的标准工具链是：</p>
+<ul>
+<li><code>security</code>：查看钥匙串、证书和签名身份；</li>
+<li><code>codesign</code>：对 Mach-O 文件和 <code>.app</code> bundle 签名；</li>
+<li><code>xcodebuild</code>：构建 Xcode 工程；</li>
+<li><code>spctl</code>：检查 Gatekeeper 评估结果。</li>
+</ul>
+<p>如果某个第三方工具叫 <code>xcodeutil</code>，只要它最终调用的是同一个 Apple Development 身份，效果可以等价；但工具名字本身不会让 TCC 授权稳定，真正起作用的是最终的代码签名身份和 Bundle ID。</p>
+<p>如果目标应用安装在 <code>/Applications</code>，也可以对安装后的 bundle 再签一次：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sign-macos-dev.sh /Applications/MyApp.app</span><br></pre></td></tr></table></figure>
+
+<p>签名之前最好先退出正在运行的应用，避免进程仍然使用旧 bundle 内容。</p>
+<h2 id="7-验证签名是否真的生效"><a href="#7-验证签名是否真的生效" class="headerlink" title="7. 验证签名是否真的生效"></a>7. 验证签名是否真的生效</h2><h3 id="验证-bundle-完整性"><a href="#验证-bundle-完整性" class="headerlink" title="验证 bundle 完整性"></a>验证 bundle 完整性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codesign --verify --deep --strict --verbose=2 /Applications/MyApp.app</span><br></pre></td></tr></table></figure>
+
+<p>看到下面的结果就说明 bundle 结构完整：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyApp.app: valid on disk</span><br><span class="line">MyApp.app: satisfies its Designated Requirement</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看签名身份"><a href="#查看签名身份" class="headerlink" title="查看签名身份"></a>查看签名身份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codesign -dvvv /Applications/MyApp.app 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>重点确认：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Identifier=com.example.myapp</span><br><span class="line">Authority=Apple Development: ...</span><br><span class="line">Authority=Apple Worldwide Developer Relations Certification Authority</span><br><span class="line">Authority=Apple Root CA</span><br><span class="line">TeamIdentifier=...</span><br></pre></td></tr></table></figure>
+
+<p>其中最重要的是：</p>
+<ul>
+<li><code>Authority</code> 不再是 ad-hoc；</li>
+<li><code>TeamIdentifier</code> 已出现；</li>
+<li><code>Identifier</code> 与 Bundle ID 稳定一致。</li>
+</ul>
+<h3 id="查看实际-entitlements"><a href="#查看实际-entitlements" class="headerlink" title="查看实际 entitlements"></a>查看实际 entitlements</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codesign -d --entitlements :- /Applications/MyApp.app</span><br></pre></td></tr></table></figure>
+
+<p>不要只看源码中的 <code>Entitlements.plist</code>，最终以签名后的 bundle 输出为准。</p>
+<h2 id="8-为什么这样可以减少-TCC-重复授权"><a href="#8-为什么这样可以减少-TCC-重复授权" class="headerlink" title="8. 为什么这样可以减少 TCC 重复授权"></a>8. 为什么这样可以减少 TCC 重复授权</h2><p>macOS 的 TCC 不只是按照应用文件名判断身份。它会结合应用的代码签名要求、签名标识和相关代码身份来判断“这是不是之前授权过的那个应用”。</p>
+<p>如果每次构建都使用 ad-hoc 签名，代码身份可能随构建变化：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">旧构建：ad-hoc identity A</span><br><span class="line">新构建：ad-hoc identity B</span><br></pre></td></tr></table></figure>
+
+<p>即使 Bundle ID 没变，TCC 也可能把新版本当作新应用，于是重新要求屏幕录制或辅助功能授权。</p>
+<p>固定使用同一 Apple Development 证书后，身份变成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">旧构建：Apple Development + Team ID + Bundle ID</span><br><span class="line">新构建：Apple Development + Team ID + Bundle ID</span><br></pre></td></tr></table></figure>
+
+<p>这会显著提高授权记录的复用概率。不过首次从 ad-hoc 切换到 Apple Development 时，仍然建议重新授权一次；这是代码身份改变后的正常行为。</p>
+<p>还需要注意，改变下面这些内容也可能导致 macOS 重新评估授权：</p>
+<ul>
+<li>Bundle ID；</li>
+<li>签名证书或 Team ID；</li>
+<li>关键 entitlements；</li>
+<li>主程序实际路径或应用结构。</li>
+</ul>
+<h2 id="9-Tauri-项目中发布和本机测试要分开"><a href="#9-Tauri-项目中发布和本机测试要分开" class="headerlink" title="9. Tauri 项目中发布和本机测试要分开"></a>9. Tauri 项目中发布和本机测试要分开</h2><p>本机使用 Personal Team 签名，不代表 GitHub Release 也应该使用 Personal Team。</p>
+<p>例如项目的 Release Action 仍然可以独立执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">codesign \</span><br><span class="line">  --force \</span><br><span class="line">  --deep \</span><br><span class="line">  --sign - \</span><br><span class="line">  --timestamp=none \</span><br><span class="line">  --identifier <span class="string">&quot;com.example.myapp&quot;</span> \</span><br><span class="line">  --entitlements src-tauri/Entitlements.plist \</span><br><span class="line">  path/to/MyApp.app</span><br></pre></td></tr></table></figure>
+
+<p>CI 机器上没有你的 Apple Development 私钥，也不应该把个人证书提交到仓库或 GitHub Secrets。这样做的好处是：</p>
+<ul>
+<li>本机开发签名可以稳定 TCC 身份；</li>
+<li>Release Action 仍然保持原来的免费 ad-hoc 流程；</li>
+<li>不会把 Apple 账户、私钥或 provisioning profile 带进仓库；</li>
+<li>CI 不依赖某一台开发机的钥匙串状态。</li>
+</ul>
+<p>唯一要记住的是：如果 CI 产物下载到本机后运行，它使用的是另一个签名身份，可能仍然需要单独授权。这是预期行为，不是本机开发签名失效。</p>
+<h2 id="10-常见错误排查"><a href="#10-常见错误排查" class="headerlink" title="10. 常见错误排查"></a>10. 常见错误排查</h2><h3 id="0-valid-identities-found"><a href="#0-valid-identities-found" class="headerlink" title="0 valid identities found"></a><code>0 valid identities found</code></h3><p>通常表示：</p>
+<ul>
+<li>Xcode 没有登录 Apple 账户；</li>
+<li>Personal Team 没有创建 Apple Development 证书；</li>
+<li>证书的私钥不在当前用户钥匙串；</li>
+<li>WWDR 中间证书缺失或过期。</li>
+</ul>
+<p>先执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">security find-identity -v -p codesigning</span><br></pre></td></tr></table></figure>
+
+<p>再检查 Xcode 的 Apple Accounts 页面和 WWDR G3 中间证书。</p>
+<h3 id="errSecInternalComponent"><a href="#errSecInternalComponent" class="headerlink" title="errSecInternalComponent"></a><code>errSecInternalComponent</code></h3><p>这个错误信息很笼统，但在开发签名场景里经常与证书链有关。重点看签名时是否同时出现：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unable to build chain to self-signed root</span><br></pre></td></tr></table></figure>
+
+<p>如果出现，优先补齐与证书签发者匹配的 WWDR 中间证书。不要盲目删除所有钥匙串证书。</p>
+<h3 id="签名成功但-TCC-仍然重新询问"><a href="#签名成功但-TCC-仍然重新询问" class="headerlink" title="签名成功但 TCC 仍然重新询问"></a>签名成功但 TCC 仍然重新询问</h3><p>确认以下几点：</p>
+<ol>
+<li>你运行的确实是刚签名的 bundle；</li>
+<li>没有被旧的 ad-hoc 构建覆盖；</li>
+<li>Bundle ID 没有变化；</li>
+<li>应用已完全退出后重新启动；</li>
+<li>第一次从 ad-hoc 切换到 Apple Development 后，已经在系统设置中重新授权。</li>
+</ol>
+<p>可以用下面的命令确认实际运行文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep <span class="string">&#x27;[M]yApp.app&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="spctl-拒绝本机开发包"><a href="#spctl-拒绝本机开发包" class="headerlink" title="spctl 拒绝本机开发包"></a><code>spctl</code> 拒绝本机开发包</h3><p>Apple Development 签名主要用于开发测试，不等于 Developer ID 分发签名。不要把本机开发包的 <code>spctl</code> 结果和正式分发包的 Gatekeeper 结果混为一谈。</p>
+<p>正式分发需要 Developer ID Application、Hardened Runtime、Notarization 和 stapling；这些不属于免费 Personal Team 的能力范围。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次问题的关键不是给应用“多加几个 entitlement”，而是让 macOS 每次看到的代码身份保持稳定：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">固定 Apple Development 证书</span><br><span class="line">        +</span><br><span class="line">固定 Team ID</span><br><span class="line">        +</span><br><span class="line">固定 Bundle ID</span><br><span class="line">        +</span><br><span class="line">正确的 WWDR G3 证书链</span><br><span class="line">        ↓</span><br><span class="line">本机开发构建更容易复用 TCC 授权</span><br></pre></td></tr></table></figure>
+
+<p>对于 Tauri 项目，最实用的分工是：本机开发包使用 Apple Development，Release Action 继续使用独立的 CI 签名流程。这样既能改善本机体验，也不会把个人开发证书和发布流水线耦合在一起。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/07/23/gogs-release-upload/" data-toggle="tooltip" data-placement="top"
+                           title="Gogs 通过 curl 发布 Release 并上传附件">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E8%AF%B4%E7%BB%93%E8%AE%BA"><span class="toc-text">先说结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9C%A8-Xcode-%E4%B8%AD%E7%99%BB%E5%BD%95%E5%85%8D%E8%B4%B9-Apple-%E8%B4%A6%E6%88%B7"><span class="toc-text">1. 在 Xcode 中登录免费 Apple 账户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A3%80%E6%9F%A5%E4%BB%A3%E7%A0%81%E7%AD%BE%E5%90%8D%E8%BA%AB%E4%BB%BD"><span class="toc-text">2. 检查代码签名身份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A4%84%E7%90%86-WWDR-G3-%E8%AF%81%E4%B9%A6%E9%93%BE"><span class="toc-text">3. 处理 WWDR G3 证书链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Tauri-%E5%BA%94%E7%94%A8%E7%9A%84%E7%AD%BE%E5%90%8D%E6%80%9D%E8%B7%AF"><span class="toc-text">4. Tauri 应用的签名思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E6%9C%AC%E6%9C%BA%E7%AD%BE%E5%90%8D%E8%84%9A%E6%9C%AC"><span class="toc-text">5. 一个可复用的本机签名脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-xcodeutil-%E4%B8%8D%E6%98%AF%E5%85%B3%E9%94%AE"><span class="toc-text">6. xcodeutil 不是关键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%AA%8C%E8%AF%81%E7%AD%BE%E5%90%8D%E6%98%AF%E5%90%A6%E7%9C%9F%E7%9A%84%E7%94%9F%E6%95%88"><span class="toc-text">7. 验证签名是否真的生效</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-bundle-%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-text">验证 bundle 完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%AD%BE%E5%90%8D%E8%BA%AB%E4%BB%BD"><span class="toc-text">查看签名身份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%9E%E9%99%85-entitlements"><span class="toc-text">查看实际 entitlements</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E5%87%8F%E5%B0%91-TCC-%E9%87%8D%E5%A4%8D%E6%8E%88%E6%9D%83"><span class="toc-text">8. 为什么这样可以减少 TCC 重复授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Tauri-%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%8F%91%E5%B8%83%E5%92%8C%E6%9C%AC%E6%9C%BA%E6%B5%8B%E8%AF%95%E8%A6%81%E5%88%86%E5%BC%80"><span class="toc-text">9. Tauri 项目中发布和本机测试要分开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%8E%92%E6%9F%A5"><span class="toc-text">10. 常见错误排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-valid-identities-found"><span class="toc-text">0 valid identities found</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#errSecInternalComponent"><span class="toc-text">errSecInternalComponent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%BE%E5%90%8D%E6%88%90%E5%8A%9F%E4%BD%86-TCC-%E4%BB%8D%E7%84%B6%E9%87%8D%E6%96%B0%E8%AF%A2%E9%97%AE"><span class="toc-text">签名成功但 TCC 仍然重新询问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spctl-%E6%8B%92%E7%BB%9D%E6%9C%AC%E6%9C%BA%E5%BC%80%E5%8F%91%E5%8C%85"><span class="toc-text">spctl 拒绝本机开发包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+
+</body>
+
+</html>
