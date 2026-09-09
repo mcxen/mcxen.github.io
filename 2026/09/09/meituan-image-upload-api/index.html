@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        美团图床上传接口实测：curl 与批量脚本接入｜MCXEN
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/09/09/meituan-image-upload-api/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+					<li>
+						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
+					</li>
+					<li>
+						<a href="/qx/" title="Qx 使用手册">Qx</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://img.meituan.net/content/4104c2c397dc61700f974bc956233caf118800.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://img.meituan.net/content/4104c2c397dc61700f974bc956233caf118800.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>美团图床上传接口实测：curl 与批量脚本接入</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-09-09
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#API"
+                           title="API">API</a>
+                        
+                        <a class="tag" href="/tags/#图片"
+                           title="图片">图片</a>
+                        
+                        <a class="tag" href="/tags/#curl"
+                           title="curl">curl</a>
+                        
+                        <a class="tag" href="/tags/#图床"
+                           title="图床">图床</a>
+                        
+                        <a class="tag" href="/tags/#Python"
+                           title="Python">Python</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            美团图床上传接口实测：curl 与批量脚本接入
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>最近给 Qx 社区插件整理市场截图时，需要把几十张图片迁移到访问更快的 CDN。本文记录 <code>aapi.helioho.st/upload.php</code> 的实际请求格式、返回结构、限流规则，以及一个可以断点续传的批量上传脚本。</p>
+<span id="more"></span>
+
+<h2 id="接口信息"><a href="#接口信息" class="headerlink" title="接口信息"></a>接口信息</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上传地址</td>
+<td><code>https://aapi.helioho.st/upload.php</code></td>
+</tr>
+<tr>
+<td>请求方法</td>
+<td><code>POST</code></td>
+</tr>
+<tr>
+<td>请求格式</td>
+<td><code>multipart/form-data</code></td>
+</tr>
+<tr>
+<td>文件字段</td>
+<td><code>image</code></td>
+</tr>
+<tr>
+<td>成功图片域名</td>
+<td><code>https://img.meituan.net/content/</code></td>
+</tr>
+<tr>
+<td>单张限制</td>
+<td>最大 20 MB</td>
+</tr>
+<tr>
+<td>页面单次选择</td>
+<td>最多 10 张</td>
+</tr>
+</tbody></table>
+<p>网页上传入口是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://695402.xyz/mt/?ref=www.549.tv</span><br></pre></td></tr></table></figure>
+
+<h2 id="用-curl-上传一张图片"><a href="#用-curl-上传一张图片" class="headerlink" title="用 curl 上传一张图片"></a>用 curl 上传一张图片</h2><p>接口会检查来源。只发送文件通常会返回 HTTP 403，需要带上网页使用的 <code>Origin</code>、<code>Referer</code> 和常见浏览器标识：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl -fsS <span class="string">&#x27;https://aapi.helioho.st/upload.php&#x27;</span> \</span><br><span class="line">  -H <span class="string">&#x27;Origin: https://695402.xyz&#x27;</span> \</span><br><span class="line">  -H <span class="string">&#x27;Referer: https://695402.xyz/mt/?ref=www.549.tv&#x27;</span> \</span><br><span class="line">  -H <span class="string">&#x27;User-Agent: Mozilla/5.0&#x27;</span> \</span><br><span class="line">  -H <span class="string">&#x27;Accept: application/json, text/javascript, */*; q=0.01&#x27;</span> \</span><br><span class="line">  -F <span class="string">&#x27;image=@./screenshot.jpg&#x27;</span> \</span><br><span class="line">  -F <span class="string">&#x27;file_id=0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>成功时返回 JSON：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;success&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://img.meituan.net/content/xxxxxxxx.jpg&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>业务代码不要只检查 HTTP 状态，还要同时检查 <code>code === 200</code> 和 <code>data.url</code>。接口触发限流时仍可能返回一段合法 JSON，但其中 <code>code</code> 是 <code>500</code>，<code>data</code> 也可能从对象变成空数组。</p>
+<h2 id="可断点续传的批量脚本"><a href="#可断点续传的批量脚本" class="headerlink" title="可断点续传的批量脚本"></a>可断点续传的批量脚本</h2><p>下面的 Python 脚本读取 <code>uploads.json</code>。键是本地图片路径，值为空表示待上传；每成功一张就立即写回 CDN 地址，因此中途失败后可以直接重新运行。</p>
+<p>先准备清单：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;images/01.jpg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;images/02.png&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>保存以下代码为 <code>upload_images.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">manifest_path = pathlib.Path(<span class="string">&quot;uploads.json&quot;</span>)</span><br><span class="line">uploads = json.loads(manifest_path.read_text())</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, (filename, uploaded_url) <span class="keyword">in</span> <span class="built_in">enumerate</span>(uploads.items()):</span><br><span class="line">    <span class="keyword">if</span> uploaded_url:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;skip: <span class="subst">&#123;filename&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> index:</span><br><span class="line">        <span class="comment"># 实测限制为一分钟最多 10 张，主动留出间隔。</span></span><br><span class="line">        time.sleep(<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">    command = [</span><br><span class="line">        <span class="string">&quot;curl&quot;</span>, <span class="string">&quot;-fsS&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://aapi.helioho.st/upload.php&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-H&quot;</span>, <span class="string">&quot;Origin: https://695402.xyz&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-H&quot;</span>, <span class="string">&quot;Referer: https://695402.xyz/mt/?ref=www.549.tv&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-H&quot;</span>, <span class="string">&quot;User-Agent: Mozilla/5.0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-H&quot;</span>, <span class="string">&quot;Accept: application/json, text/javascript, */*; q=0.01&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-F&quot;</span>, <span class="string">f&quot;image=@<span class="subst">&#123;filename&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-F&quot;</span>, <span class="string">f&quot;file_id=<span class="subst">&#123;index&#125;</span>&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    raw = subprocess.check_output(command, text=<span class="literal">True</span>, timeout=<span class="number">60</span>)</span><br><span class="line">    response = json.loads(raw)</span><br><span class="line">    data = response.get(<span class="string">&quot;data&quot;</span>)</span><br><span class="line">    url = data.get(<span class="string">&quot;url&quot;</span>) <span class="keyword">if</span> <span class="built_in">isinstance</span>(data, <span class="built_in">dict</span>) <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> response.get(<span class="string">&quot;code&quot;</span>) != <span class="number">200</span> <span class="keyword">or</span> <span class="keyword">not</span> url:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">f&quot;upload failed: <span class="subst">&#123;filename&#125;</span>: <span class="subst">&#123;raw&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    uploads[filename] = url</span><br><span class="line">    manifest_path.write_text(</span><br><span class="line">        json.dumps(uploads, ensure_ascii=<span class="literal">False</span>, indent=<span class="number">2</span>) + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;uploaded: <span class="subst">&#123;filename&#125;</span> -&gt; <span class="subst">&#123;url&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 upload_images.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="限流规则"><a href="#限流规则" class="headerlink" title="限流规则"></a>限流规则</h2><p>这次实际迁移 32 张截图时遇到了两层频率限制：</p>
+<ul>
+<li>1 分钟最多上传 10 张。</li>
+<li>1 小时最多上传 30 张。</li>
+</ul>
+<p>服务端对应的错误信息分别包含“1分钟内限制10张”和“1小时内限制30张”。批量任务应当控制速度、持久化进度，并在收到限流响应时停止或延迟重试，不能把每个失败立即连续重放。</p>
+<p>如果终端配置了共享代理，代理出口可能和其他请求共用额度。排查时可以比较代理与直连结果；不要为了绕过限制进行高并发上传。</p>
+<h2 id="接入静态站点"><a href="#接入静态站点" class="headerlink" title="接入静态站点"></a>接入静态站点</h2><p>我的处理方式是保留本地源图，同时维护一份文件名到 CDN URL 的映射：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;qxpicture&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;qxpicture-1.jpg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://img.meituan.net/content/4104c2c397dc61700f974bc956233caf118800.jpg&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>构建页面时优先使用经过校验的 CDN URL，映射缺失时退回本地文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cdnUrl = screenshotCdn?.[pluginId]?.[filename];</span><br><span class="line"><span class="keyword">const</span> imageUrl = <span class="regexp">/^https:\/\/img\.meituan\.net\/content\//</span>.<span class="title function_">test</span>(cdnUrl || <span class="string">&quot;&quot;</span>)</span><br><span class="line">  ? cdnUrl</span><br><span class="line">  : localUrl;</span><br></pre></td></tr></table></figure>
+
+<p>这样页面能利用 CDN，插件包或离线环境仍有本地图片可用。新增图片也不会因为忘记上传而直接显示空白。</p>
+<h2 id="上传后的检查"><a href="#上传后的检查" class="headerlink" title="上传后的检查"></a>上传后的检查</h2><p>至少检查以下内容：</p>
+<ol>
+<li>每个 URL 都能返回 HTTP 200。</li>
+<li><code>Content-Type</code> 是图片类型。</li>
+<li>远端像素宽高与本地源图一致。</li>
+<li>页面中实际加载的是 CDN URL，而不是旧缓存或本地路径。</li>
+<li>截图中没有令牌、账号、主机名等敏感信息。</li>
+</ol>
+<p>本次 32 张截图全部可以访问，像素尺寸 32&#x2F;32 保持一致。图床会重新编码大部分图片，因此文件哈希和本地源图不一定相同，不能只用字节哈希判断上传是否正确。</p>
+<h2 id="使用边界"><a href="#使用边界" class="headerlink" title="使用边界"></a>使用边界</h2><p>这是第三方公开接口，域名、限流和返回格式都可能调整。生产使用时应保留本地源文件、记录返回 URL，并让构建过程具备回退路径。不要把包含访问令牌、私人页面或未遮盖账号信息的截图上传到公共图床。</p>
+<hr>
+<p><em>实测日期：2026-09-09</em></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/07/26/20260726-macos-tauri-personal-team-signing/" data-toggle="tooltip" data-placement="top"
+                           title="用免费 Personal Team 给 Tauri macOS 应用签名，避免 TCC 权限反复失效">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E4%BF%A1%E6%81%AF"><span class="toc-text">接口信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-curl-%E4%B8%8A%E4%BC%A0%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87"><span class="toc-text">用 curl 上传一张图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0%E7%9A%84%E6%89%B9%E9%87%8F%E8%84%9A%E6%9C%AC"><span class="toc-text">可断点续传的批量脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%90%E6%B5%81%E8%A7%84%E5%88%99"><span class="toc-text">限流规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9"><span class="toc-text">接入静态站点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E5%90%8E%E7%9A%84%E6%A3%80%E6%9F%A5"><span class="toc-text">上传后的检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BE%B9%E7%95%8C"><span class="toc-text">使用边界</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+
+</body>
+
+</html>
