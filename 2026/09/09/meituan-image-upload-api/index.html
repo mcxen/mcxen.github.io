@@ -174,11 +174,11 @@
                         <a class="tag" href="/tags/#API"
                            title="API">API</a>
                         
-                        <a class="tag" href="/tags/#图片"
-                           title="图片">图片</a>
-                        
                         <a class="tag" href="/tags/#curl"
                            title="curl">curl</a>
+                        
+                        <a class="tag" href="/tags/#图片"
+                           title="图片">图片</a>
                         
                         <a class="tag" href="/tags/#图床"
                            title="图床">图床</a>
@@ -277,7 +277,11 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cdnUrl = screenshotCdn?.[pluginId]?.[filename];</span><br><span class="line"><span class="keyword">const</span> imageUrl = <span class="regexp">/^https:\/\/img\.meituan\.net\/content\//</span>.<span class="title function_">test</span>(cdnUrl || <span class="string">&quot;&quot;</span>)</span><br><span class="line">  ? cdnUrl</span><br><span class="line">  : localUrl;</span><br></pre></td></tr></table></figure>
 
 <p>这样页面能利用 CDN，插件包或离线环境仍有本地图片可用。新增图片也不会因为忘记上传而直接显示空白。</p>
-<h2 id="上传后的检查"><a href="#上传后的检查" class="headerlink" title="上传后的检查"></a>上传后的检查</h2><p>至少检查以下内容：</p>
+<h2 id="上传后的检查"><a href="#上传后的检查" class="headerlink" title="上传后的检查"></a>上传后的检查</h2><p>界面截图、图标和其他包含细小文字或锐利边缘的图片，建议先转为 PNG：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sips -s format png ./screenshot.jpg --out ./screenshot.png</span><br></pre></td></tr></table></figure>
+
+<p>实测 JPEG 上传后会再次有损压缩。Qxpicture 的一张界面截图从本地 118,800 字节变成 88,395 字节，文字边缘明显变软；同一源图转成 PNG 后再上传，CDN 文件解码后的像素与上传文件完全一致。</p>
+<p>至少检查以下内容：</p>
 <ol>
 <li>每个 URL 都能返回 HTTP 200。</li>
 <li><code>Content-Type</code> 是图片类型。</li>
@@ -285,7 +289,7 @@
 <li>页面中实际加载的是 CDN URL，而不是旧缓存或本地路径。</li>
 <li>截图中没有令牌、账号、主机名等敏感信息。</li>
 </ol>
-<p>本次 32 张截图全部可以访问，像素尺寸 32&#x2F;32 保持一致。图床会重新编码大部分图片，因此文件哈希和本地源图不一定相同，不能只用字节哈希判断上传是否正确。</p>
+<p>本次最终迁移了 21 个插件图标和 32 张插件截图。53 个 CDN 文件均返回 <code>image/png</code>，解码后 53&#x2F;53 与上传文件逐像素一致。PNG 文件的字节哈希仍可能因元数据或压缩方式不同而变化，因此应比较解码像素，而不是只比较文件哈希。</p>
 <h2 id="使用边界"><a href="#使用边界" class="headerlink" title="使用边界"></a>使用边界</h2><p>这是第三方公开接口，域名、限流和返回格式都可能调整。生产使用时应保留本地源文件、记录返回 URL，并让构建过程具备回退路径。不要把包含访问令牌、私人页面或未遮盖账号信息的截图上传到公共图床。</p>
 <hr>
 <p><em>实测日期：2026-09-09</em></p>
