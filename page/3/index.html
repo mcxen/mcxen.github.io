@@ -100,9 +100,7 @@
 					<li>
 						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
 					</li>
-					<li>
-						<a href="/qx/" title="Qx 使用手册">Qx</a>
-					</li>
+
                 </ul>
             </div>
         </div>
@@ -168,18 +166,18 @@
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/07/18/fxembed-wsrv-guide/">
+    <a href="/2026/06/14/amap-reverse-geocoding/">
         <h2 class="post-title">
-            FxEmbed 与 wsrv.nl：两个低调但实用的网络工具
+            给地图工具加上高德逆地理编码
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-18
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-14
         </p>
         
         <div class="post-content-preview">
             <p>
-                缘起最近整理了一些日常用到的网络工具，其中 FxEmbed 和 wsrv.nl 是两个虽然知名度不高、但实际场景中非常趁手的服务。写篇文章记录一下用法和案例。
-FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项目，提供 fxtwitter...
+                背景我日常用的地图工具（maps_client.py）基于 OpenStreetMap 生态 —— Nominatim 做 geocode&#x2F;reverse geocode，OSRM 算路径，Overpass 查 POI。这套组合在全球大部分地区够用，但在中国有个硬伤：
+Nominati..
             </p>
         </div>
     </a>
@@ -192,24 +190,21 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/07/16/zhoushan-trip/">
+    <a href="/2026/06/12/hermes-deepseek-auth-fix/">
         <h2 class="post-title">
-            舟山两日
+            Hermes Agent DeepSeek API 认证失败排查与修复
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-16
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-12
         </p>
         
         <div class="post-content-preview">
             <p>
-                六月末去了趟舟山，两天一夜，走了几个地方，记录一下。
+                
+背景最近在使用 Hermes Agent 时，所有请求突然全部失败，Gateway 日志反复报出：
+1Error code: 401 - Authentication Fails, Your api key: ****OcWp is invalid
 
-
-第一天到了已经快中午了，先在商业区找了家店吃点东西。宁海食府附近，选了个KFC——旅行的第一顿往往不是当地特色，而是你熟悉的连锁店，大概是舟山行的一个小注脚。
-
-商业区挺热闹，李府食府门口有黄色花茎艺术雕塑。
-
-下午去了长乔海洋国际旅游度..
+伴随 Transient agent fa..
             </p>
         </div>
     </a>
@@ -222,23 +217,18 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/07/10/pi-agent-extensions-guide/">
+    <a href="/2026/06/11/115-skill-journey/">
         <h2 class="post-title">
-            Pi Coding Agent 扩展生态指南 — 从安装到实战
+            逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-10
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-11
         </p>
         
         <div class="post-content-preview">
             <p>
-                上次分享了怎么给 pi coding agent 配自定义 provider，这次聊聊它的扩展生态——一个被低估但非常强大的特性。
-
-免责声明：本文涉及的 API Key 等敏感信息均已脱敏处理。实际使用请自行替换。
-
-
-
-为什么需要扩展Pi 的设计哲学是”最小核心 + 可插拔”——它本身只有最..
+                逆向 115 网盘 API、安装 MCP 服务器、修复 Skill — 折腾记录起因拿到一个 115-publish 的 Hermes skill 包，功能很全：扫码登录、文件浏览、搜索、转存、离线下载。但装上一跑，全部 404。
+1QR_FAIL:Request failed with sta..
             </p>
         </div>
     </a>
@@ -251,18 +241,18 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/07/08/pi-agent-custom-provider/">
+    <a href="/2026/06/10/pdf-ink-annotation-implementation/">
         <h2 class="post-title">
-            配置 pi agent 自定义模型提供商
+            PDF 手绘批注技术实现
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-08
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-10
         </p>
         
         <div class="post-content-preview">
             <p>
-                最近在折腾 pi 这个 AI 编码助手（@earendil-works/pi-coding-agent）——一个类似 Claude Code、Codex 的命令行工具，支持多种 AI 模型后端，可以用自然语言驱动写代码、执行命令。
-刚好手头有一些第三方 API 额度，所以记录一下怎么给它配一个自..
+                PDF 手绘批注技术实现概述PDFHelper 的批注功能基于苹果原生 PDFKit 框架实现，未引入任何第三方 PDF 批注库。整个批注子系统约 300 行核心代码，分为三层：视图编排层、PDF 桥接层、手势处理层。
+架构设计三层结构12345PDFAnnotationView (SwiftU..
             </p>
         </div>
     </a>
@@ -275,20 +265,21 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/07/08/ai-not-replacing-engineers/">
+    <a href="/2026/06/09/claude-api-types/">
         <h2 class="post-title">
-            AI 为什么没有替代软件工程师
+            Claude API 的三种来源及其区别
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-08
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
         </p>
         
         <div class="post-content-preview">
             <p>
-                最近读了一篇很好的文章 “Why AI hasn’t replaced software engineers, and won’t”（AI Snake Oil 通讯），结合自己的一些思考，整理一下核心观点。
+                很多人不知道，Claude 的官方 API 其实分为三种来源，价格、可用范围和质量各不相同。
+一、官方 API来源：直接在 console.anthropic.com 注册，绑定信用卡充值。
+价格：按 token 计费，明码标价。比如 Claude Sonnet 4：
 
-
-一层层剥开”AI 替代程序员”的叙事1. 那些”AI 导致裁员”的新闻，经不起推敲文..
+输入：$3 &#x2F;..
             </p>
         </div>
     </a>
@@ -301,23 +292,19 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/07/06/hermes-agent-helps/">
+    <a href="/2026/06/09/caddy-icp-lesson/">
         <h2 class="post-title">
-            Hermes Agent 帮我做了些什么
+            Caddy + Cloudflare + 阿里云 ICP 备案踩坑记录
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-06
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
         </p>
         
         <div class="post-content-preview">
             <p>
-                深度使用 Hermes Agent 已经快一年了，从最初的尝鲜到现在离不开。这篇文章更新一下它帮我搞定的事情，按类别整理。
-
-
-项目发布一条龙最频繁的工作就是给 Qx 项目做发布。从 v0.4.36 到现在的 v0.6.5，发布了几十个版本：
-
-自动检测未提交的变更
-更新版本号（package...
+                背景手里有一台阿里云 ECS（Ubuntu 22.04），IP SERVER_IP，上面跑着一个服务监听 12201 端口。
+想通过域名 f.example.com 用 HTTPS 访问这个服务，于是开始了折腾之旅。
+第一步：安装 CaddyCaddy 是现代 Web 服务器，自动 HTTPS ..
             </p>
         </div>
     </a>
@@ -330,23 +317,17 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/07/06/hermes-agent-workflow/">
+    <a href="/2026/06/09/hello-world/">
         <h2 class="post-title">
-            我的 AI 助手 -- Hermes Agent 日常使用记录
+            Hello World
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-07-06
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-09
         </p>
         
         <div class="post-content-preview">
             <p>
-                从去年开始用 Hermes Agent（Nous Research 出品的 CLI AI 智能体），到现在已经深度嵌入了日常开发和工作流。这篇整理一下它的主要使用场景，也给好奇的人参考。
-
-本文涉及的所有敏感信息（IP、密码、Token、服务器配置等）均已脱敏处理。
-
-
-
-什么是 Hermes ..
+                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
             </p>
         </div>
     </a>
@@ -359,18 +340,21 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/proxy/">
+    <a href="/2024/06/10/linux-java/">
         <h2 class="post-title">
-            终端代理配置指南
+            linux下的java部署
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-23
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2024-06-10
         </p>
         
         <div class="post-content-preview">
             <p>
-                背景在中国大陆，GitHub、Homebrew、npm 等开发工具的海外源经常无法直连。最干净的解决方案：本地跑一个代理客户端（Clash Verge &#x2F; ClashX Pro &#x2F; Surge 等），然后在终端里配置环境变量让所有 CLI 工具自动走代理。
-一句话配置编辑 ~..
+                linux 下的 java 部署jar 命令简介java 部署 jar 包可以使用 java -jar 命令，比如：
+1java -jar demo.jar
+
+执行上述命令后，JAR 包中的程序将在 Linux 系统中运行。
+注：在运行 JAR 包之前，确保你的 JAR 文件是可执行的，并且包含..
             </p>
         </div>
     </a>
@@ -383,20 +367,23 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/06/20/20260620-xiapu-peninsula/">
+    <a href="/2024/04/08/algo-note/">
         <h2 class="post-title">
-            霞浦半岛 — 沿着东海一号线，从高罗到闾峡
+            algo-note
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-20
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2024-04-08
         </p>
         
         <div class="post-content-preview">
             <p>
-                接续前一天的霞浦之旅，第二天的路线是沿着 东海一号线 深入霞浦半岛，把南线的精华海滩和海湾走了一遍。
+                一、数据结构模板数组问题41. 缺失的第一个正整数给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
+示例 1：
+12输入：nums = [1,2,0]输出：3
 
-
-11:51 · 尾炉坑从霞浦城区出来沿东海一号线南下，在长春镇的尾炉坑附近停下来拍了第一张。这条沿海公路是霞浦的景观大道，一边是山一边是海，弯道多、视野开阔。六月的福建已经热起来，但海风吹着..
+示例 2：
+12输入：nums = ..
             </p>
         </div>
     </a>
@@ -409,18 +396,23 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
 
 <div class="post-preview "
      style="background-image: url('')">
-    <a href="/2026/06/20/amap-poi-search/">
+    <a href="/2024/04/07/hexo-guide/">
         <h2 class="post-title">
-            给地图工具加上高德周边POI搜索
+            hexo 搭建指南
         </h2>
         <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2026-06-20
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2024-04-07
         </p>
         
         <div class="post-content-preview">
             <p>
-                问题几个月前我给 maps_client.py 接入了高德逆地理编码（reverse 命令），解决了中国地址只能到街道级的痛点。但 nearby 命令（周边POI搜索）一直用的 Overpass API（OpenStreetMap 数据），在中国小县城效果惨不忍睹。
-之前在霞浦旅行时搜附近餐厅，..
+                HEXO部署参考：https://zz2summer.github.io/github-hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/
+环境准备
+
+node.js
+git
+
+这两个应用windows用户直接搜索下载安装就可..
             </p>
         </div>
     </a>
@@ -440,10 +432,6 @@ FxEmbed：让 X&#x2F;Twitter 和 Bluesky 更好嵌入FxEmbed 是一个开源项�
         <a href="/page/2/">&larr; Newer Posts</a>
     </li>
     
-    
-    <li class="next">
-        <a href="/page/4/">Older Posts &rarr;</a>
-    </li>
     
 </ul>
 
