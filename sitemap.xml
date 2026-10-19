@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2026/06/12/hermes-deepseek-auth-fix/</loc>
+    <loc>https://b.xpai.uk/2026/07/18/fxembed-wsrv-guide/</loc>
     
     <lastmod>2026-10-19</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2026/07/18/fxembed-wsrv-guide/</loc>
+    <loc>https://b.xpai.uk/2026/06/12/hermes-deepseek-auth-fix/</loc>
     
     <lastmod>2026-10-19</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2026/06/20/20260620-xiapu-peninsula/</loc>
+    <loc>https://b.xpai.uk/2026/07/23/api-supplement/</loc>
     
     <lastmod>2026-10-19</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2026/07/23/api-supplement/</loc>
+    <loc>https://b.xpai.uk/2026/06/20/20260620-xiapu-peninsula/</loc>
     
     <lastmod>2026-10-19</lastmod>
     
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2024/04/08/algo-note/</loc>
+    <loc>https://b.xpai.uk/2026/07/08/ai-not-replacing-engineers/</loc>
     
     <lastmod>2026-09-11</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2026/07/08/ai-not-replacing-engineers/</loc>
+    <loc>https://b.xpai.uk/2024/04/08/algo-note/</loc>
     
     <lastmod>2026-09-11</lastmod>
     
@@ -290,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2026/07/06/hermes-agent-helps/</loc>
+    <loc>https://b.xpai.uk/2026/07/06/hermes-agent-workflow/</loc>
     
     <lastmod>2026-07-20</lastmod>
     
@@ -299,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/2026/07/06/hermes-agent-workflow/</loc>
+    <loc>https://b.xpai.uk/2026/07/06/hermes-agent-helps/</loc>
     
     <lastmod>2026-07-20</lastmod>
     
@@ -363,13 +363,6 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/tags/%E7%A6%8F%E5%BB%BA/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://b.xpai.uk/tags/API/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -399,55 +392,6 @@
   
   <url>
     <loc>https://b.xpai.uk/tags/%E9%80%86%E5%90%91/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Amap/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/POI/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Maps/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Tooling/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Geocoding/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -510,6 +454,48 @@
   </url>
   
   <url>
+    <loc>https://b.xpai.uk/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Amap/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Geocoding/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Maps/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Tooling/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://b.xpai.uk/tags/%E5%A3%81%E7%BA%B8/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -552,7 +538,14 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/tags/Claude/</loc>
+    <loc>https://b.xpai.uk/tags/POI/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E7%A6%8F%E5%BB%BA/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -601,6 +594,90 @@
   </url>
   
   <url>
+    <loc>https://b.xpai.uk/tags/%E5%A4%A7%E7%96%86/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E8%88%AA%E6%8B%8D/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Lito/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Claude/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E5%9C%B0%E5%9B%BE/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E4%B8%9C%E4%BA%9A/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E5%9C%B0%E7%90%86/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/RSS/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E5%9B%BE%E7%89%87/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E4%BB%A3%E7%90%86/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://b.xpai.uk/tags/Gogs/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -636,112 +713,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/tags/%E5%9C%B0%E5%9B%BE/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E4%B8%9C%E4%BA%9A/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E5%9C%B0%E7%90%86/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E5%A4%A7%E7%96%86/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E8%88%AA%E6%8B%8D/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Lito/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/DeepSeek/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Troubleshooting/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/DevOps/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/RSS/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E5%9B%BE%E7%89%87/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E4%BB%A3%E7%90%86/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://b.xpai.uk/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Hexo/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -769,6 +741,34 @@
   </url>
   
   <url>
+    <loc>https://b.xpai.uk/tags/DeepSeek/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Troubleshooting/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/DevOps/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Hexo/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://b.xpai.uk/tags/Java/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -784,6 +784,20 @@
   
   <url>
     <loc>https://b.xpai.uk/tags/%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E5%9B%BE%E5%BA%8A/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/Python/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -818,20 +832,6 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/tags/pi/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://b.xpai.uk/tags/pixeldrain/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -853,6 +853,20 @@
   </url>
   
   <url>
+    <loc>https://b.xpai.uk/tags/pi/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://b.xpai.uk/tags/%E8%B4%AD%E7%89%A9/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -868,20 +882,6 @@
   
   <url>
     <loc>https://b.xpai.uk/tags/%E6%97%A5%E7%94%A8%E5%93%81/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E5%9B%BE%E5%BA%8A/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/Python/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -958,20 +958,6 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/tags/%E8%88%9F%E5%B1%B1/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://b.xpai.uk/tags/%E6%B5%99%E6%B1%9F/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://b.xpai.uk/tags/%E8%A5%BF%E6%B9%96/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -987,6 +973,20 @@
   
   <url>
     <loc>https://b.xpai.uk/tags/%E6%B8%B8%E8%AE%B0/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E8%88%9F%E5%B1%B1/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://b.xpai.uk/tags/%E6%B5%99%E6%B1%9F/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1023,7 +1023,7 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/categories/DevOps/</loc>
+    <loc>https://b.xpai.uk/categories/%E6%95%B0%E7%A0%81/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1037,14 +1037,14 @@
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/categories/%E6%95%B0%E7%A0%81/</loc>
+    <loc>https://b.xpai.uk/categories/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://b.xpai.uk/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://b.xpai.uk/categories/DevOps/</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
