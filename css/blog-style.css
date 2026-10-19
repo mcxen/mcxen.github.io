@@ -1537,6 +1537,24 @@ img::-moz-selection {
         background: rgba(0, 0, 0, 0.28);
     }
 
+    /* Long URLs in code fences overflowed to 732px on a 390px screen.
+       Force wrapping so readers can see (and copy) the whole string. */
+    article .highlight,
+    article figure.highlight,
+    article pre {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    article figure.highlight pre,
+    article .highlight pre,
+    article pre code {
+        max-width: 100%;
+        white-space: pre-wrap;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+    }
+
     /* The floating title bar duplicates the h1 over the photo — hide it on
        phones so the header only shows one readable title. */
     .post-title-haojen {
