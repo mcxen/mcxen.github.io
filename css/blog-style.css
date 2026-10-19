@@ -1278,6 +1278,8 @@ img::-moz-selection {
     min-width: 0;
     overflow: hidden;
     background: var(--surface-muted);
+    background-size: cover;
+    background-position: center;
 }
 
 .home-page .post-card-cover img {
