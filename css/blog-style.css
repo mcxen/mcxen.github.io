@@ -1484,6 +1484,21 @@ img::-moz-selection {
     .home-page > .row {
         margin-right: 0;
         margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* .home-page .post-container sets padding-right:24px for desktop;
+       on mobile the column is already 100% wide, so reset both sides. */
+    .home-page .post-container,
+    .container.custom-haojen-container .post-container {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: 0;
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+        float: none;
     }
 
     .post-container,
