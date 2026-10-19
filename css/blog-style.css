@@ -1538,17 +1538,35 @@ img::-moz-selection {
     }
 
     /* Long URLs in code fences overflowed to 732px on a 390px screen.
-       Force wrapping so readers can see (and copy) the whole string. */
-    article .highlight,
-    article figure.highlight,
-    article pre {
+       Hexo wraps code as figure.highlight > table > td.code > pre, and the
+       table sizes to content, so styling pre alone does nothing. Pin the
+       table to the container width and let the code cell wrap. */
+    article figure.highlight {
         max-width: 100%;
+        width: 100%;
         overflow-x: auto;
     }
 
+    article figure.highlight table {
+        width: 100%;
+        max-width: 100%;
+        table-layout: fixed;
+    }
+
+    article figure.highlight td.gutter {
+        width: 2.2em;
+        max-width: 2.2em;
+    }
+
+    article figure.highlight td.code {
+        width: auto;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    article figure.highlight td.code pre,
     article figure.highlight pre,
-    article .highlight pre,
-    article pre code {
+    article pre {
         max-width: 100%;
         white-space: pre-wrap;
         word-break: break-all;
