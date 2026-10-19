@@ -1468,11 +1468,49 @@ img::-moz-selection {
     body {
         font-size: 15px;
         line-height: 1.75;
+        overflow-x: hidden;
     }
 
+    /* Bootstrap grid gutters push .row past the viewport on phones;
+       kill the negative margins so nothing bleeds off the right edge. */
+    .container.custom-haojen-container,
     .home-page {
+        max-width: 100%;
         padding-right: 14px;
         padding-left: 14px;
+    }
+
+    .container.custom-haojen-container > .row,
+    .home-page > .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .post-container,
+    .col-lg-8.col-lg-offset-1.col-md-8.col-md-offset-1.col-sm-12.col-xs-12 {
+        padding-right: 0;
+        padding-left: 0;
+        width: 100%;
+        float: none;
+    }
+
+    /* Mobile header carries col-* classes but sits outside a .row,
+       so its offsets shift it right and clip the text. Neutralize them. */
+    .mobile-site-header {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 0;
+        padding-left: 0;
+        float: none;
+        right: auto;
+        left: auto;
+    }
+
+    .mobile-site-header > .row {
+        margin-right: 0;
+        margin-left: 0;
     }
 
     .post-card-list {
@@ -1483,26 +1521,56 @@ img::-moz-selection {
         display: block;
         min-height: 0;
         border-radius: 14px;
+        overflow: hidden;
     }
 
     .home-page .post-card-cover {
+        display: block;
+        flex: none;
         width: 100%;
+        min-width: 0;
         aspect-ratio: 16 / 9;
     }
 
     .home-page .post-card-cover img {
+        width: 100%;
+        height: 100%;
         min-height: 0;
         aspect-ratio: 16 / 9;
+        object-fit: cover;
     }
 
     .home-page .post-card-body {
         padding: 19px 20px 18px;
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
     }
 
     .home-page .post-card .post-title,
     .home-page .post-card:first-of-type .post-title {
         font-size: 21px;
         line-height: 1.4;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .home-page .post-card-title-link {
+        display: block;
+    }
+
+    .home-page .post-content-preview,
+    .home-page .post-content-preview p {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    .home-page .post-meta {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        white-space: normal;
     }
 
     .home-page .post-content-preview p {
