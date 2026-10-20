@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Jasna + LTX：马赛克修复的技术原理与实测｜MCXEN
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/10/20/jasna-ltx-technical/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+					<li>
+						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
+					</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://img.meituan.net/content/64cd982296a1d9e3bd6d714bc7c51add88175.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://img.meituan.net/content/64cd982296a1d9e3bd6d714bc7c51add88175.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Jasna + LTX：马赛克修复的技术原理与实测</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-10-20
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Jasna"
+                           title="Jasna">Jasna</a>
+                        
+                        <a class="tag" href="/tags/#LTX"
+                           title="LTX">LTX</a>
+                        
+                        <a class="tag" href="/tags/#视频修复"
+                           title="视频修复">视频修复</a>
+                        
+                        <a class="tag" href="/tags/#扩散模型"
+                           title="扩散模型">扩散模型</a>
+                        
+                        <a class="tag" href="/tags/#GPU"
+                           title="GPU">GPU</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Jasna + LTX：马赛克修复的技术原理与实测
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>Jasna 是一个开源的马赛克修复工具，跑在本地 GPU 上。它有两个修复模型：免费的 BasicVSR++，和付费的 LTX。这篇讲清楚它到底怎么工作、LTX 为什么慢但效果更好、以及跑一轮要付出什么代价。</p>
+<span id="more"></span>
+
+<h2 id="Jasna-是什么"><a href="#Jasna-是什么" class="headerlink" title="Jasna 是什么"></a>Jasna 是什么</h2><p>按官方说明，Jasna 做的事情很窄：<strong>找出视频里的马赛克区域，只修复那一块，画面其他部分不动</strong>。</p>
+<p>它不修改原始视频的构图、不动音频、不重编码无关区域。这一点决定了它的整个技术路线——不是”重生成整帧”，而是”定位 + 局部修补 + 融合”。</p>
+<p>项目地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Kruk2/jasna</span><br></pre></td></tr></table></figure>
+
+<p>公开应用代码是 AGPL-3.0，模型和捆绑依赖各自有独立许可条款。</p>
+<h2 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h2><p>默认（BasicVSR++）路径是七步，几乎全在 GPU 上跑：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 解码   GPU 解码（NVIDIA 用 NVDEC，AMD 用 AMF）</span><br><span class="line">2. 检测   逐帧找马赛克，默认模型 rfdetr-v6</span><br><span class="line">3. 跟踪   跟踪每个马赛克，把帧序列切成片段</span><br><span class="line">4. 修复   每段修复成 256x256</span><br><span class="line">5. 二次修复（可选）UNet 4x / RTX Super Res / Topaz TVAI</span><br><span class="line">6. 融合   只把修复块贴回原帧</span><br><span class="line">7. 编码   GPU 编码（NVENC / AMF），音频直接复制</span><br></pre></td></tr></table></figure>
+
+<p>几个关键设计：</p>
+<p><strong>片段（segment）是有上限的。</strong> 默认最多 90 帧一段，可以调。这样做的原因是显存——一次送入网络的帧数必须可控。</p>
+<p><strong>片段在镜头切换处强制断开。</strong> 这是个很容易被忽略但很聪明的细节：如果一段跨了两个不同镜头，修复结果会把两个场景的信息混在一起，产生诡异的画面。在切镜处断开就避免了这个问题。</p>
+<p><strong>片段之间有重叠。</strong> 相邻段共享少量帧，避免拼接处出现可见跳变。这个思路和音频拼接的 crossfade 是一回事。</p>
+<h2 id="LTX-为什么不一样"><a href="#LTX-为什么不一样" class="headerlink" title="LTX 为什么不一样"></a>LTX 为什么不一样</h2><p>LTX 走的不是同一条路。它把视频处理<strong>四遍</strong>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查找马赛克 → 准备 → 用扩散模型修复 → 保存</span><br></pre></td></tr></table></figure>
+
+<p>区别在第三步。「用扩散模型修复」意味着它不是靠一个超分网络把糊掉的块放大，而是把马赛克区域当成一个<strong>待填补的缺失部分</strong>，用扩散模型根据周围上下文重新生成细节。</p>
+<p>两种模型的本质区别：</p>
+<p><strong>BasicVSR++</strong> 是视频超分&#x2F;复原网络——输入退化的画面，输出恢复版本，本质是回归。</p>
+<p><strong>LTX</strong> 是扩散模型条件生成——把马赛克区域当成待填补的缺失部分，根据周围上下文重新生成细节，本质是生成。</p>
+<p>这个分野决定了所有后续差异：</p>
+<p><strong>“可能编”这一点要说清楚。</strong> 扩散模型补出来的细节是根据上下文推测的，不是从原始数据里恢复的。所以 LTX 出来的画面在观感上更好，但它补的东西<strong>不等于真实原貌</strong>。这一点在技术上是本质限制，不是调参能解决的。</p>
+<h2 id="检测环节"><a href="#检测环节" class="headerlink" title="检测环节"></a>检测环节</h2><p>修复的前提是先在每一帧里准确定位马赛克。Jasna 用 RF-DETR 系列：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rfdetr-v6         默认，快，适合大多数视频</span><br><span class="line">rfdetr-v6-large   更准但更慢，4K 建议用，需单独下载</span><br><span class="line">rfdetr-vr-v1      专为 VR180 调优</span><br><span class="line">zelefans-vr-yolo-v2  另一个 VR180 选项</span><br><span class="line">lada-yolo-v4      2D 动画可能更好</span><br></pre></td></tr></table></figure>
+
+<p>默认检测阈值 0.35（large 和 vr 版本是 0.40），可以用 <code>--detection-score-threshold</code> 调整。阈值调低会多检出（也可能误检），调高则可能漏检——漏检的地方后面根本不会被修复，所以这个参数直接影响最终结果。</p>
+<h2 id="硬件门槛"><a href="#硬件门槛" class="headerlink" title="硬件门槛"></a>硬件门槛</h2><p>这部分是实打实的成本，先说清楚：</p>
+<p><strong>LTX 要求</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GPU      NVIDIA RTX 30/40/50 系列（20 系列测过 2080 Ti）</span><br><span class="line">显存     至少 8 GB</span><br><span class="line">内存     至少 16 GB（LTX 约占 10 GB）</span><br><span class="line">磁盘     模型不随软件附带，首次运行要下载</span><br></pre></td></tr></table></figure>
+
+<p>模型下载体积：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准      约 15 GB</span><br><span class="line">快速模式   约 9 GB（仅 RTX 50 系列）</span><br><span class="line">最佳      标准之外再加约 13 GB</span><br></pre></td></tr></table></figure>
+
+<p><strong>实测速度</strong>（1 分钟 1080p、马赛克全程在画面中的视频，标准模型）：</p>
+<table>
+<thead>
+<tr>
+<th>GPU</th>
+<th>标准</th>
+<th>快速模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RTX 5090</td>
+<td>约 5 分钟</td>
+<td>约 3 分钟</td>
+</tr>
+<tr>
+<td>RTX 4090</td>
+<td>约 7 分钟</td>
+<td>不可用</td>
+</tr>
+<tr>
+<td>RTX 5080</td>
+<td>约 10 分钟</td>
+<td>约 7 分钟</td>
+</tr>
+<tr>
+<td>RTX 3090</td>
+<td>约 15 分钟</td>
+<td>不可用</td>
+</tr>
+<tr>
+<td>RTX 2080 Ti</td>
+<td>约 45 分钟</td>
+<td>不可用</td>
+</tr>
+</tbody></table>
+<p>「最佳」模型约慢 1.5 倍。「大马赛克更清晰」选项（<code>--ltx-large-canvas</code>）对这种区域约慢 3 倍，还要额外 12 GB 空闲显存。</p>
+<p>对比 BasicVSR++ 在同一台 RTX 5090 上跑 3 分 22 秒的整段视频：720p 用 32 秒，1080p 用 34 秒，2160p 用 63 秒。<strong>LTX 和 BasicVSR++ 之间差了一个数量级。</strong> 所以官方建议也很直白：LTX 用在”你最在意的那几段”上，不要整片跑。</p>
+<h2 id="一个实用策略：混合修复"><a href="#一个实用策略：混合修复" class="headerlink" title="一个实用策略：混合修复"></a>一个实用策略：混合修复</h2><p>既然 LTX 慢且贵，最经济的用法是<strong>只对重要区域用 LTX</strong>。</p>
+<p>Jasna 提供了这个能力：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只对大马赛克用 LTX，其余用 BasicVSR++</span></span><br><span class="line">jasna --input in.mp4 --output out.mkv --ltx-auto-split</span><br></pre></td></tr></table></figure>
+
+<p>大马赛克面积大、信息缺失多，用 LTX 的收益最明显；小面积区域用 BasicVSR++ 质量已经够，没必要付那个时间成本。</p>
+<p>还有<strong>区间编辑器</strong>：可以只在选中的时间段应用 LTX，其余段用默认模型。配合「修复预览」可以先看效果再决定，不用整片跑完才发现不合适。</p>
+<h2 id="显存不够怎么办"><a href="#显存不够怎么办" class="headerlink" title="显存不够怎么办"></a>显存不够怎么办</h2><p>几个实际可用的手段：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 降低最大片段大小（默认 90，可以降到 60 或更低）</span><br><span class="line">2. 用 FP8 / int8 量化版的权重</span><br><span class="line">3. 快速模式（仅 RTX 50 系）</span><br><span class="line">4. 把 --ltx-large-canvas 关掉</span><br></pre></td></tr></table></figure>
+
+<p>显存小的卡会自动把部分模型放到系统内存里，代价是速度下降。</p>
+<h2 id="其它技术约束"><a href="#其它技术约束" class="headerlink" title="其它技术约束"></a>其它技术约束</h2><p>都是官方文档里明确写的，不是猜测：</p>
+<ul>
+<li><strong>LTX 不支持 VR180 左右并排视频</strong></li>
+<li><strong>LTX 不支持流媒体</strong></li>
+<li>用 LTX 时，二次修复和降噪会被关闭</li>
+<li>LTX 不支持 AMD（二次修复也仅限 NVIDIA）</li>
+<li>路径里不能有中文、日文、非英文字符——这是个很常见的坑</li>
+</ul>
+<h2 id="授权与分发"><a href="#授权与分发" class="headerlink" title="授权与分发"></a>授权与分发</h2><p>Jasna 本身免费，AGPL-3.0。但模型分两档：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BasicVSR++   免费</span><br><span class="line">UNet 4x      累计支持 15 美元以上</span><br><span class="line">SD 1.5       累计支持 15 美元以上（静态图片）</span><br><span class="line">LTX          25 美元，含 UNet 4x 和 SD 1.5</span><br></pre></td></tr></table></figure>
+
+<p>许可证码一个可以激活 3 台电脑或云工作区，激活后可离线使用。官方明确警告：<strong>其它渠道卖的许可证码、修改版文件都是假的</strong>，那些密钥不能用，文件里可能夹带恶意代码。</p>
+<p>从技术角度看这个设计的合理之处：模型训练需要租 GPU，这部分成本确实由作者承担。而软件本体开源，意味着你可以审计它到底对你的文件做了什么——对一个处理私人视频的工具来说，这点比什么都重要。</p>
+<h2 id="一点判断"><a href="#一点判断" class="headerlink" title="一点判断"></a>一点判断</h2><p>Jasna 的技术路线本身是干净的工程：GPU 全链路、分段处理、切镜断开、重叠融合，每一步都有明确的工程理由。</p>
+<p>但有一个问题值得想清楚：<strong>LTX 补出来的细节是生成出来的，不是恢复出来的。</strong></p>
+<p>这意味着它的输出在技术上更接近”合理推测”而不是”还原真相”。如果你用它来处理的内容涉及证据、鉴定或任何需要保真的场景，这个区别是致命的。</p>
+<p>另外，这个工具的实际用途和它的技术门槛是错配的——它需要一个 8GB 以上显存的 NVIDIA 卡、几十 GB 磁盘、以及几分钟处理一分钟视频的耐心。多数人真正需要的可能只是 BasicVSR++。</p>
+<h2 id="上手"><a href="#上手" class="headerlink" title="上手"></a>上手</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本用法</span></span><br><span class="line">jasna --input input.mp4 --output output.mkv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定 LTX</span></span><br><span class="line">jasna --input input.mp4 --output output.mkv --restoration-model-name ltx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 试用模式（不需要许可证，只测速度，不修复）</span></span><br><span class="line">jasna --ltx-trial</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只对大马赛克用 LTX</span></span><br><span class="line">jasna --input in.mp4 --output out.mkv --ltx-auto-split</span><br></pre></td></tr></table></figure>
+
+<p><code>jasna --help</code> 有全部选项。</p>
+<p><strong>第一次运行会非常慢</strong>——要为你的 GPU 做准备，15 到 60 分钟，只发生一次。这期间别开别的程序。之后把 <code>model_weights</code> 文件夹拷到新版本里，就不用重来一遍。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Jasna 项目       https://github.com/Kruk2/jasna</span><br><span class="line">模型说明         https://github.com/Kruk2/jasna/blob/main/docs/zh/models.md</span><br><span class="line">LTX 权重         https://huggingface.co/Kruk2/ltx-restore</span><br></pre></td></tr></table></figure>
+
+<p>以上技术细节均来自项目官方文档。数值（速度、显存、体积）为官方给出的参考值，实际结果受 GPU、驱动、视频内容影响。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/10/19/pixeldrain-userscript/" data-toggle="tooltip" data-placement="top"
+                           title="pixeldrain 网盘整理术：油猴脚本 + 换节点绕限速">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Jasna-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Jasna 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-text">处理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LTX-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%B8%80%E6%A0%B7"><span class="toc-text">LTX 为什么不一样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E7%8E%AF%E8%8A%82"><span class="toc-text">检测环节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E9%97%A8%E6%A7%9B"><span class="toc-text">硬件门槛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%94%A8%E7%AD%96%E7%95%A5%EF%BC%9A%E6%B7%B7%E5%90%88%E4%BF%AE%E5%A4%8D"><span class="toc-text">一个实用策略：混合修复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E5%AD%98%E4%B8%8D%E5%A4%9F%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-text">显存不够怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E6%8A%80%E6%9C%AF%E7%BA%A6%E6%9D%9F"><span class="toc-text">其它技术约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%88%E6%9D%83%E4%B8%8E%E5%88%86%E5%8F%91"><span class="toc-text">授权与分发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%82%B9%E5%88%A4%E6%96%AD"><span class="toc-text">一点判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E6%89%8B"><span class="toc-text">上手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+
+</body>
+
+</html>
