@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        艳本资料书架：一个 Go 写的数据归档工具，和它背后的下载思路｜MCXEN
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/10/21/ehonshelf-reader-and-crawler/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+					<li>
+						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
+					</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://img.meituan.net/csc/ef940371f738fca3ed06583c546cb9a01193814.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://img.meituan.net/csc/ef940371f738fca3ed06583c546cb9a01193814.png')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>艳本资料书架：一个 Go 写的数据归档工具，和它背后的下载思路</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-10-21
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#逆向"
+                           title="逆向">逆向</a>
+                        
+                        <a class="tag" href="/tags/#Go"
+                           title="Go">Go</a>
+                        
+                        <a class="tag" href="/tags/#爬虫"
+                           title="爬虫">爬虫</a>
+                        
+                        <a class="tag" href="/tags/#归档"
+                           title="归档">归档</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            艳本资料书架：一个 Go 写的数据归档工具，和它背后的下载思路
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>日本国立国会文化研究机构（日文研）有一个公开的「艶本資料データベース」，收录了 470 部江户至明治时期的艳本资料，页面扫描件全部公开。网站是九十年代风格的 CGI 加 frameset，逐页点击可以看，整套保存下来要花不少功夫。</p>
+<p>这个工具叫 EhonShelf，用 Go 加 MyGo 写的原生桌面应用，把整个数据库做成一个可以离线翻阅的书架。</p>
+<span id="more"></span>
+
+<h2 id="一、阅读器"><a href="#一、阅读器" class="headerlink" title="一、阅读器"></a>一、阅读器</h2><p><img src="https://img.meituan.net/csc/ef940371f738fca3ed06583c546cb9a01193814.png" alt="EhonShelf 书架"></p>
+<p>主界面是封面网格：书名、绘师、年代、页数。下载完成的作品显示完整封面，未完成的卡片半透明。</p>
+<p>阅读器支持单页／双页切换、左右阅读方向切换、页码跳转、缩放（最大 6 倍）、适应窗口。键盘方向键翻页，<code>Cmd+0</code> 回到适应窗口。</p>
+<p><img src="https://img.meituan.net/csc/b9d328d0f37bb934cb06842b6a746ce3456924.png" alt="设置页"></p>
+<p>设置页有三项配置：数据文件夹、代理、请求间隔。后两项的取值来自下面的调试过程。</p>
+<h2 id="二、下载思路"><a href="#二、下载思路" class="headerlink" title="二、下载思路"></a>二、下载思路</h2><p>下载器前后改了五版，每一版解决一个具体问题。</p>
+<h3 id="第一版：全部请求返回-403"><a href="#第一版：全部请求返回-403" class="headerlink" title="第一版：全部请求返回 403"></a>第一版：全部请求返回 403</h3><p>程序发出去的请求全部是 403。</p>
+<p>按顺序排查：</p>
+<table>
+<thead>
+<tr>
+<th>猜测</th>
+<th>验证方式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UA 被拦</td>
+<td>换成 Chrome UA</td>
+<td>仍 403</td>
+</tr>
+<tr>
+<td>Cookie 缺失</td>
+<td>从浏览器导出完整 cookie</td>
+<td>仍 403</td>
+</tr>
+<tr>
+<td>TLS 指纹</td>
+<td>用 curl_cffi 伪装 Chrome 的 JA3</td>
+<td>仍 403</td>
+</tr>
+<tr>
+<td>频率限制</td>
+<td>间隔从 1 秒放到 10 秒</td>
+<td>仍 403</td>
+</tr>
+</tbody></table>
+<p>同一时间浏览器打开同一个页面正常。</p>
+<p>最后测试网络出口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -x http://127.0.0.1:7897 https://lapis.nichibun.ac.jp/enp/UserMenu</span><br><span class="line"><span class="comment"># 200，16838 字节</span></span><br></pre></td></tr></table></figure>
+
+<p>结果：该站点按地区放行 IP，直连的国内出口一律返回 403。</p>
+<p>改动是给 HTTP 客户端加 <code>Transport.Proxy</code>，同时把 403 的错误提示改成「需要代理」。</p>
+<h3 id="第二版：图片清晰度不一致"><a href="#第二版：图片清晰度不一致" class="headerlink" title="第二版：图片清晰度不一致"></a>第二版：图片清晰度不一致</h3><p>能连上之后，部分作品是 3000 像素宽的扫描件，部分作品只有 133×90 的缩略图。</p>
+<p>抓一份 PDF 查看内部结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">430_A_15.pdf  899992 字节  PDF-1.6  /JPXDecode</span><br><span class="line">081_A_01.pdf  239709 字节  PDF-1.4  /DCTDecode</span><br></pre></td></tr></table></figure>
+
+<p>站点使用两种编码：普通 JPEG（<code>/DCTDecode</code>）和 JPEG 2000（<code>/JPXDecode</code>）。提取逻辑只处理前者，遇到后者返回空，程序退回缩略图。</p>
+<p>JPEG 2000 的 Go 解码器选了纯 Go 的 <code>mrjoshuak/go-jpeg2000</code>，解开后是 3300×2600。</p>
+<p>同时发现另一种降级情况：站点在高负载时返回 1182 字节的 HTML 错误页，程序把它当作 PDF 解析，同样退回缩略图。现在先检查文件头是否为 <code>%PDF</code>，不符合就重试。</p>
+<h3 id="第三版：等待时间过长"><a href="#第三版：等待时间过长" class="headerlink" title="第三版：等待时间过长"></a>第三版：等待时间过长</h3><p>测得 1 秒／次的请求连续 8 到 10 次会触发封禁，于是设置封禁后固定等待 10 分钟。</p>
+<p>两小时下载 6 部，日志里 13 次封禁。同期手动请求被拒的页面，返回 200 的时间远早于 10 分钟。</p>
+<p>改为边等待边探测，每 30 秒请求一次：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">19:04:07 HTTP 403 /enp/image/1/264_B_07.pdf</span><br><span class="line">19:04:07 被封，每 30s 探测一次，最多等 10m；第 1/12 次</span><br><span class="line">19:04:37 封禁已解除，继续</span><br></pre></td></tr></table></figure>
+
+<p>同样一次封禁，耗时从 10 分钟降到 30 秒。</p>
+<h3 id="第四版：探测请求本身失败"><a href="#第四版：探测请求本身失败" class="headerlink" title="第四版：探测请求本身失败"></a>第四版：探测请求本身失败</h3><p>改完之后仍然卡住。程序探的是被拒的那一页，手动用 curl 请求返回 200，程序自己的探测一直返回 403。</p>
+<p>原因是探测复用了爬虫的 HTTP 客户端，它的 cookie jar 和连接池保留了被拒绝时的状态。</p>
+<p>改动是探测使用新建的临时客户端，探测成功后重置爬虫的 jar。</p>
+<h3 id="第五版：无界面全量下载"><a href="#第五版：无界面全量下载" class="headerlink" title="第五版：无界面全量下载"></a>第五版：无界面全量下载</h3><p>全量下载使用 <code>-fetchall</code> 模式，直接写入 NAS：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ehonshelf -fetchall -out /Volumes/TO3TNS/EhonShelf -proxy http://127.0.0.1:7897</span><br></pre></td></tr></table></figure>
+
+<p>设计要点：</p>
+<ul>
+<li><strong>断点续传</strong>：每部作品一个目录，<code>meta.json</code> 记录页数，已存在的页跳过。</li>
+<li><strong>逐页落盘</strong>：每完成一页写入一次 <code>meta.json</code>，长篇作品中途中断不用从头开始。</li>
+<li><strong>失败集中重试</strong>：全部跑完后重新扫描失败的 id，这类失败多为限流，重试即可通过。</li>
+<li><strong>日志完整</strong>：每行带时间戳，封禁、探测、恢复都有记录。</li>
+</ul>
+<h2 id="三、调试过程中的几个判断"><a href="#三、调试过程中的几个判断" class="headerlink" title="三、调试过程中的几个判断"></a>三、调试过程中的几个判断</h2><p>这几次排查的共同点是：第一眼看到的症状和实际原因不一致。</p>
+<p>403 的初判是 UA 或 cookie，实际是 IP 归属；图片模糊的初判是站点分辨率有限，实际是编码格式未识别；下载慢的初判是限流严格，实际是等待策略过长。</p>
+<p>另外有一次改完代码没有重新编译，程序运行的仍是两小时前的二进制，排查方向因此偏了一段时间。现在每次修改后会先核对二进制文件的时间戳。</p>
+<hr>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/mcxen/ehon-shelf">github.com&#x2F;mcxen&#x2F;ehon-shelf</a></p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2026/10/22/black-wednesday-2026-10-21/" data-toggle="tooltip" data-placement="top"
+                           title="黑色星期三：2026 年 10 月 21 日，五起安全事件同一天爆发">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/10/20/chinchilla-memes/" data-toggle="tooltip" data-placement="top"
+                           title="我的表情包：一只打工龙猫">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%98%85%E8%AF%BB%E5%99%A8"><span class="toc-text">一、阅读器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8B%E8%BD%BD%E6%80%9D%E8%B7%AF"><span class="toc-text">二、下载思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%89%88%EF%BC%9A%E5%85%A8%E9%83%A8%E8%AF%B7%E6%B1%82%E8%BF%94%E5%9B%9E-403"><span class="toc-text">第一版：全部请求返回 403</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%9A%E5%9B%BE%E7%89%87%E6%B8%85%E6%99%B0%E5%BA%A6%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="toc-text">第二版：图片清晰度不一致</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%9A%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF"><span class="toc-text">第三版：等待时间过长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%89%88%EF%BC%9A%E6%8E%A2%E6%B5%8B%E8%AF%B7%E6%B1%82%E6%9C%AC%E8%BA%AB%E5%A4%B1%E8%B4%A5"><span class="toc-text">第四版：探测请求本身失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%9A%E6%97%A0%E7%95%8C%E9%9D%A2%E5%85%A8%E9%87%8F%E4%B8%8B%E8%BD%BD"><span class="toc-text">第五版：无界面全量下载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%B0%83%E8%AF%95%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E5%88%A4%E6%96%AD"><span class="toc-text">三、调试过程中的几个判断</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+
+</body>
+
+</html>

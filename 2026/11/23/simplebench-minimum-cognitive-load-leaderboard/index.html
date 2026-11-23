@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+    <meta name="msapplication-navbutton-color" content="#111827">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="MCXEN" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        SimpleBench：心智负担最小，模型仍然做错的排行榜｜MCXEN
+        
+    </title>
+
+    <link rel="canonical" href="https://b.xpai.uk/2026/11/23/simplebench-minimum-cognitive-load-leaderboard/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+    <!-- Live Photo Viewer -->
+    <script src="https://fastly.jsdelivr.net/npm/live-photo@latest"></script>
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    MCXEN
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+					<li>
+						<a href="/rss.xml" target="_blank" title="RSS 订阅">RSS</a>
+					</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://img.meituan.net/content/f49c58e20a7764d2f272a78e5ac1e62d47940.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://img.meituan.net/content/f49c58e20a7764d2f272a78e5ac1e62d47940.png')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>SimpleBench：心智负担最小，模型仍然做错的排行榜</h1>
+                    
+                    <span class="meta">
+                         作者 mcx
+                        <span>
+                          日期 2026-11-23
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#基准测试"
+                           title="基准测试">基准测试</a>
+                        
+                        <a class="tag" href="/tags/#大模型"
+                           title="大模型">大模型</a>
+                        
+                        <a class="tag" href="/tags/#评测"
+                           title="评测">评测</a>
+                        
+                        <a class="tag" href="/tags/#LLM"
+                           title="LLM">LLM</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            SimpleBench：心智负担最小，模型仍然做错的排行榜
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>大多数文本基准测试里，模型已经压过非专业人类，越来越多的时候连专家也被压过去。SimpleBench 反过来：题目是高中知识就能答的，人类做起来几乎不用动脑，模型至今没追平。</p>
+<p>这就是「心智负担最小模型排行榜」的含义——它看的是模型在<strong>不需要动脑的题</strong>上还剩多少漏洞。</p>
+<span id="more"></span>
+
+<p><img src="https://img.meituan.net/content/f49c58e20a7764d2f272a78e5ac1e62d47940.png"></p>
+<h2 id="这是什么基准"><a href="#这是什么基准" class="headerlink" title="这是什么基准"></a>这是什么基准</h2><p>SimpleBench 是一个多选题文本基准，出自 SimpleBench 团队。200 多道题，三类能力：</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>测什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>时空推理</td>
+<td>位置、顺序、相对方位这类小学几何就该会的判断</td>
+</tr>
+<tr>
+<td>社会智能</td>
+<td>人在情境里怎么做、意图与场合的把握</td>
+</tr>
+<tr>
+<td>语言对抗鲁棒性</td>
+<td>也就是「陷阱题」，文字上诱导你选错</td>
+</tr>
+</tbody></table>
+<p>题目刻意不考专业知识。目标是把「记住了多少」和「真的理解了没」分开。</p>
+<p>分数是 AVG@5，跑了五次取平均，采样参数 <code>temperature 0.7, top-p 0.95</code>（o1 系列除外）。</p>
+<h2 id="人类基线"><a href="#人类基线" class="headerlink" title="人类基线"></a>人类基线</h2><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>人类基线</td>
+<td>83.7%</td>
+<td>九名非专业参与者，样本很小</td>
+</tr>
+<tr>
+<td>人类最高分</td>
+<td>95.4%</td>
+<td>同一组里最好的那个人</td>
+</tr>
+</tbody></table>
+<p>基线的样本量只有九人，官方在报告的 Human Evaluation 一节里专门说明了怎么算的。读数时把这个当参考线，别当成精确的人类水平。</p>
+<h2 id="主榜（MCQ）"><a href="#主榜（MCQ）" class="headerlink" title="主榜（MCQ）"></a>主榜（MCQ）</h2><p>官网截图如下，完整榜单在文末链接里。</p>
+<p><img src="https://img.meituan.net/content/451c2781077124703be84ffa02e142dd85512.png"></p>
+<p>榜单一共收录 117 个模型。前二十名：</p>
+<table>
+<thead>
+<tr>
+<th>名次</th>
+<th>模型</th>
+<th>分数</th>
+<th>机构</th>
+<th>收录日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>—</td>
+<td>人类最高分</td>
+<td>95.4%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Claude Fable 5.2</td>
+<td>94.9%</td>
+<td>Anthropic</td>
+<td>2026-11-10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Gemini 4 Neon</td>
+<td>94.4%</td>
+<td>Google</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Gemini 4 Carbon</td>
+<td>92.6%</td>
+<td>Google</td>
+<td>2026-11-10</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Gemini 4 Argon</td>
+<td>91.7%</td>
+<td>Google</td>
+<td>2026-11-10</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Gemini 4 Hydrogen</td>
+<td>91.7%</td>
+<td>Google</td>
+<td>2026-11-19</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Claude Opus 5.5</td>
+<td>88.4%</td>
+<td>Anthropic</td>
+<td>2026-09-24</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Claude Fable 5.1</td>
+<td>86.6%</td>
+<td>Anthropic</td>
+<td>2026-09-03</td>
+</tr>
+<tr>
+<td>8</td>
+<td>GPT-6 Astra Pro</td>
+<td>86.5%</td>
+<td>OpenAI</td>
+<td>2026-09-07</td>
+</tr>
+<tr>
+<td>—</td>
+<td>人类基线</td>
+<td>83.7%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9</td>
+<td>GPT-6 Astra</td>
+<td>83.6%</td>
+<td>OpenAI</td>
+<td>2026-09-07</td>
+</tr>
+<tr>
+<td>10</td>
+<td>GPT-6.1 Sol</td>
+<td>82.9%</td>
+<td>OpenAI</td>
+<td>2026-10-01</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Gemini 3.8 Flash</td>
+<td>82.4%</td>
+<td>Google</td>
+<td>2026-09-03</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Claude Fable</td>
+<td>81.9%</td>
+<td>Anthropic</td>
+<td>2026-06-10</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Muse Spark 1.3</td>
+<td>81.8%</td>
+<td>Meta</td>
+<td>2026-09-03</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Claude Opus 5</td>
+<td>80.6%</td>
+<td>Anthropic</td>
+<td>2026-07-24</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Gemini 3.1 Pro Preview</td>
+<td>79.6%</td>
+<td>Google</td>
+<td>2026-02-17</td>
+</tr>
+<tr>
+<td>16</td>
+<td>GPT-6.2 Astra Pro</td>
+<td>79.2%</td>
+<td>OpenAI</td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>17</td>
+<td>GPT-6.2 Astra</td>
+<td>77.3%</td>
+<td>OpenAI</td>
+<td>2026-11-18</td>
+</tr>
+<tr>
+<td>18</td>
+<td>GPT-5.5 Pro</td>
+<td>76.9%</td>
+<td>OpenAI</td>
+<td>2026-04-24</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Gemini 3.5 Flash</td>
+<td>76.7%</td>
+<td>Google</td>
+<td>2026-05-20</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Gemini 3 Pro Preview</td>
+<td>76.4%</td>
+<td>Google</td>
+<td>2025-11-18</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Grok 4.6</td>
+<td>75.9%</td>
+<td>xAI</td>
+<td>2026-08-13</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Claude Sonnet 5.5</td>
+<td>75.9%</td>
+<td>Anthropic</td>
+<td>2026-10-01</td>
+</tr>
+</tbody></table>
+<p>人类基线画在榜中间是有意的：第 8 名在它上面，第 9 名在它下面。现在有 <strong>8 个模型高于人类基线</strong>。</p>
+<h2 id="Open-Ended-榜单"><a href="#Open-Ended-榜单" class="headerlink" title="Open-Ended 榜单"></a>Open-Ended 榜单</h2><p>换成开放式作答，所有分数掉一截：</p>
+<table>
+<thead>
+<tr>
+<th>名次</th>
+<th>模型</th>
+<th>分数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Gemini 3.1 Pro Preview</td>
+<td>64.8%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Claude Opus 4.7</td>
+<td>62.9%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Claude Opus 4.6</td>
+<td>59.7%</td>
+</tr>
+</tbody></table>
+<p>多选题把答案摆在面前，模型靠辨认就能得分。开放式要自己写出来，能力差立刻显出来。</p>
+<h2 id="分数分布"><a href="#分数分布" class="headerlink" title="分数分布"></a>分数分布</h2><table>
+<thead>
+<tr>
+<th>分数段</th>
+<th>模型数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>90–100%</td>
+<td>5</td>
+</tr>
+<tr>
+<td>80–90%</td>
+<td>9</td>
+</tr>
+<tr>
+<td>70–80%</td>
+<td>15</td>
+</tr>
+<tr>
+<td>60–70%</td>
+<td>20</td>
+</tr>
+<tr>
+<td>50–60%</td>
+<td>17</td>
+</tr>
+<tr>
+<td>40–50%</td>
+<td>17</td>
+</tr>
+<tr>
+<td>30–40%</td>
+<td>11</td>
+</tr>
+<tr>
+<td>20–30%</td>
+<td>15</td>
+</tr>
+<tr>
+<td>0–20%</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<p>最高的 Claude Fable 5.2 是 94.9%，最低的 GPT-3.5 Turbo 是 8.0%。中间那一大片 50–70% 是当前的主流水平。</p>
+<h2 id="各家收录数量"><a href="#各家收录数量" class="headerlink" title="各家收录数量"></a>各家收录数量</h2><table>
+<thead>
+<tr>
+<th>机构</th>
+<th>模型数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OpenAI</td>
+<td>33</td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td>21</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>16</td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>6</td>
+</tr>
+<tr>
+<td>xAI</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Alibaba</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Moonshot AI</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Z.ai</td>
+<td>4</td>
+</tr>
+<tr>
+<td>MiniMax</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td>2</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<h2 id="Perf-：跑一遍要多少钱"><a href="#Perf-：跑一遍要多少钱" class="headerlink" title="Perf&#x2F;$：跑一遍要多少钱"></a>Perf&#x2F;$：跑一遍要多少钱</h2><p>榜单里附了每个模型的输入&#x2F;输出价格和单次运行成本（cpr，cost per run）。</p>
+<p><strong>最便宜的五个：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>单次成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Haiku 5.5</td>
+<td>$0.12</td>
+</tr>
+<tr>
+<td>GPT-5.6 Luna (xhigh)</td>
+<td>$0.16</td>
+</tr>
+<tr>
+<td>Mistral Large 3</td>
+<td>$0.20</td>
+</tr>
+<tr>
+<td>GPT-6.2 Sol</td>
+<td>$0.21</td>
+</tr>
+<tr>
+<td>DeepSeek V4 Flash (preview)</td>
+<td>$0.28</td>
+</tr>
+</tbody></table>
+<p><strong>最贵的五个：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>单次成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GPT-5.5 Pro</td>
+<td>$148.59</td>
+</tr>
+<tr>
+<td>GPT-5 Pro</td>
+<td>$109.46</td>
+</tr>
+<tr>
+<td>GPT-5.2 Pro (xhigh)</td>
+<td>$42.86</td>
+</tr>
+<tr>
+<td>Gemini 4 Carbon</td>
+<td>$16.21</td>
+</tr>
+<tr>
+<td>Kimi K3 (max)</td>
+<td>$15.41</td>
+</tr>
+</tbody></table>
+<p>第一名 Claude Fable 5.2 的单次成本是 $7.99 一类的量级，而 Claude Haiku 5.5 只要 $0.12 却跑出 59.2%。榜单把这个维度单独列出来，是为了让「分数高」和「值得用」分开判断。</p>
+<h2 id="怎么读这个榜"><a href="#怎么读这个榜" class="headerlink" title="怎么读这个榜"></a>怎么读这个榜</h2><ol>
+<li><strong>人类基线是九个人的样本。</strong> 它是个参考线，不是精确的人类水平。</li>
+<li><strong>AVG@5 掩盖了波动。</strong> 五次取平均说明同题多次作答不一致，这对推理模型来说是个值得注意的信号。</li>
+<li><strong>陷阱题那一类是最有区分度的。</strong> 官方把 linguistic adversarial robustness 单列，说明出题人认为「被文字骗到」是模型和人的关键差别。</li>
+<li><strong>Open-Ended 的分数才更接近真实使用。</strong> 多选题是辨认，不是生成。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://simple-bench.com/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/simple-bench/SimpleBench</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://lmcouncil.ai/benchmarks</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://simple-bench.com/">SimpleBench 官网</a> — 完整榜单，四个标签页</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/simple-bench/SimpleBench">SimpleBench GitHub</a> — 公开题目 <code>simple_bench_public.json</code></li>
+<li><a target="_blank" rel="noopener" href="https://lmcouncil.ai/benchmarks">LMcouncil.ai</a> — 用这些模型跑一遍 SimpleBench</li>
+<li><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1mddNFK5UbBFVr3oDftd2Kyc6D8TFctfe/view">技术报告</a> — 方法与 Human Evaluation 一节</li>
+</ul>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2026/10/22/black-wednesday-2026-10-21/" data-toggle="tooltip" data-placement="top"
+                           title="黑色星期三：2026 年 10 月 21 日，五起安全事件同一天爆发">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%E5%9F%BA%E5%87%86"><span class="toc-text">这是什么基准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E7%B1%BB%E5%9F%BA%E7%BA%BF"><span class="toc-text">人类基线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%A6%9C%EF%BC%88MCQ%EF%BC%89"><span class="toc-text">主榜（MCQ）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Open-Ended-%E6%A6%9C%E5%8D%95"><span class="toc-text">Open-Ended 榜单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83"><span class="toc-text">分数分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E5%AE%B6%E6%94%B6%E5%BD%95%E6%95%B0%E9%87%8F"><span class="toc-text">各家收录数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perf-%EF%BC%9A%E8%B7%91%E4%B8%80%E9%81%8D%E8%A6%81%E5%A4%9A%E5%B0%91%E9%92%B1"><span class="toc-text">Perf&#x2F;$：跑一遍要多少钱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E8%AF%BB%E8%BF%99%E4%B8%AA%E6%A6%9C"><span class="toc-text">怎么读这个榜</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="toc-text">相关链接</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; MCXEN 2026
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://b.xpai.uk/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+
+</body>
+
+</html>
